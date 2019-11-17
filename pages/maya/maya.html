@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Maya</title>
+	<link href="maya.css" rel="stylesheet" type="text/css" />
+</head>
+<nav class="navbar">
+	<div class="header1" >Maya</div>
+	<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()"/>
+   <button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)"></button>
+   <a href="../../index.html">Home</a>
+   <script src="../../pagesearch.js" type="text/javascript"></script>
+</nav>
+
+<body>
+
+	<script type="text/javascript">
+		var oversized = ['bank','village'];
+
+		for (var j=0;j<oversized.length;j++){
+			document.write('<div class="gallery">');
+			var command = '<a href=\"'+oversized[j]+'.zip\" download><img src=\"'+oversized[j]+'.png\" width=\"20%\"></a>'
+			document.write(command);
+			document.write('</div>');
+		}
+
+		var objects = ['lamp','house','room','fullperson','person'];
+
+		for (var i=0;i<objects.length;i++){
+			document.write('<div class="gallery">');
+			var command = '<a href=\"'+objects[i]+'.obj\" download><img src=\"'+objects[i]+'.png\" width=\"20%\"></a>'
+			document.write(command);
+			document.write('</div>');
+		}
+	</script>
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,88 @@
+nav{
+	background: black;
+	font-family: Verdana,Calibri,Helvetica,Calibri;
+	font-size: 50px;
+	font-style: normal;
+	font-weight: 300;
+	margin:0;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+body{
+	margin:0;
+}
+nav:hover{
+	background:white;
+}
+nav:hover > .header1{
+	color: black;
+}
+nav:hover > a{
+	color:black;
+}
+nav:hover > .searchbutton{
+	 background-image: url(../../search.png);
+	 background-repeat: no-repeat;
+	 background-size: 45px;
+	 background-position: center;
+	 outline:0 none;
+	 box-shadow: none;
+}
+.header1{
+	color:white;
+	font-size: 50px;
+	display: inline;
+	text-align: left;
+	padding-left: 10%;
+	padding-right:10%;
+}
+#in{
+	border:none;
+	display: inline-block;
+	background-color: white;
+	text-align: center;
+	width:20%;
+	padding: 5px;
+	background-color: black;
+	color:white;
+	font-size: 30px;
+	margin-left: 5%;
+}
+a{
+	font-size: 30px;
+	color:white;
+	text-decoration: none;
+	text-align:right;
+	padding-left: 10%
+}
+.searchbutton{
+	 background-image: url(../../searchBlack.png);
+	 background-repeat: no-repeat;
+	 background-size: 150px;
+	 background-position: center;
+	 border:none;
+	 width: 55px;
+	 height: 55px;
+}
+.info{
+	text-decoration: none;
+	text-align: center;
+	background: black;
+	font-family: Verdana,Calibri,Helvetica,Calibri;
+	font-size: 50px;
+	font-style: normal;
+	font-weight: 300;
+	margin:0;
+	padding: 5px;
+}
+/*
+=============================================*/
+.gallery img:hover{
+	transform:scale(2.2);
+}
+.gallery{
+	margin:0;
+	padding: 0;
+	display: inline;
+	
+}

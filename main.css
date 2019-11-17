@@ -1,0 +1,124 @@
+header{
+	font-family: 'Great Vibes','Pacifico',Helvetica,'Merienda One','Oleo Script';
+	font-weight:3000;
+	font-size: 150px;
+	color:white;
+	font-style: normal;
+	text-align: center;
+	margin-top: 15%;
+	margin-bottom: 7%;
+	text-shadow: -.5px -.5px 0 #000,
+				.5px .5px 0 #000,
+				-.5px .5px 0 #000,
+				.5px .5px 0 #000;
+}
+body{
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	font-family: Helvetica,Verdana;
+	font-weight: 1000;
+	font-style: italic;
+	font-size:30px;
+	color:white;
+	text-align: center;
+}
+.searchbar {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ background: black;
+ height: 40px;
+ border-radius: 40px;
+ padding: 15px;
+}
+
+.searchbar:hover > .searchtxt {
+ width: 85%;
+ padding-left: 10px;
+ padding-right: 10px;
+}
+
+.searchbar:hover > .searchbutton {
+ background: white;
+ color: black;
+}
+.searchbar:hover > .searchbutton {
+ background-image: url(search.png);
+ background-repeat: no-repeat;
+ background-size: 45px;
+ background-position: center;
+
+}
+.searchbutton {
+ background-image: url(searchBlack.png);
+ background-repeat: no-repeat;
+ background-size: 190px;
+ background-position: center;
+ float: right;
+ width: 55px;
+ height: 55px;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ transition: 0.4s;
+ color: white;
+ cursor: pointer;
+ border:none;
+}
+
+.searchtxt {
+ border: none;
+ background: none;
+ outline: none;
+ float: left;
+ padding: 0px;
+ color: white;
+ font-size: 30px;
+ transition: 0.4s;
+ line-height: 40px;
+ width: 0px;
+ font-weight: normal;
+}
+
+
+#buttons{
+	width:15%;
+	margin-top:5%;
+	border:none;
+	padding:10px;
+	color:white;
+	background-color: red;
+	font-family: "PT Sans"
+	font-weight:800;
+	font-style:bold;
+	font-size: 35px;
+	text-align: center;
+	border-radius:50px;
+
+}
+#linkedin{
+	width:15%;
+	margin-top:5%;
+	margin-right:3%;
+	border:none;
+	padding:10px;
+	color:white;
+	background-color: #156;
+	font-family: "PT Sans"
+	font-weight:800;
+	font-style:bold;
+	font-size: 35px;
+	text-align: center;
+	border-radius: 50px;
+}
+#quote{
+	margin-top: 10%;
+	text-shadow: -.5px -.5px 0 #000,
+				.5px .5px 0 #000,
+				-.5px .5px 0 #000,
+				.5px .5px 0 #000;
+}
+}

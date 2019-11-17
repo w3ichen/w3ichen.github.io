@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video</title>
+	<link href="video.css" rel="stylesheet" type="text/css" />
+</head>
+<nav class="navbar">
+	<div class="header1" >Video</div>
+	<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()"/>
+   <button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)"></button>
+   <a href="../../index.html">Home</a>
+   <script src="../../pagesearch.js" type="text/javascript"></script>
+</nav>
+
+
+<body>
+	<!-- embedded youtube videos -->
+<div id="video1">
+<iframe class="video" width="40%"height="600px" src="https://www.youtube.com/embed/DuHDfjfUwG4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<div class="info">
+		<div>Title: Strathcona High School Rewind 2018</div>
+		<div>Published: July 25, 2018</div>
+		<div>My Role: Editor with Media Team</div>
+		<div>Info: Pioneered Strathcona High School's <br>first ever year in review video from proof <br>of concept to publication</div>
+	</div>
+</div>
+
+
+<div id="video2">
+<iframe class="video" width="40%" height="600px" src="https://www.youtube.com/embed/oDcOGshajHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<div class="info">
+		<div>Title: Scona Swim Team Info</div>
+		<div>Published: April 20, 2018</div>
+		<div>My Role: Director</div>
+		<div>Info: Spearheaded first ever scona team promotional video <br> from proof of concept to production to publication.<br>Involved scheduling and filming swimmers, scheduling interviews,<br>contacting editors and scanning old yearbook photos</div>
+	</div>
+</div>
+
+<div id="video3">
+<iframe id="video3" class="video" width="40%" height="600px" src="https://www.youtube.com/embed/0sbvORRdypc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<div class="info">
+		<div>Title: Scona Swim 2019 Promo</div>
+		<div>Published: April 20, 2018</div>
+		<div>My Role: Director</div>
+		<div>Info: Short Promotional Video, <br> 
+		As part of the Swim Team Promotional Project</div>
+	</div>
+</div>
+
+</body>
+
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solidworks</title>
+	<link href="solidworks.css" rel="stylesheet" type="text/css" />
+</head>
+<nav class="navbar">
+	<div class="header1" >Solidworks</div>
+	<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()"/>
+   <button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)"></button>
+   <a href="../../index.html">Home</a>
+   <script src="../../pagesearch.js" type="text/javascript"></script>
+</nav>
+
+<body>
+
+	<script type="text/javascript">
+		var objects = ['bottle','camera','guitar','hairbrush','ipad','iphone','part1','part2','popcan','propane','yoyo'];
+
+		for (var i=0;i<objects.length;i++){
+			document.write('<div class="gallery">');
+			var command = '<a href=\"'+objects[i]+'.SLDPRT\" download><img src=\"'+objects[i]+'.png\" width=\"20%\"></a>'
+			document.write(command);
+			document.write('</div>');
+		}
+	</script>
+
+
+</body>
+
+
+</html>

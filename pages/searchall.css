@@ -1,0 +1,15 @@
+.all{
+	color:white;
+	text-decoration: none;
+	font-family:Calibri;
+	font-size: 17px;
+	border:none;
+	outline:none;
+	padding: 5%;
+	margin:0;
+	width:100%;
+}
+body{
+	margin:0;
+	text-align: center;
+}
