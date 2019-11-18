@@ -29,6 +29,8 @@ function search(input){
 		'solidwork':'pages/solidworks/solidworks.html',
 		'code':'pages/code/code.html',
 		'python':'pages/code/code.html',
+		'git':'../code/code.html',
+		'github':'../code/code.html',
 		'vhdl':'pages/code/code.html',
 		'c++':'pages/code/code.html',
 		'cpp':'pages/code/code.html',

@@ -8,6 +8,8 @@ function search(input){
 		'code':'../code/code.html',
 		'python':'../code/code.html',
 		'c++':'../code/code.html',
+		'git':'../code/code.html',
+		'github':'../code/code.html',
 		'cpp':'../code/code.html',
 		'cplusplus':'../code/code.html',
 		'matlab':'../code/code.html',
