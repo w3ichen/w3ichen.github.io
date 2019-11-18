@@ -18,8 +18,8 @@
 		var oversized = ['bank','village'];
 
 		for (var j=0;j<oversized.length;j++){
-			document.write('<div class="gallery">');
-			var command = '<a href=\"'+oversized[j]+'.zip\" download><img src=\"'+oversized[j]+'.png\" width=\"20%\" class=\"gallery\"></a>'
+			document.write('<div class=\"all\">');
+			var command = '<a href=\"'+oversized[j]+'.zip\" download class=\"link\"><img src=\"'+oversized[j]+'.png\" width=\"20%\" class=\"gallery\"></a>'
 			document.write(command);
 			document.write('</div>');
 		}
@@ -27,8 +27,8 @@
 		var objects = ['lamp','house','room','fullperson','person'];
 
 		for (var i=0;i<objects.length;i++){
-			document.write('<div class="gallery">');
-			var command = '<a href=\"'+objects[i]+'.obj\" download><img src=\"'+objects[i]+'.png\" width=\"20%\" class=\"gallery\"></a>'
+			document.write('<div class=\"all\">');
+			var command = '<a href=\"'+objects[i]+'.obj\" download class=\"link\"><img src=\"'+objects[i]+'.png\" width=\"20%\" class=\"gallery\"></a>'
 			document.write(command);
 			document.write('</div>');
 		}

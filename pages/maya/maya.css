@@ -66,8 +66,14 @@ img:hover{
 	transform:scale(2.2);
 }
 .gallery{
-	margin:0;
-	padding: 0;
-	display: inline;
+	margin:10px;
+	padding: 2px;
 	
+}
+.link{
+	margin:3px;
+	padding: 2px;
+}
+.all{
+	display: inline;
 }
