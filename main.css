@@ -1,27 +1,31 @@
 header{
-	font-family: 'Great Vibes','Pacifico',Helvetica,'Merienda One','Oleo Script';
+/*	font-family: Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
 	font-weight:3000;
-	font-size: 150px;
+	font-size: 130px;*/
 	color:white;
 	font-style: normal;
 	text-align: center;
-	margin-top: 15%;
+	margin-top: 7%;
 	margin-bottom: 7%;
-	text-shadow: -.5px -.5px 0 #000,
+	/*text-shadow: -.5px -.5px 0 #000,
 				.5px .5px 0 #000,
 				-.5px .5px 0 #000,
-				.5px .5px 0 #000;
+				.5px .5px 0 #000;*/
+	font: 400 100px/1.2 'Merienda One', Helvetica, sans-serif;
+  color: white;
+  text-shadow: 3px 3px 3px #000;
 }
 body{
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-	font-family: Helvetica,Verdana;
-	font-weight: 1000;
+	font-family: "Arial Narrow",Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
+	font-weight: 500;
 	font-style: italic;
-	font-size:30px;
+	font-size:20px;
 	color:white;
 	text-align: center;
+
 }
 .searchbar {
  position: absolute;
@@ -29,40 +33,43 @@ body{
  left: 50%;
  transform: translate(-50%, -50%);
  background: black;
- height: 40px;
+ height: 20px;
  border-radius: 40px;
- padding: 15px;
+ padding-top:10px;
+ padding-bottom: 20px;
+ padding-left: 20px;
+ padding-right: 15px;
 }
 
 .searchbar:hover > .searchtxt {
- width: 85%;
+ width: 70%;
  padding-left: 10px;
  padding-right: 10px;
 }
-
 .searchbar:hover > .searchbutton {
  background: white;
  color: black;
 }
 .searchbar:hover > .searchbutton {
- background-image: url(search.png);
+ background-image: url(searchBlack.png);
  background-repeat: no-repeat;
- background-size: 45px;
+ background-size: 142px;
  background-position: center;
-
+}
+.searchbar:hover ~ #quote {
+ color: white;
+ font-size: 18px;
 }
 .searchbutton {
  background-image: url(searchBlack.png);
  background-repeat: no-repeat;
- background-size: 190px;
+ background-size: 142px;
  background-position: center;
  float: right;
- width: 55px;
- height: 55px;
+ width: 40px;
+ height: 40px;
  border-radius: 50%;
  display: flex;
- justify-content: center;
- align-items: center;
  transition: 0.4s;
  color: white;
  cursor: pointer;
@@ -76,32 +83,31 @@ body{
  float: left;
  padding: 0px;
  color: white;
- font-size: 30px;
+ font-size: 20px;
  transition: 0.4s;
- line-height: 40px;
+ line-height: 30px;
  width: 0px;
  font-weight: normal;
 }
 
-
 #buttons{
 	width:15%;
-	margin-top:5%;
+	margin-top:2.5%;
 	border:none;
 	padding:10px;
 	color:white;
 	background-color: red;
-	font-family: "PT Sans"
-	font-weight:800;
+	font-family: Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
+	font-weight:500;
 	font-style:bold;
-	font-size: 35px;
+	font-size: 20px;
 	text-align: center;
 	border-radius:50px;
 
 }
 #linkedin{
 	width:15%;
-	margin-top:5%;
+	margin-top:2.5%;
 	margin-right:3%;
 	border:none;
 	padding:10px;
@@ -110,15 +116,13 @@ body{
 	font-family: "PT Sans"
 	font-weight:800;
 	font-style:bold;
-	font-size: 35px;
+	font-size: 20px;
 	text-align: center;
 	border-radius: 50px;
 }
 #quote{
-	margin-top: 10%;
-	text-shadow: -.5px -.5px 0 #000,
-				.5px .5px 0 #000,
-				-.5px .5px 0 #000,
-				.5px .5px 0 #000;
+	font-size:0;
+	margin-top: 8%;
+	
 }
 }

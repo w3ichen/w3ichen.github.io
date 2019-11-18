@@ -1,13 +1,15 @@
 .all{
 	color:white;
 	text-decoration: none;
-	font-family:Calibri;
-	font-size: 17px;
+	font-family:Helvetica;
+	font-weight: 500;
+	font-size: 20px;
 	border:none;
 	outline:none;
-	padding: 5%;
+	padding: 4%;
 	margin:0;
 	width:100%;
+	letter-spacing: 6px;
 }
 body{
 	margin:0;
