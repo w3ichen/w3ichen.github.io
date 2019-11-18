@@ -35,6 +35,7 @@ function search(input){
 		'c++':'pages/code/code.html',
 		'cpp':'pages/code/code.html',
 		'cplusplus':'pages/code/code.html',
+		'coding':'pages/code/code.html',
 		'matlab':'pages/code/code.html',
 		'javascript':'pages/code/code.html',
 		'js':'pages/code/code.html',
