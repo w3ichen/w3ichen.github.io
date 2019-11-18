@@ -14,6 +14,7 @@ function search(input){
 		'cplusplus':'../code/code.html',
 		'matlab':'../code/code.html',
 		'javascript':'../code/code.html',
+		'coding':'pages/code/code.html',
 		'vhdl':'../code/code.html',
 		'js':'../code/code.html',
 		'html':'../code/code.html',
