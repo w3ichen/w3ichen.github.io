@@ -1,12 +1,14 @@
 nav{
 	background: black;
-	font-family: Verdana,Calibri,Helvetica,Calibri;
-	font-size: 50px;
+	font-family: Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
 	font-style: normal;
-	font-weight: 300;
+	font-weight: 200;
 	margin:0;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	padding-top: 12px;
+	padding-bottom: 8px;
+}
+body{
+	margin:0;
 }
 nav:hover{
 	background:white;
@@ -18,23 +20,18 @@ nav:hover > a{
 	color:black;
 }
 nav:hover > .searchbutton{
-	 background-image: url(../../search.png);
-	 background-repeat: no-repeat;
-	 background-size: 45px;
-	 background-position: center;
-	 outline:0 none;
-	 box-shadow: none;
-}
-
-body{
-	margin:0;
+	color:black;
+	font-family: Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
+	background-color: white;
+	font-weight: 300;
 }
 .header1{
 	color:white;
-	font-size: 50px;
+	font-size: 25px;
+	font-weight: 500;
 	display: inline;
 	text-align: left;
-	padding-left: 10%;
+	padding-left: 15%;
 	padding-right:10%;
 }
 #in{
@@ -46,37 +43,34 @@ body{
 	padding: 5px;
 	background-color: black;
 	color:white;
-	font-size: 30px;
-	margin-left: 5%;
+	font-size: 16px;
+	margin-left: 10%;
 }
 a{
-	font-size: 30px;
+	font-size: 16px;
 	color:white;
 	text-decoration: none;
 	text-align:right;
-	padding-left: 10%
+	padding-left: 15%
 }
 .searchbutton{
-	 background-image: url(../../searchBlack.png);
-	 background-repeat: no-repeat;
-	 background-size: 150px;
-	 background-position: center;
+	 background-size: 0;
+	 background-color: black;
 	 border:none;
-	 width: 55px;
-	 height: 55px;
-
+	 width: 0px;
+	 height: 0px;
 }
 
 /*
 =============================================*/
 .info{
 	background-color: #f5f5f5;
-	font-family: Verdana,Calibri,Helvetica,Calibri;
+	font-family: Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
 	font-size: 0;
 	font-style: normal;
 	font-weight: 200;
 	width:0;
-	height:425px;
+	height:340px;
 	margin: 1.2%;
 	color:black;
 	display: inline-block;
@@ -85,28 +79,27 @@ a{
 .video{
 	margin-top:1.2%;
 	margin-right: 1.2%;
-	margin-left:1.2%;
+	margin-left:2%;
 	margin-bottom: 0;
-
 }
 
 
 /* info about each video */
 #video1:hover .info{
 	width:50%;
-	font-size: 25px;
+	font-size: 17px;
 	padding-top:7%;
 	padding-left: 4%
 }
 #video2:hover .info{
 	width: 50%;
-	font-size: 25px;
+	font-size: 17px;
 	padding-top:7%;
 	padding-left: 4%
 }
 #video3:hover .info{
 	width:50%;
-	font-size: 25px;
+	font-size: 17px;
 	padding-top:7%;
 	padding-left: 4%
 }
