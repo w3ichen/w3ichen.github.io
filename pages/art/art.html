@@ -17,12 +17,12 @@
 	<script type="text/javascript">
 		var drawings = ['police.jpg','dobby.jpg','dad.jpg','hp.jpg','hermoine.jpg','me.jpg','hpfaces.jpg','mom.jpg','newt.jpg','mme.jpg','famof3.jpg','up.jpg','md1.jpg','md2.jpg','ray.jpg','dj.jpg','bridge.jpg','dumbledore.jpg','hogwarts.jpg'];
 
+		document.write('<div class="gallery">');
 		for (var i=0;i<drawings.length;i++){
-			document.write('<div class="gallery">');
-			var command = '<img src=\"'+drawings[i]+'\" width=\"20%\">'
+			var command = '<img src=\"'+drawings[i]+'\" width=\"19%\">'
 			document.write(command);
-			document.write('</div>');
 		}
+		document.write('</div>');
 	</script>
 
 

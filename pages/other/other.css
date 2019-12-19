@@ -75,17 +75,16 @@ a{
 	color: white;
 	background-color: black;
 	display: inline-flex;
-	width: 40%;
+	width: 45%;
 	margin:0;
 	padding: 2%;
 }
 .right{
 	background-color: #74b9ff;
 	display: inline-flex;
-	width: 40%;
+	width: 45%;
 	margin:0;
 	padding: 2%;
-
 }
 #ejquote{
 	list-style-type: none;
@@ -95,4 +94,8 @@ a{
 	background-color: #0984e3;
 	color:white;
 	outline: none;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
