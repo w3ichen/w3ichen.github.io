@@ -88,6 +88,8 @@ a{
 	width: 45%;
 	margin:0;
 	padding: 3%;
+	padding-left: 4%;
+	padding-top: 4%;
 
 }
 #view{
@@ -102,7 +104,4 @@ a{
 	font-weight: 500;
 	margin: 10px;
 	float: right;
-}
-.h2{
-	font-style: normal;
 }
