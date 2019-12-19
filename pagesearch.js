@@ -78,7 +78,18 @@ function search(input){
 		'after':'pages/video/video.html',
 		'premiere pro':'pages/video/video.html',
 		'lightroom':'pages/photo/photo.html',
-		'photoshop':'pages/photo/photo.html'
+		'photoshop':'pages/photo/photo.html',
+		'other':'pages/other/other.html',
+		'others':'pages/other/other.html',
+		'news':'pages/other/other.html',
+		'newspaper':'pages/other/other.html',
+		'newspapers':'pages/other/other.html',
+		'journal':'pages/other/other.html',
+		'theatre':'pages/other/other.html',
+		'tech':'pages/other/other.html',
+		'bring it on':'pages/other/other.html',
+		'drama':'pages/other/other.html'
+
 	}
 	let keys = Object.keys(index);
 	for (var i=0;i<inputArray.length;i++){

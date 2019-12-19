@@ -60,3 +60,39 @@ a{
 	 width: 0px;
 	 height: 0px;
 }
+
+
+.box{
+	font-family: Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
+	font-style: italic;
+	font-weight: 200;
+	font-size: 17px;
+	margin-top: 3%;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+.left{
+	color: white;
+	background-color: black;
+	display: inline-flex;
+	width: 40%;
+	margin:0;
+	padding: 2%;
+}
+.right{
+	background-color: #74b9ff;
+	display: inline-flex;
+	width: 40%;
+	margin:0;
+	padding: 2%;
+
+}
+#ejquote{
+	list-style-type: none;
+}
+#view{
+	display: inline-flex;
+	background-color: #0984e3;
+	color:white;
+	outline: none;
+}
