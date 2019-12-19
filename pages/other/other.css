@@ -62,40 +62,47 @@ a{
 }
 
 
+#ejquote{
+	list-style-type: none;
+	font-style: italic;
+}
 .box{
 	font-family: Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
-	font-style: italic;
+	font-style: normal;
 	font-weight: 200;
 	font-size: 17px;
 	margin-top: 3%;
-	margin-left: 15%;
-	margin-right: 15%;
+	margin-left: 10%;
+	margin-right: 10%;
+	display: inline-flex;
 }
 .left{
 	color: white;
 	background-color: black;
-	display: inline-flex;
-	width: 45%;
+	width: 43%;
 	margin:0;
 	padding: 2%;
 }
 .right{
 	background-color: #74b9ff;
-	display: inline-flex;
 	width: 45%;
 	margin:0;
-	padding: 2%;
-}
-#ejquote{
-	list-style-type: none;
+	padding: 3%;
+
 }
 #view{
-	display: inline-flex;
 	background-color: #0984e3;
 	color:white;
 	outline: none;
-	padding-left: 3px;
-	padding-right: 3px;
-	padding-top: 2px;
-	padding-bottom: 2px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: none;
+	font-weight: 500;
+	margin: 10px;
+	float: right;
+}
+.h2{
+	font-style: normal;
 }
