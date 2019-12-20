@@ -81,7 +81,8 @@ a{
 .gallery{
 	margin:0;
 	padding: 0;
-	display: inline;
+	display: inline-flex;
 	border:none;
 	outline: none;
+	flex-wrap: wrap;
 }
