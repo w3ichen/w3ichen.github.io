@@ -65,16 +65,25 @@ a{
 img:hover{
 	transform:scale(2.2);
 }
-.gallery{
-	margin:10px;
-	margin-left: 9%;
-	padding: 2px;
-	
-}
-.link{
-	margin:3px;
-	padding: 2px;
-}
+
 .all{
-	display: inline;
+	display: inline-flex;
+	cursor: pointer;
+	align-items: center;
+	flex-wrap: wrap;
+	outline: none;
+	justify-content: center;
+}
+.btn{
+	outline: none;
+	border: none;
+	/*this width controls the size of image*/
+	width:15%;
+	background-color: white;
+	margin: 1%;
+	padding: 0;
+	cursor: pointer;
+}
+.image{
+	width: 100%;
 }
