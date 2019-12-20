@@ -5,18 +5,54 @@
 	<link href="searchall.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<div class="lined">
-		<button onclick="window.location.href='../index.html'" class="all">
-		Home</button>
-		<button style="background-color: #34ace0" onclick="window.location.href='art/art.html'" class="all">Art</button>
-		<button style="background-color: #227093" onclick="window.location.href='code/code.html'" class="all">Coding</button>
-		<button style="background-color: #ff5252" onclick="window.location.href='maya/maya.html'" class="all">Maya + Animation + 3D Modeling</button>
-		<button style="background-color: #22a6b3" onclick="window.location.href='photo/photo.html'"class="all">Photography</button>
-		<button style="background-color: #be2edd" onclick="window.location.href='solidworks/solidworks.html'" class="all">SolidWorks</button>
-		<button style="background-color: #badc58" onclick="window.location.href='video/video.html'" class="all">Video</button>
+	<div class="column">
+		<button onclick="window.location.href='../index.html'" class="row">
+			<video src="v.mp4" loop preload="auto" class="video"></video>
+			<div class="text">Home</div>
+		</button>
+		<button onclick="window.location.href='art/art.html'" class="row">
+			<video src="v.mp4" loop preload="auto" class="video"></video>
+			<div class="text">Art</div>
+		</button>
+		<button onclick="window.location.href='code/code.html'" class="row">
+			<video src="v.mp4" loop preload="auto" class="video"></video>
+			<div class="text">Coding</div>
+		</button>
+		<button onclick="window.location.href='maya/maya.html'" class="row">
+			<video src="v.mp4" loop preload="auto" class="video"></video>
+			<div class="text">Maya + Animation + 3D Modeling</div>
+		</button>
+		<button onclick="window.location.href='photo/photo.html'"class="row">
+			<video src="v.mp4" loop preload="auto" class="video"></video>
+			<div class="text">Photography</div>
+		</button>
+		<button onclick="window.location.href='solidworks/solidworks.html'" class="row">
+			<video src="v.mp4" loop preload="auto" class="video"></video>
+			<div class="text">SolidWorks</div>
+		</button>
+		<button onclick="window.location.href='video/video.html'" class="row">
+			<video src="v.mp4" loop preload="auto" class="video"></video>
+			<div class="text">Video</div>
+		</button>
+		<button onclick="window.location.href='other/other.html'" class="row">
+			<video src="v.mp4" loop preload="auto" class="video"></video>
+			<div class="text">Other</div>
+		</button>
+
 
 	</div>
 
+
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		var $video = $('.video');
+		$video.on('mouseenter focus', function(){
+			$video.get(0).play();
+		});
+		$video.on('mouseout blur', function(){
+			$video.get(0).pause();
+		});
+	</script>
 
 </body>
 </html>

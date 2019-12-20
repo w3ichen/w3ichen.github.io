@@ -1,31 +1,41 @@
-.all{
-	color:white;
-	text-decoration: none;
-	font-family:Helvetica;
-	font-weight: 500;
-	font-size: 20px;
-	border:none;
-	outline:none;
-	padding: 4%;
-	margin:0;
-	width:100%;
-	letter-spacing: 6px;
-
-}
 body{
 	margin:0;
 	text-align: center;
 }
+.row{
+	display: inline-flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
 
-.hlink{
-	display: block;
-	width:40%;
-	height: 500px;
+	width: 100%;
+	color:white;
+	font-family:Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
+	font-weight: 500;
+	font-size: 20px;
+	border:none;
+	outline:none;
+	padding: 0;
+	letter-spacing: 6px;
+	text-align: center;
+	align-items: center;
+	cursor: pointer;
 }
-.lined{
+
+.column{
 	display: inline-flex;
 	flex-direction: column;
 	align-items: center;
 	width:60%;
+	padding: 0;
+}
+.video{
+	width:100%;
+}
+.text{
+	background-color: black;
+	height: 200px;
+
 
 }
+
+
