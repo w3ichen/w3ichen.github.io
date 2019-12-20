@@ -19,7 +19,7 @@
 
 		document.write('<div class="gallery">');
 		for (var i=0;i<objects.length;i++){
-			var command = '<a href=\"'+objects[i]+'.SLDPRT\" download class=\"link\"><img src=\"'+objects[i]+'.png\" width=\"20%\"></a>'
+			var command = '<button onclick=\"window.open(\'' + objects[i] + '.SLDPRT\')\" class=\"btn\"> <img src=\"' + objects[i] + '.png\"class=\"image\"></button>';
 			document.write(command);
 		}
 		document.write('</div>');
