@@ -5,6 +5,8 @@
 	<link href="searchall.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<!-- Video shown only for desktop -->
+	<div class="content-desktop">
 	<div class="column">
 		<!-- NOTE: video format as iphone/ipad for autoplay -->
 
@@ -27,7 +29,7 @@
 			<div class="text">Maya + Animation + 3D Modeling</div>
 		</button> -->
 		<button onclick="window.location.href='photo/photo.html'"class="row">
-			<video src="searchvideo/photo2.mp4" loop preload="auto" class="video" autoplay="muted"></video>
+			<video src="searchvideo/photo.mp4" loop preload="auto" class="video"></video>
 			<div class="text">Photography</div>
 		</button>
 		<!-- 
@@ -48,7 +50,22 @@
 
 
 	</div>
+	</div>
 
+	<!-- Pictures shown for desktop -->
+	<div class="content-mobile">
+	<div class="column">
+		<button onclick="window.location.href='photo/photo.html'"class="row">
+			<img src="searchvideo/photo.jpg">
+			<div class="text">Photography</div>
+		</button>
+
+		
+	</div>	
+	</div>
+
+
+	
 
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">

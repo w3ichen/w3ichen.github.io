@@ -40,3 +40,22 @@ body{
 }
 
 
+/*Different versions for mobile and desktop*/
+	.content-desktop {
+		display: inline;
+	}
+	.content-mobile{
+		display: none;
+	}
+
+	@media only screen
+		and (min-device-width : 320px)
+		and (max-device-width : 480px){
+			.content-mobile{display: inline;}
+		}
+	@media only screen
+		and (min-device-width : 320px)
+		and (max-device-width : 480px){
+			.content-desktop{display: none;}
+		}
+
