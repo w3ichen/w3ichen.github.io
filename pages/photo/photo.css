@@ -85,4 +85,5 @@ a{
 	border:none;
 	outline: none;
 	flex-wrap: wrap;
+	align-items: center;
 }
