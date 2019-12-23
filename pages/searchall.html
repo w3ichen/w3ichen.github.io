@@ -6,6 +6,7 @@
 </head>
 <body>
 	<!-- Video shown only for desktop -->
+	<div id="content-desktop">
 	<div class="column">
 		<!-- NOTE: video format as iphone/ipad for autoplay -->
 
@@ -14,7 +15,7 @@
 		</button>
 		
 		<button onclick="window.location.href='art/art.html'" class="row">
-			<video src="searchvideo/art.mp4" loop preload="auto" width="60%" class="art" poster="searchvideo/photo.jpg"></video>
+			<video src="searchvideo/art.mp4" loop preload="auto" width="60%" class="art"></video>
 			<div class="text">Art</div>
 		</button>
 		
@@ -45,6 +46,19 @@
 		
 		<button onclick="window.location.href='other/other.html'" class="row">
 			<div class="plain" style="margin-bottom: 10%;">Other</div>
+		</button>
+
+	</div>
+	</div>
+
+	<div id="content-mobile">
+		<button onclick="window.location.href='../index.html'" class="row">
+			<div class="plain">Home</div>
+		</button>
+		
+		<button onclick="window.location.href='art/art.html'" class="row">
+			<img src="searchvideo/photo.jpg">
+			<div class="text">Art</div>
 		</button>
 
 	</div>
@@ -102,13 +116,6 @@
 			$yt.get(0).pause();
 		});
 
-
-		if (isMobile) {
-	      $(".art").attr('poster', 'searchvideo/photo.jpg');
-		}
-		if (isMobile) {
-	      $(".photo").attr('poster', 'searchvideo/photo.jpg');
-		}
 	</script>
 
 </body>
