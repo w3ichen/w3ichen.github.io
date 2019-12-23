@@ -30,6 +30,7 @@ body{
 	width:60%;
 	padding: 0;
 }
+
 .video{
 	width:100%;
 }
@@ -38,26 +39,3 @@ body{
 	width:70%;
 
 }
-
-
-/*Different versions for mobile and desktop*/
-	.content-desktop {
-		display: inline;
-	}
-	.content-mobile{
-		display: none;
-		width: 0%;
-		height: 0%;
-	}
-
-	@media only screen
-		and (min-device-width : 320px)
-		and (max-device-width : 480px){
-			.content-mobile{display: inline;}
-		}
-	@media only screen
-		and (min-device-width : 320px)
-		and (max-device-width : 480px){
-			.content-desktop{display: none; width: 0%; height:0%;}
-		}
-

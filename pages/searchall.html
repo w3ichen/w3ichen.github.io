@@ -6,75 +6,100 @@
 </head>
 <body>
 	<!-- Video shown only for desktop -->
-	<div class="content-desktop">
 	<div class="column">
 		<!-- NOTE: video format as iphone/ipad for autoplay -->
 
-		<!-- <button onclick="window.location.href='../index.html'" class="row">
-			<video src="v.mp4" loop preload="auto" class="video"></video>
+		<button onclick="window.location.href='../index.html'" class="row">
 			<div class="text">Home</div>
-		</button> -->
+		</button>
 		
-		<!-- <button onclick="window.location.href='art/art.html'" class="row">
-			<video src="searchvideo/art.mp4" loop preload="auto" class="video"></video>
+		<button onclick="window.location.href='art/art.html'" class="row">
+			<video src="searchvideo/art.mp4" loop preload="auto" width="60%" class="art"></video>
 			<div class="text">Art</div>
-		</button> -->
+		</button>
 		
-		<!-- <button onclick="window.location.href='code/code.html'" class="row">
-			<video src="searchvideo/code.mp4" loop preload="auto" class="video"></video>
+		<button onclick="window.location.href='code/code.html'" class="row">
+			<video src="searchvideo/code.mp4" loop preload="auto" width="60%" class="code"></video>
 			<div class="text">Coding</div>
-		</button> -->
-	<!-- 	<button onclick="window.location.href='maya/maya.html'" class="row">
-			<video src="searchvideo/maya.mp4" loop preload="auto" class="video"></video>
+		</button>
+
+		<button onclick="window.location.href='maya/maya.html'" class="row">
+			<video src="searchvideo/maya.mp4" loop preload="auto" width="60%" class="maya"></video>
 			<div class="text">Maya + Animation + 3D Modeling</div>
-		</button> -->
-		<!-- <button onclick="window.location.href='photo/photo.html'"class="row">
-			<video src="searchvideo/photo.mp4" loop preload="auto" class="video"></video>
+		</button>
+
+		<button onclick="window.location.href='photo/photo.html'" class="row">
+			<video src="searchvideo/photo.mp4" loop preload="auto" width="60%" class="photo"></video>
 			<div class="text">Photography</div>
-		</button> -->
+		</button>
 		
 		<button onclick="window.location.href='solidworks/solidworks.html'" class="row">
-			<video src="searchvideo/solidworks.mp4" loop preload="auto" class="video"></video>
+			<video src="searchvideo/solidworks.mp4" loop preload="auto" width="60%" class="solidworks"></video>
 			<div class="text">SolidWorks</div>
 		</button>
 		
-		<!-- <button onclick="window.location.href='video/video.html'" class="row">
-			<video src="searchvideo/video.mp4" loop preload="auto" class="video"></video>
+		<button onclick="window.location.href='video/video.html'" class="row">
+			<video src="searchvideo/video.mp4" loop preload="auto" width="60%" class="yt"></video>
 			<div class="text">Video</div>
 		</button>
-		 -->
-		<!-- <button onclick="window.location.href='other/other.html'" class="row">
-			<video src="v.mp4" loop preload="auto" class="video"></video>
+		
+		<button onclick="window.location.href='other/other.html'" class="row">
 			<div class="text">Other</div>
 		</button>
 
- -->
-	</div>
-	</div>
-
-	<!-- Pictures shown for desktop -->
-	<div class="content-mobile">
-	<div class="column">
-		<button onclick="window.location.href='photo/photo.html'"class="row">
-			<img src="searchvideo/photo.jpg" class="video">
-			<div class="text">Photography</div>
-		</button>
-
-		
-	</div>	
 	</div>
 
 
-	
 
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="js/video-hover.js"></script>
 	<script type="text/javascript">
-		var $video = $('.video');
-		$video.on('mouseenter focus', function(){
-			$video.get(0).play();
+		var $art = $('.art');
+		$art.on('mouseenter focus', function(){
+			$art.get(0).play();
 		});
-		$video.on('mouseout blur', function(){
-			$video.get(0).pause();
+		$art.on('mouseout blur', function(){
+			$art.get(0).pause();
+		});
+
+		var $code = $('.code');
+		$code.on('mouseenter focus', function(){
+			$code.get(0).play();
+		});
+		$code.on('mouseout blur', function(){
+			$code.get(0).pause();
+		});
+
+		var $maya = $('.maya');
+		$maya.on('mouseenter focus', function(){
+			$maya.get(0).play();
+		});
+		$maya.on('mouseout blur', function(){
+			$maya.get(0).pause();
+		});
+
+		var $photo = $('.photo');
+		$photo.on('mouseenter focus', function(){
+			$photo.get(0).play();
+		});
+		$photo.on('mouseout blur', function(){
+			$photo.get(0).pause();
+		});
+
+		var $solidworks = $('.solidworks');
+		$solidworks.on('mouseenter focus', function(){
+			$solidworks.get(0).play();
+		});
+		$solidworks.on('mouseout blur', function(){
+			$solidworks.get(0).pause();
+		});
+
+		var $yt = $('.yt');
+		$yt.on('mouseenter focus', function(){
+			$yt.get(0).play();
+		});
+		$yt.on('mouseout blur', function(){
+			$yt.get(0).pause();
 		});
 	</script>
 
