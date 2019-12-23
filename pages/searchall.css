@@ -47,12 +47,3 @@ body{
 	margin: 3%;
 	font-size: 25px;
 }
-
-@media (min-width:800px){
-	#content-desktop{display: block;}
-	#content-mobile{display: none;}
-}
-@media (max-width: 800px){
-	#content-desktop{display:none;}
-	#content-mobile{display: block;}
-}
