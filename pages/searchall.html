@@ -101,6 +101,11 @@
 		$yt.on('mouseout blur', function(){
 			$yt.get(0).pause();
 		});
+
+
+		if (isMobile) {
+	      $(".art").find('video').attr('poster', 'searchvideo/photo.jpg');
+		}
 	</script>
 
 </body>
