@@ -15,9 +15,14 @@
 <body>
 
 	<script type="text/javascript">
-		var objects = ['bottle','camera','guitar','hairbrush','ipad','iphone','part1','part2','popcan','propane','yoyo'];
+		var objects = ['bottle','camera','guitar','hairbrush','ipad','iphone','1','2','3','4','5','popcan','propane','yoyo'];
+		var assembly = ['assembly1'];
 
 		document.write('<div class="gallery">');
+		for (var i=0;i<assembly.length;i++){
+			var command = '<button onclick=\"window.open(\'' + assembly[i] + '.zip\')\" class=\"btn\"> <img src=\"' + assembly[i] + '.png\"class=\"image\"></button>';
+			document.write(command);
+		}
 		for (var i=0;i<objects.length;i++){
 			var command = '<button onclick=\"window.open(\'' + objects[i] + '.SLDPRT\')\" class=\"btn\"> <img src=\"' + objects[i] + '.png\"class=\"image\"></button>';
 			document.write(command);
