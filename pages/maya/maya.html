@@ -17,19 +17,19 @@
 	<script type="text/javascript">
 		document.write('<div class=\"all\">');
 
-		var better = ['wine','office','kitchen','bedroom'];
+		var better = ['wine','office','kitchen','bedroom','washroom','livingroom'];
 		for (var k=0;k<better.length;k++){
 			var command = '<button onclick=\"window.open(\'' + better[k] + '.obj\')\" class=\"btn\"> <img src=\"' + better[k] + '.jpg\"class=\"image\"></button>';
 			document.write(command);
 		}
 
-		var oversized = ['bank','village'];
+		var oversized = ['village'];
 		for (var j=0;j<oversized.length;j++){
 			var command = '<button onclick=\"window.open(\'' + oversized[j] + '.zip\')\" class=\"btn\"> <img src=\"' + oversized[j] + '.png\"class=\"image\"></button>';
 			document.write(command);
 		}
 
-		var objects = ['lamp','house','room','fullperson','person'];
+		var objects = ['house','room','fullperson','person'];
 		for (var i=0;i<objects.length;i++){
 			var command = '<button onclick=\"window.open(\'' + objects[i] + '.obj\')\" class=\"btn\"> <img src=\"' + objects[i] + '.png\"class=\"image\"></button>';
 			document.write(command);
