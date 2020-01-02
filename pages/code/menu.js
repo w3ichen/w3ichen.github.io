@@ -1,9 +1,12 @@
 var	list = ['Python - Advanced Encryption System',
 			'Python - Data Storage',
-			'Python - Password Validator'];
+			'Python - Calculator',
+			'Python - Password Validator',
+			];
 
 var link = ['aes',
 			'data',
+			'calculator',
 			'pw'];
 
 for (var i=0;i<list.length;i++){
