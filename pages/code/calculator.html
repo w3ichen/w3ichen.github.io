@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Code > Calculator</title>
+	<link href="code.css" rel="stylesheet" type="text/css" />
+</head>
+<nav class="navbar">
+	<div class="header1" >Coding</div>
+	<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()"/>
+   <button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)">Go</button>
+   <a href="../../index.html">Home</a>
+   <script src="../../pagesearch.js" type="text/javascript"></script>
+</nav>
+<!-- info bar -->
+<div class="info">
+	<a href="https://github.com/w3ichen">To Github</a>
+	<a href="https://github.com/w3ichen/w3ichen.github.io">To Website Code</a>
+</div>
+
+<body>
+
+
+
+	<script type="text/javascript">
+		window.ans=''
+		function display(ans){
+			document.getElementById('screen').innerHTML = ans;
+		}
+
+		function buttonclick(ans, value){
+			ans = ans + value;
+			display(ans);
+			return ans;
+
+		}
+		function equal(ans){
+			var finalANS = eval(ans)
+			display(finalANS)
+			ans = String(finalANS)
+			return ans
+		}
+		function del(ans){
+			ans_array= ans.split('')
+			ans_array.pop()
+			ans = ans_array.join('')
+			display(ans)
+			return ans
+		}
+
+	</script>
+
+	<div id="screen"></div>
+<div id="outside">
+
+	<div class="column">
+
+	<div class="row">
+		<button class="buttons" onclick="ans='';display(ans)" >   <strong>clear</strong></button>
+		<button class="buttons" onclick="ans=del(ans)"><strong>del</strong></button>
+	</div>
+
+	<div class="row">
+		<button class="buttons" onclick="ans=buttonclick(ans,'(')">(</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,')')" style="margin-left:15%;">)</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'**')">^</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'+')" style="background-color: #dfe4ea ">+</button>
+	</div>
+
+	<div class="row">
+		<button class="buttons" onclick="ans=buttonclick(ans,'7')">7</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'8')">8</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'9')">9</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'-')"style="background-color: #dfe4ea ">-</button>
+	</div>
+
+	<div class="row">
+		<button class="buttons" onclick="ans=buttonclick(ans,'4')">4</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'5')">5</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'6')">6</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'*')"style="background-color: #dfe4ea ">*</button>
+	</div>
+
+	<div class="row">
+		<button class="buttons" onclick="ans=buttonclick(ans,'1')">1</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'2')">2</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'3')">3</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'/')"style="background-color: #dfe4ea;">/</button>
+	</div>
+
+	<div class="row">
+		<button class="buttons" onclick="ans=buttonclick(ans,'0')">0</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'(-1)*')">(-)</button>
+		<button class="buttons" onclick="ans=buttonclick(ans,'.')">.</button>
+		<button class="buttons" onclick="ans=equal(ans)" style="background-color: red; border: none">=</button>
+	</div>
+</div>
+</div>
+
+	<style type="text/css">
+		#outside{
+			display: flex;
+			outline: solid;
+			padding: 2%;
+			width: 60%;
+
+		}
+		.buttons{
+			display: inline-flex;
+			justify-content: space-around;
+			background-color: white;
+			border: none;
+			margin: 5%;
+			font-size:20px;
+		}
+
+		.row {
+			display: inline-flex;
+
+		}
+		.column{
+			display: inline-flex;
+			flex-wrap: wrap; 
+			width: 100%; 
+			align-items: center;
+			flex-direction: column;
+			padding-left: 50%;
+		}
+		#screen{
+			display: inline-flex;
+			justify-content: left;
+			float:right;
+			background-color: black;
+			color: white;
+			margin-top: 5%;
+			margin-bottom: .5%;
+			padding-top: .5%;
+			padding-bottom: .5%;
+			padding-left: 5%;
+			
+			width: 60%;
+			font-size:22px;
+		}
+
+
+		
+	</style>
+
+
+
+	<h1>My Code</h1>
+
+	<script type="text/javascript" src="menu.js"></script>
+
+	
+</body>
+</html>
