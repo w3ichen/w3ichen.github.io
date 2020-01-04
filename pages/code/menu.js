@@ -1,10 +1,12 @@
-var	list = ['Python - Advanced Encryption System',
+var	list = ['Python - WebScraping',
+			'Python - Advanced Encryption System',
 			'Python - Data Storage',
 			'Python - Password Validator',
 			'HTML + CSS + JS - Calculator'
 			];
 
-var link = ['aes',
+var link = ['webscraping',
+			'aes',
 			'data',
 			'pw',
 			'calculator'
