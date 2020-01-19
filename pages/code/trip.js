@@ -13,10 +13,11 @@ function getUserInputs(){
 		var end = document.getElementById("end").value;
 		var hotels = document.getElementById("hotels").value;
 		var rest = document.getElementById("rest").value;
+		var country = document.getElementById("country").value;
 	} catch(err){
 		window.alert("ERROR: error in user input\n Please Check Your Inputs")
 	}
-	var output = [from,to,start,end,car,hotels,rest];
+	var output = [from,to,country,start,end,car,hotels,rest];
 	return output
 }
 function main(){
