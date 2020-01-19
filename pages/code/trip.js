@@ -10,14 +10,13 @@ function getUserInputs(){
 		var from = document.getElementById("from").value;
 		var to = document.getElementById("to").value;
 		var start = document.getElementById("start").value;
-		var end = document.getElementById("end").value;
 		var hotels = document.getElementById("hotels").value;
 		var rest = document.getElementById("rest").value;
 		var country = document.getElementById("country").value;
 	} catch(err){
 		window.alert("ERROR: error in user input\n Please Check Your Inputs")
 	}
-	var output = [from,to,country,start,end,car,hotels,rest];
+	var output = [from,to,country,start,car,hotels,rest];
 	return output
 }
 
@@ -50,8 +49,9 @@ function latlong_to_address(lat,lon,key){
 function main(){
 	const key = 'G1DzjsJD5JZ3vMKMRgJeaUJ5Trc0rnx0'
 	window.location.href = "trip2.html";
-
-	var time;
-	var date;
-	var month;
+	// (1) get user inputs
+	var inputs = getUserInputs();
+	var hour;
+	var minutes;
+	document.write('hello')
 }
