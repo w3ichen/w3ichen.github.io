@@ -20,5 +20,10 @@ function getUserInputs(){
 	return output
 }
 function main(){
-	window.location.href = "trip2.html"
+	const key = 'G1DzjsJD5JZ3vMKMRgJeaUJ5Trc0rnx0'
+	window.location.href = "trip2.html";
+
+	var time;
+	var date;
+	var month;
 }
