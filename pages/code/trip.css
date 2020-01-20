@@ -36,6 +36,7 @@ input{
 	border: none;
 	background-color: rgba(0,0,0,.1);
 	color: white;
+	font-family: 'courier new',verdana, roboto;
 }
 .btn{
 	margin-top: 5%;
@@ -45,7 +46,7 @@ input{
 	font-family: 'courier new',verdana, roboto;
 	background-color: #e84118;
 	border: none;
-	opacity: 70%;
+	opacity: 90%;
 }
 .row{
 	margin:1%;
@@ -56,6 +57,7 @@ select{
 	background-color: rgba(0,0,0,.5);
 	color: white;
 	border: none;
+	font-family: 'courier new',verdana, roboto;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: white;
