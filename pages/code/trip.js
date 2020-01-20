@@ -19,12 +19,18 @@ function getUserInputs(){
 	} catch(err){
 		window.alert("ERROR: error in user input\n Please Check Your Inputs")
 	}
-	// array eleme: (0)(1)  (2)    (3)  (4)  (5)     (6)    (7)
-	var output = [from,to,country,start,car,carType,hotels,rest];
+	//restaurants?
+	if (rest == "rest_none"){var rest_boolean = false; } else{var rest_boolean = true;}
+	//             (0) (1)  (2)    (3)  (4)   (5)    (6)   (7)       (8)
+	var output = [from,to,country,start,car,carType,hotels,rest, rest_boolean];
+	console.log(output)
 	return output
 }
 function seconds_2_hours(seconds){
-	
+	var hours = parseInt(seconds/3600, 10);
+	var minutes = parseInt(((seconds/3600)%1)*60,10)
+	var seconds = parseInt(((((seconds/3600)%1)*60)%1)*60,10)
+	return [hours,minutes,seconds]
 }
 
 
@@ -47,7 +53,10 @@ function main(){
 	var inputs = getUserInputs();
 
 	// time array, hours - minutes - seconds
-	var time_seconds = [8,0,0];
+	var time_seconds = 28800; //8 am
+	var time = seconds_2_hours(time_seconds)
+	var cost = 0;
+
 	// (2) convert addresses to lat and lon
 	var from_address = inputs[0].split(" ").join("%20");
 	var to_address = inputs[1].split(" ").join("%20");
@@ -58,6 +67,7 @@ function main(){
 	.then(data=>{return data.json()})
 	.then(res=> { 
 		var from_latlon = [(res.results[0].position.lat),(res.results[0].position.lon)];
+		var current_location = from_latlon;
 		fetch(to_url)
 		.then(data=>{return data.json()})
 		.then(res=> {
@@ -68,7 +78,10 @@ function main(){
 			fetch(route_url)
 			.then(data=>{return data.json()})
 			.then(res=> {
-				console.log(res)
+				var distace_km = (res.routes[0].summary.lengthInMeters)/1000
+				var total_time_seconds = res.routes[0].summary.travelTimeInSeconds
+
+
 			})
 		})
 	})
