@@ -75,13 +75,13 @@ function main(){
 				var route = res.routes[0].legs[0].points
 				var numOfPoints = route.length
 
-				document.getElementById("main_info").innerHTML = "<string>FROM</strong> "+inputs[0]+"  <strong>TO</strong> "+inputs[1]+" ,"+inputs[2]+"<br><strong>Departure Date:</strong> "+inputs[3]+"<br><strong>Distance:</strong> "+distace_km+" km"+"<br><strong>Driving Time:</strong> "+parseInt(travel_time_seconds/3600, 10)+" hours : "+parseInt(((travel_time_seconds/3600)%1)*60,10)+" minutes : "+ parseInt(((((travel_time_seconds/3600)%1)*60)%1)*60,10)+ " seconds";
+				document.getElementById("main_info").innerHTML = "<strong>FROM</strong> "+inputs[0]+"  <strong>TO</strong> "+inputs[1]+" ,"+inputs[2]+"<br><strong>Departure Date:</strong> "+inputs[3]+"<br><strong>Distance:</strong> "+distace_km+" km"+"<br><strong>Driving Time:</strong> "+parseInt(travel_time_seconds/3600, 10)+" hours : "+parseInt(((travel_time_seconds/3600)%1)*60,10)+" minutes : "+ parseInt(((((travel_time_seconds/3600)%1)*60)%1)*60,10)+ " seconds";
 				
 				var coord_index = Math.floor(Math.floor(numOfPoints/distace_km)*inputs[4])
 				var interval = coord_index*.85;
 				if (distace_km > inputs[4]){
 					// if can't be reached in one car range
-						document.getElementById("main").innerHTML = "<br><strong>Day 1</strong><br>7:00	Depart from Home"
+						document.getElementById("main").innerHTML = "<br><strong>Day 1</strong><br><strong>7:00</strong>	Depart from Home"
 						time = seconds_2_hours(time_seconds);			
 						var resultFound = false;
 						var fetchNow = function() {fetch('https://api.tomtom.com/routing/1/calculateRoute/'+current_location[0]+'%2C'+current_location[1]+'%3A'+route[coord_index].latitude+'%2C'+route[coord_index].longitude+'/json?departAt='+inputs[3]+'T'+time[0]+'%3A'+time[1]+'%3A'+time[2]+'&routeType=fastest&traffic=true&travelMode=car&key='+key)
@@ -103,19 +103,12 @@ function main(){
 										
 										var gas_name = res.results[0].poi.name;
 										var gas_address = res.results[0].address.freeformAddress;  
-
-										document.getElementById("main").innerHTML += time[0]+":"+time[1]+"	<strong>Gas Station</strong> - "+gas_name;
-										document.getElementById("main").innerHTML += '<em>+'gas_address'+</em>'
 										time = seconds_2_hours(time_seconds,false)
-										console.log("gas station needed ")
-										console.log("time: ",time[0],"hours :",time[1], "minutes")
-										console.log("points at: ",coord_index)
-										console.log(res)
-										console.log(gas_name,gas_address)
+
+										document.getElementById("main").innerHTML += '<br><strong>'+time[0]+":"+time[1]+"</strong>	Gas Station - "+gas_name+'<br>Gas Address: <em>'+gas_address+'</em>';
+										
 										time_seconds += (15*60); // 15 minutes* 60 seconds
 										})
-
-
 								}
 								else if (inputs[5] == "electric"){
 									// find a electric charging station
