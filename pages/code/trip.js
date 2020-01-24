@@ -24,7 +24,8 @@ function getUserInputs(){
 	var output = [from,to,country,start,car,carType,rest, rest_boolean];
 	return output
 }
-function seconds_2_hours(seconds){
+function seconds_2_hours(seconds, seven_am = true){
+	if (seven_am == true){return [7,0,0]}
 	var hours = parseInt(seconds/3600, 10);
 	var minutes = parseInt(((seconds/3600)%1)*60,10)
 	var seconds = parseInt(((((seconds/3600)%1)*60)%1)*60,10)
@@ -32,6 +33,7 @@ function seconds_2_hours(seconds){
 }
 
 function main(){
+	var Days = 1;
 	const key = 'G1DzjsJD5JZ3vMKMRgJeaUJ5Trc0rnx0'
 	// window.location.href = "trip2.html";
 	// (1) get user inputs
@@ -39,9 +41,7 @@ function main(){
 
 	// time array, hours - minutes - seconds
 	var time_seconds = 25200; // 7 am
-	console.log("DEPART at 7am")
 	var time = seconds_2_hours(time_seconds)
-	var cost = 0;
 
 	// (2) convert addresses to lat and lon
 	var from_address = inputs[0].split(" ").join("%20");
@@ -65,27 +65,31 @@ function main(){
 			.then(data=>{return data.json()})
 			.then(res=> {
 				var distace_km = (res.routes[0].summary.lengthInMeters)/1000
-				var travel_time_seconds = res.routes[0].summary.travelTimeInSeconds
+				var travel_time_seconds = res.routes[0].summary.travelTimeInSeconds; 
 				var route = res.routes[0].legs[0].points
 				var numOfPoints = route.length
 
+				console.log("From: ",inputs[0]," To: ",inputs[1])
+				console.log("Total Distance: ", distace_km," km")
+				console.log("Driving Time: ",parseInt(travel_time_seconds/3600, 10),"hours ",parseInt(((travel_time_seconds/3600)%1)*60,10)," minutes ", parseInt(((((travel_time_seconds/3600)%1)*60)%1)*60,10), "seconds")
+
 				var coord_index = Math.floor(Math.floor(numOfPoints/distace_km)*inputs[4])
-				var interval = coord_index;
+				var interval = coord_index*.85;
 				if (distace_km > inputs[4]){
 					// if can't be reached in one car range
-						time = seconds_2_hours(time_seconds)					
+						console.log("days: ",Days)
+						console.log("DEPART at 7am")
+						time = seconds_2_hours(time_seconds);			
 						var resultFound = false;
 						var fetchNow = function() {fetch('https://api.tomtom.com/routing/1/calculateRoute/'+current_location[0]+'%2C'+current_location[1]+'%3A'+route[coord_index].latitude+'%2C'+route[coord_index].longitude+'/json?departAt='+inputs[3]+'T'+time[0]+'%3A'+time[1]+'%3A'+time[2]+'&routeType=fastest&traffic=true&travelMode=car&key='+key)
 						.then(data=>{return data.json()})
 						.then(res=> {  
 							if (coord_index >= numOfPoints){resultFound = true; }// stop if greater than end point}
 							else{
-
 								// add the time
 								time_seconds += res.routes[0].summary.travelTimeInSeconds
 								// change current location to new location
 								current_location = [route[coord_index].latitude,route[coord_index].longitude]
-
 
 								if (inputs[5] == "gas"){
 									// find a gas station
@@ -93,14 +97,17 @@ function main(){
 									fetch(gas_station_url)
 									.then(data=>{return data.json()})
 									.then(res=> {  
-										time_seconds += (15*60); // 15 minutes* 60 seconds
+										
 										var gas_name = res.results[0].poi.name;
 										var gas_address = res.results[0].address.freeformAddress;    })
 
-									time=seconds_2_hours(time_seconds)
+										time = seconds_2_hours(time_seconds,false)
 										console.log("gas station needed ")
 										console.log("time: ",time[0],"hours :",time[1], "minutes")
 										console.log("points at: ",coord_index)
+										console.log(res)
+										console.log(gas_name,gas_address)
+										time_seconds += (15*60); // 15 minutes* 60 seconds
 
 								}
 								else if (inputs[5] == "electric"){
@@ -109,13 +116,20 @@ function main(){
 									fetch(ev_station_url)
 									.then(data=>{return data.json()})
 									.then(res=> {  
-										time_seconds += (30*60); // 30 minutes*60 seconds
+										
 										var ev_name = res.results[0].poi.name;
-										var ev_address = res.results[0].address.freeformAddress;     })
+										var ev_address = res.results[0].address.freeformAddress; })
+
+										time=seconds_2_hours(time_seconds,false)
+										console.log("charging station needed ")
+										console.log("time: ",time[0],"hours :",time[1], "minutes")
+										console.log("points at: ",coord_index)
+										console.log(ev_name,ev_address)
+										time_seconds += (30*60); // 30 minutes*60 seconds
 
 								}
-
-								if (time_seconds > 79200){ // if time is past 10 o'clock, look for hotel
+								if (inputs[4] >= 400){ var lower_bound = 71500;}else{ var lower_bound = 79200 }
+								if (time_seconds >= lower_bound){ // if time is past 10 o'clock, look for hotel
 									var hotel_url = 'https://api.tomtom.com/search/2/poiSearch/hotel_motel.json?limit=3&countrySet='+inputs[2]+'&lat='+current_location[0]+'&lon='+current_location[1]+'&key='+key;
 									fetch(hotel_url)
 									.then(data=>{return data.json()})
@@ -125,14 +139,19 @@ function main(){
 										var hotel2 = [res.results[1].poi.name, res.results[1].address.freeformAddress, res.results[1].poi.phone, res.results[1].score];
 										var hotel3 = [res.results[2].poi.name,res.results[2].address.freeformAddress, res.results[2].poi.phone, res.results[2].score];
 
-										time=seconds_2_hours(time_seconds)
+									
+										time=seconds_2_hours(time_seconds,false)
 										console.log("Hotel needed ")
 										console.log("time: ",time[0],"hours :",time[1], "minutes")
 										console.log("points at: ",coord_index)
+										console.log(hotel1)
+
+										Days += 1;
+										console.log("DAY: ",Days);
 										console.log("DEPART: at 7am")
 
 										time_seconds = 25200; // reset time to 7am
-										coord_index -= interval; // don't add more distance for hotel
+										
 									})
 								}
 
@@ -140,19 +159,22 @@ function main(){
 
 								try{ fetchNow(); } //recursive
 								catch(err){
-									console.log("ERRORRRRRR:  ")
-									console.log(err)
 									console.log(coord_index-interval,"  out of  ",numOfPoints)
-									time = seconds_2_hours(time_seconds)
-									fetch('https://api.tomtom.com/routing/1/calculateRoute/'+current_location[0]+'%2C'+current_location[1]+'%3A'+route[numOfPoints].latitude+'%2C'+route[numOfPoints].longitude+'/json?departAt='+inputs[3]+'T'+time[0]+'%3A'+time[1]+'%3A'+time[2]+'&routeType=fastest&traffic=true&travelMode=car&key='+key)
+									
+									fetch('https://api.tomtom.com/routing/1/calculateRoute/'+current_location[0]+'%2C'+current_location[1]+'%3A'+route[numOfPoints-1].latitude+'%2C'+route[numOfPoints-1].longitude+'/json?departAt='+inputs[3]+'T'+time[0]+'%3A'+time[1]+'%3A'+time[2]+'&routeType=fastest&traffic=true&travelMode=car&key='+key)
 									.then(data=>{return data.json()})
 									.then(res=> { 
 										console.log("last time: ",res.routes[0].summary.travelTimeInSeconds)
-										time_seconds += res.routes[0].summary.travelTimeInSeconds; 	})
-									time = seconds_2_hours(time_seconds)
-									console.log("ARRIVED at ",time[0],"hours", time[1]," minutes ")
+										time_seconds += res.routes[0].summary.travelTimeInSeconds; 	
+										time = seconds_2_hours(time_seconds,false)
+										console.log("ARRIVED at ",time[0],"hours", time[1]," minutes ")
+									})
+	
 								} // end of error catch
-						}})
+						} // main else brace
+						})
+
+						setTimeout(5000);
 					}// outer fetch function brace	
 					fetchNow();		
 
