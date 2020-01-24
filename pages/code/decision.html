@@ -52,10 +52,10 @@
 				.then(res=> { 
 					var to_latlon = [(res.results[0].position.lat),(res.results[0].position.lon)];
 					// now get the time
-					var walk_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=pedestrian&key='+key;
-					var bicycle_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=bicycle&key='+key;
-					var motorcycle_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=motorcycle&key='+key;
-					var car_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=car&key='+key;
+					var walk_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=pedestrian&countrySet='+country+'&key='+key;
+					var bicycle_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=bicycle&countrySet='+country+'&key='+key;
+					var motorcycle_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=motorcycle&countrySet='+country+'&key='+key;
+					var car_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=car&countrySet='+country+'&key='+key;
 					fetch(walk_url)
 					.then(data=>{return data.json()})
 					.then(res=> { 
