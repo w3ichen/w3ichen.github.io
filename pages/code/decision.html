@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Decision Matrix</title>
+</head>
+<body>
+	<div>
+		<h>Decision Matrix</h>
+		<div>Enter Decision to be Made <input type="text" name="question" id="question" placeholder="ex. What is the Best Mode of Transportation"></div>
+		<div>Enter Number of Decision Choices <input type="text" name="option_num" placeholder="ex.5" id="option_num"></div>
+		<div>Enter Number of Criterias (ex. cost,time) <input type="text" name="option_num" placeholder="ex.5" id="criteria_num"></div>
+		<button id="next1" onclick="next1()">Next</button>
+
+		<script type="text/javascript">
+			function next1(){
+				const question = document.getElementById('question').value;
+				var choice_num = document.getElementById('option_num').value;
+				var criteria_num = document.getElementById('criteria_num').value;
+				document.body.innerHTML = '';
+				document.write('<div>'+question+'</div>');
+				document.write('<div>Enter Criterias</div><div>Enter Criteria percentages based on its importance <br>Note: values of criteria must sum to 100%</div>');
+				for (var i=1; i<=choice_num; i++){
+					document.write('<div><input type=\"text\" name=\"choices\" placeholder=\"criteria '+i+'\" id=\"criteria '+i+'\"><input type="text" name="criteria_val" id=\"criteriaVal'+i+'\" placeholder = "Importance Percentage /100%">   </div>')
+				}
+				document.write('<div>Enter Decisions</div>');
+				for (var i=1; i<=choice_num; i++){
+					document.write('<div><input type=\"text\" name=\"choices\" placeholder=\"choice '+i+'\" id=\"choice '+i+'\"></div>')
+				}
+				document.write('<button id="next2" onclick="next2()">Next</button>')
+			}
+	    </script>
+
+
+
+
+    </div>
+</body>
+</html>
