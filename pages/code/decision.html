@@ -6,29 +6,108 @@
 <body>
 	<div>
 		<h>Decision Matrix</h>
-		<div>Enter Decision to be Made <input type="text" name="question" id="question" placeholder="ex. What is the Best Mode of Transportation"></div>
-		<div>Enter Number of Decision Choices <input type="text" name="option_num" placeholder="ex.5" id="option_num"></div>
-		<div>Enter Number of Criterias (ex. cost,time) <input type="text" name="option_num" placeholder="ex.5" id="criteria_num"></div>
-		<button id="next1" onclick="next1()">Next</button>
-
+		<div>Determines Best Mode of Transportation for You</div>
+		<div>Ranking Importance</div>
+		<div>
+		<input type="text" name="from" id="from" placeholder="from location">
+		<input type="text" name="to" id="to" placeholder="to location">
+		<select id="country" name="country">
+			<option value="CA">CA</option>
+			<option value="US">US</option>
+			<option value="GB">GB</option>
+			<option value="FR">FR</option>
+			<option value="DE">DE</option>
+			<option value="ES">ES</option>
+		</select>
+		</div>
+		<div><strong>Cost</strong>
+			Not Important
+			<input type="range" name="cost" id="cost">
+		Very Important</div>
+		<div><strong>Time</strong>
+			Not Important
+			<input type="range" name="time" id="time">
+		Very Important</div>
+		<div><strong>Safety</strong>
+			Not Important
+			<input type="range" name="safety" id="safety">
+		Very Important</div>
+		<button onclick="go()">Next</button>
 		<script type="text/javascript">
-			function next1(){
-				const question = document.getElementById('question').value;
-				var choice_num = document.getElementById('option_num').value;
-				var criteria_num = document.getElementById('criteria_num').value;
-				document.body.innerHTML = '';
-				document.write('<div>'+question+'</div>');
-				document.write('<div>Enter Criterias</div><div>Enter Criteria percentages based on its importance <br>Note: values of criteria must sum to 100%</div>');
-				for (var i=1; i<=choice_num; i++){
-					document.write('<div><input type=\"text\" name=\"choices\" placeholder=\"criteria '+i+'\" id=\"criteria '+i+'\"><input type="text" name="criteria_val" id=\"criteriaVal'+i+'\" placeholder = "Importance Percentage /100%">   </div>')
-				}
-				document.write('<div>Enter Decisions</div>');
-				for (var i=1; i<=choice_num; i++){
-					document.write('<div><input type=\"text\" name=\"choices\" placeholder=\"choice '+i+'\" id=\"choice '+i+'\"></div>')
-				}
-				document.write('<button id="next2" onclick="next2()">Next</button>')
-			}
-	    </script>
+			function go(){
+			const key = 'G1DzjsJD5JZ3vMKMRgJeaUJ5Trc0rnx0'
+	
+			var from_address = document.getElementById('from').value.split(" ").join("%20");
+			var to_address = document.getElementById('to').value.split(" ").join("%20");
+			var country = document.getElementById('country').value;
+			const from_url ='https://api.tomtom.com/search/2/geocode/'+from_address+'.json?limit=1&countrySet='+country+'&key='+key;
+			const to_url ='https://api.tomtom.com/search/2/geocode/'+to_address+'.json?limit=1&countrySet='+country+'&key='+key;
+
+			fetch(from_url)
+			.then(data=>{return data.json()})
+			.then(res=> { 
+				var from_latlon = [(res.results[0].position.lat),(res.results[0].position.lon)];
+				fetch(to_url)
+				.then(data=>{return data.json()})
+				.then(res=> { 
+					var to_latlon = [(res.results[0].position.lat),(res.results[0].position.lon)];
+					// now get the time
+					var walk_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=pedestrian&key='+key;
+					var bicycle_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=bicycle&key='+key;
+					var motorcycle_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=motorcycle&key='+key;
+					var car_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+from_latlon[0]+'%2C'+from_latlon[1]+'%3A'+to_latlon[0]+'%2C'+to_latlon[1]+'/json?travelMode=car&key='+key;
+					fetch(walk_url)
+					.then(data=>{return data.json()})
+					.then(res=> { 
+						var walk_time = res.routes[0].summary.travelTimeInSeconds;
+						console.log(walk_time)
+					fetch(bicycle_url)
+					.then(data=>{return data.json()})
+					.then(res=> { 
+						var bicycle_time = res.routes[0].summary.travelTimeInSeconds;
+						console.log(bicycle_time)
+					fetch(motorcycle_url)
+					.then(data=>{return data.json()})
+					.then(res=> { 
+						var motorcycle_time = res.routes[0].summary.travelTimeInSeconds;
+						console.log(motorcycle_time)
+					fetch(car_url)
+					.then(data=>{return data.json()})
+					.then(res=> { 
+						var distace_km = (res.routes[0].summary.lengthInMeters)/1000;
+						var car_time = res.routes[0].summary.travelTimeInSeconds;
+						console.log(car_time)
+						console.log(distace_km,"KM")
+					})  	 })  	}) 		}) 
+
+
+
+				}) 
+			})
+
+
+			
+
+
+			
+
+			// 		fetch(from_url)
+			// .then(data=>{return data.json()})
+			// .then(res=> { 
+
+			// }) 
+
+			var options = {
+						walking:{cost:0, time:-35, safety:0},
+						bicycle:{cost:-1, time:-20, safety:-2},
+						motorcycle:{cost:-5, time:-8, safety:-5},
+						car:{cost:-10, time: -8, safety:-1}
+					};
+
+			} // end of function
+
+		</script>
+
 
 
 
