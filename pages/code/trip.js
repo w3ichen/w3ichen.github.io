@@ -3,25 +3,23 @@ var data = new Object()
 // get values from documents
 function getUserInputs(){
 	try{
-		var car = parseInt(document.getElementById("car").value);
+		var car = parseInt(document.getElementById("car").value); if (car == NaN){window.alert("User Input Error: Car Range is Blank")}
 	}
 	catch(err){
 		window.alert("ERROR: car range must be an unitless numerical value ")
 	}
 	try{
 		var from = document.getElementById("from").value;
-		var to = document.getElementById("to").value;
+		var to = document.getElementById("to").value;if ((to || from) == ""){window.alert("User Input Error: From or To Location is Blank")}
 		var country = document.getElementById("country").value;
-		var start = document.getElementById("start").value;
-		var rest = document.getElementById("rest").value;
+		var start = document.getElementById("start").value;if (start == ""){window.alert("User Input Error: Departure Date is Blank")}
 		var carType = document.getElementById("carType").value;
 	} catch(err){
 		window.alert("ERROR: error in user input\n Please Check Your Inputs")
 	}
-	//restaurants?
-	if (rest == "rest_none"){var rest_boolean = false; } else{var rest_boolean = true;}
-	//             (0) (1)  (2)    (3)  (4)   (5)    (6)       (7)      
-	var output = [from,to,country,start,car,carType,rest, rest_boolean];
+	
+	//             (0) (1)  (2)    (3)  (4)   (5)              
+	var output = [from,to,country,start,car,carType];
 	return output
 }
 
@@ -32,7 +30,7 @@ function pad(n, width, z) {
 }
 
 function seconds_2_hours(seconds, seven_am = true){
-	if (seven_am == true){return [7,0,0]}
+	if (seven_am == true){return [pad(7,2),pad(0,2),0]}
 	var hours = pad(parseInt(seconds/3600, 10),2);
 	var minutes = pad(parseInt(((seconds/3600)%1)*60,10),2);
 	var seconds = pad(parseInt(((((seconds/3600)%1)*60)%1)*60,10),2);
@@ -115,7 +113,7 @@ function main(){
 										document.getElementById("main").innerHTML += '<div class="station"><br><strong>'+time[0]+":"+time[1]+"</strong>	<u>Gas Station</u> - "+gas_name+'<br>Address: <em>'+gas_address+'</em></div>';
 										
 										time_seconds += (15*60); // 15 minutes* 60 seconds
-										})  }catch(err){ setTimeout(9000);
+										})  }catch(err){ setTimeout(15000);
 										fetch(gas_station_url)
 										.then(data=>{return data.json()})
 										.then(res=> {  
@@ -141,7 +139,7 @@ function main(){
 										document.getElementById("main").innerHTML += '<div class="station"><br><strong>'+time[0]+":"+time[1]+"</strong>	<u>Charging Station</u> - "+ev_name+'<br>Address: <em>'+ev_address+'</em></div>';
 										
 										time_seconds += (30*60); // 30 minutes*60 seconds
-										}) } catch(err){setTimeout(9000);
+										}) } catch(err){setTimeout(15000);
 										fetch(ev_station_url)
 										.then(data=>{return data.json()})
 										.then(res=> {  
@@ -173,8 +171,9 @@ function main(){
 										document.getElementById("main").innerHTML += '<br><br><strong>Day '+Days+'</strong>';
 										time = seconds_2_hours(time_seconds,true); // reset time to 7am
 										time_seconds = 25200; //reset to 7am
+										document.getElementById("main").innerHTML += '<br><strong>'+time[0]+':'+time[1]+' </strong> Depart from Hotel or Motel'
 										
-									}) } catch(err){setTimeout(9000); 
+									}) } catch(err){setTimeout(15000); 
 									fetch(hotel_url)
 									.then(data=>{return data.json()})
 									.then(res=> {
@@ -191,6 +190,7 @@ function main(){
 										document.getElementById("main").innerHTML += '<br><br><strong>Day '+Days+'</strong>';
 										time = seconds_2_hours(time_seconds,true); // reset time to 7am
 										time_seconds = 25200; //reset to 7am
+										document.getElementById("main").innerHTML += '<br><strong>'+time[0]+':'+time[1]+' </strong> Depart from Hotel or Motel'
 										
 									})}
 								}
@@ -198,7 +198,7 @@ function main(){
 								coord_index += interval;
 								setTimeout(9000);
 								try{ fetchNow(); } //recursive
-								catch(err){ setTimeout(9000);
+								catch(err){ setTimeout(6000);
 									// error when coordinates are over the route range
 								
 									fetch('https://api.tomtom.com/routing/1/calculateRoute/'+current_location[0]+'%2C'+current_location[1]+'%3A'+route[numOfPoints-1].latitude+'%2C'+route[numOfPoints-1].longitude+'/json?departAt='+inputs[3]+'T'+time[0]+'%3A'+time[1]+'%3A'+time[2]+'&routeType=fastest&traffic=true&travelMode=car&key='+key)
@@ -207,7 +207,7 @@ function main(){
 										time_seconds += res.routes[0].summary.travelTimeInSeconds; 	
 										time = seconds_2_hours(time_seconds,false)
 										document.getElementById("main").innerHTML += '<br><div><strong>'+time[0]+':'+time[1]+'</strong>  Arrived at '+inputs[1]+'</div>'
-										
+									
 									})
 								} // end of error catch
 						} // main else brace

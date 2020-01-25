@@ -6,7 +6,7 @@
 	<script type="text/javascript" src="trip.js"></script>
 </head>
 
-<nav><h1>Trip Planner</h1></nav>
+<nav><h1 style="margin-bottom: 0;">Trip Planner</h1><p style="float:right; margin:0;padding-right: 6%;font-size: 15px; font-style:italic;">powered by TomTom API</p></nav>
 <body>
 
 	<div class="outlineBox">
@@ -52,13 +52,6 @@
 	<select name="carType" id="carType">
 		<option value="gas">gas</option>
 		<option value="electric">electric</option>
-	</select></div>
-	<div class="row"> Restaurants: 
-	<select name="restaurants" id="rest">
-		<option value=rest_none>NONE</option>
-		<option value="rest_$">$ - Fast Food</option>
-		<option value="rest_$$">$$ - Sit Down</option>
-		<option value="rest_$$$">$$$ - Fine Dining</option>
 	</select></div>
 
 	<button class='btn' class="row" onclick="main()">plan</button>
