@@ -44,9 +44,9 @@ input{
 	padding-top: 2%; padding-bottom: 2%;
 	color:white;
 	font-family: 'courier new',verdana, roboto;
-	background-color: #e84118;
+	background-color: red;
 	border: none;
-	opacity: 90%;
+	opacity: 80%;
 }
 .row{
 	margin:1%;
@@ -68,4 +68,15 @@ select{
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: white;
+}
+
+.station{
+	margin: 0;
+	padding: 0; padding-left: 5%; padding-right: 2%;
+	background-color: rgba(0,0,0,.3);
+}
+.hotels{	
+	margin: 0;
+	padding: 0; padding-left: 5%; padding-right: 2%;
+	background-color: rgba(255,255,255,.2);
 }
