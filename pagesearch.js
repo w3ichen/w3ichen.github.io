@@ -88,8 +88,12 @@ function search(input){
 		'theatre':'../other/other.html',
 		'tech':'../other/other.html',
 		'bring it on':'../other/other.html',
-		'drama':'../other/other.html'
-
+		'drama':'../other/other.html',
+		'resume':'../resume/resume.html',
+		'cv':'../resume/resume.html',
+		'cover':'../resume/cover.html',
+		'letter':'../resume/cover.html',
+		'cover letter':'../resume/cover.html'
 	}
 	let keys = Object.keys(index);
 	for (var i=0;i<inputArray.length;i++){

@@ -110,7 +110,12 @@ function search(input){
 		'theatre':'pages/other/other.html',
 		'tech':'pages/other/other.html',
 		'bring it on':'pages/other/other.html',
-		'drama':'pages/other/other.html'
+		'drama':'pages/other/other.html',
+		'resume':'pages/resume/resume.html',
+		'cv':'pages/resume/resume.html',
+		'cover':'pages/resume/cover.html',
+		'letter':'pages/resume/cover.html',
+		'cover letter':'pages/resume/cover.html'
 	}
 	
 	let keys = Object.keys(index);
