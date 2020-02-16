@@ -14,26 +14,60 @@
 
 <body>
 
+<!-- SIMULATION WINDOW -->
+<div class="centerOutside">
+	<div id="simulation">
+		<iframe width="560" height="350" src="https://www.tinkercad.com/embed/1uElwvyewSk?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" id="changeFrame"></iframe>
+		<div class="info">
+			<img src="wine.jpg" width="100%"><br>
+			<button class="infobtn" onclick="window.location.href='https://www.tinkercad.com/embed/1uElwvyewSk?editbtn=1'">View Full Screen</button><br>
+			<button class="infobtn" onclick="window.open('wine.obj')">Download .obj</button>
+		</div>
+	</div>
+</div>	
+
 	<script type="text/javascript">
+
 		document.write('<div class=\"all\">');
 
-		var better = ['wine','office','kitchen','bedroom','washroom','livingroom','diningroom'];
-		for (var k=0;k<better.length;k++){
-			var command = '<button onclick=\"window.open(\'' + better[k] + '.obj\')\" class=\"btn\"> <img src=\"' + better[k] + '.jpg\"class=\"image\"></button>';
+		var simulate = {
+		'wine':"https://www.tinkercad.com/embed/1uElwvyewSk?editbtn=1",
+		'office':"https://www.tinkercad.com/embed/jBIH4Xf88Va?editbtn=1", 
+		'kitchen':"https://www.tinkercad.com/embed/1v2XC9SK1XL?editbtn=1", 
+		'bedroom':"https://www.tinkercad.com/embed/ltA8uSyeeLk?editbtn=1",
+		'washroom':"https://www.tinkercad.com/embed/hjHqLBnzrYH?editbtn=1",
+		'livingroom':"https://www.tinkercad.com/embed/lXDLWkGEaYG?editbtn=1",
+		'diningroom':"https://www.tinkercad.com/embed/3U3vPmCc30z?editbtn=1",
+		'fullperson':"https://www.tinkercad.com/embed/6Z6ntTSQtB4?editbtn=1"
+		};
+
+		function newSimulation(name){
+			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ simulate[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><img src=\"'+ name +'.jpg\" width=\"100%\"><br><button class=\"infobtn\" onclick=\"window.location.href=\''+ simulate[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.obj\')\">Download .obj</button>'
+			console.log(command);
+			document.getElementById("simulation").innerHTML = command;
+
+		}
+
+		for (var i=0; i<Object.keys(simulate).length; i++){
+			var command = '<button onclick=\"newSimulation(\''+Object.keys(simulate)[i]+'\')\" class=\"btn\"> <img src=\"' + Object.keys(simulate)[i] + '.jpg\"class=\"image\"></button>';
 			document.write(command);
 		}
 
+		
+		// =============================================
 		var oversized = ['village'];
 		for (var j=0;j<oversized.length;j++){
 			var command = '<button onclick=\"window.open(\'' + oversized[j] + '.zip\')\" class=\"btn\"> <img src=\"' + oversized[j] + '.png\"class=\"image\"></button>';
 			document.write(command);
 		}
 
-		var objects = ['house','room','fullperson','person'];
+		var objects = ['house','room'];
 		for (var i=0;i<objects.length;i++){
 			var command = '<button onclick=\"window.open(\'' + objects[i] + '.obj\')\" class=\"btn\"> <img src=\"' + objects[i] + '.png\"class=\"image\"></button>';
 			document.write(command);
 		}
+
+
 	</script>
 
 	<video controls poster="wine.jpg" src="fullHouse.mp4" width="45%" style="margin-bottom: 5%; " ></video>
