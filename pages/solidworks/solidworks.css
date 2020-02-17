@@ -96,13 +96,11 @@ a{
 	align-items: flex-start;
 	flex-direction: row;
 
-
 }
 .info{
 	background-color: black;
-	padding: 2%;
-	height: 255px;
-	width: 10%;
+	padding: 6%;
+	height: 220px;
 	display: inline-flex;
 	flex-direction: column;
 	justify-content: center;
@@ -115,7 +113,7 @@ a{
 	color: white;
 	background-color: black;
 	border: 1px solid white;
-	padding: 5%;
+	padding: 6%;
 	cursor: pointer;
 	
 }
@@ -123,7 +121,4 @@ a{
 	display: flex;
 	justify-content: center;
 	margin-bottom: 0;
-}
-.sideImage{
-	object-fit: cover;
 }

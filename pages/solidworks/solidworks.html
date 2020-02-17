@@ -20,7 +20,6 @@
 	<div id="simulation">
 		<iframe width="560" height="350" src="https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" id="changeFrame"></iframe>
 		<div class="info">
-			<img src="camera.png" width="80%" class="sideImage"><br>
 			<button class="infobtn" onclick="window.location.href='https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1'">View Full Screen</button><br>
 			<button class="infobtn" onclick="window.open('camera.stl')">Download .stl</button><br>
 			<button class="infobtn" onclick="window.open('camera.SLDPRT')">Download .SLDPRT</button>
@@ -53,14 +52,14 @@
 
 		function newSimulationO(name){
 			// for objects
-			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ objects[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><img src=\"'+ name +'.png\" width=\"80%\" class=\"sideImage\"><br><button class=\"infobtn\" onclick=\"window.location.href=\''+ objects[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.stl\')\">Download .stl</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>'
+			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ objects[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><button class=\"infobtn\" onclick=\"window.location.href=\''+ objects[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.stl\')\">Download .stl</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>'
 			document.getElementById("simulation").innerHTML = command;
 
 		}
 
 		function newSimulationA(name){
 			// for assembly
-			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ assembly[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><img src=\"'+ name +'.png\" width=\"80%\" class=\"sideImage\"><br><button class=\"infobtn\" onclick=\"window.location.href=\''+ assembly[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.stl\')\">Download .stl</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>'
+			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ assembly[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><button class=\"infobtn\" onclick=\"window.location.href=\''+ assembly[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.stl\')\">Download .stl</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>'
 			document.getElementById("simulation").innerHTML = command;
 
 		}
