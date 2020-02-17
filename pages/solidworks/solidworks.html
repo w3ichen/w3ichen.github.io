@@ -14,8 +14,40 @@
 
 <body>
 
+<!-- SIMULATION WINDOW -->
+<div class="centerOutside">
+	<div id="simulation">
+		<iframe width="560" height="350" src="https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" id="changeFrame"></iframe>
+		<div class="info">
+			<img src="camera.jpg" width="100%"><br>
+			<button class="infobtn" onclick="window.location.href='https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1'">View Full Screen</button><br>
+			<button class="infobtn" onclick="window.open('wine.obj')">Download .obj</button>
+		</div>
+	</div>
+</div>	
+
+
 	<script type="text/javascript">
-		var objects = ['bottle','camera','guitar','hairbrush','ipad','iphone','popcan','propane','yoyo','6','1','2','3','4','5','7'];
+		var objects = {
+			'bottle':"https://www.tinkercad.com/embed/apT40FaDuGU?editbtn=1",
+			'camera':"https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1",
+			'guitar':"https://www.tinkercad.com/embed/dizOpuCjgR3?editbtn=1",
+			'hairbrush':"https://www.tinkercad.com/embed/8VavQwd4FfT?editbtn=1",
+			'ipad':"https://www.tinkercad.com/embed/lSR7D6hEHsv?editbtn=1",
+			'iphone':"https://www.tinkercad.com/embed/6i7GFWOvSWN?editbtn=1",
+			'popcan':"https://www.tinkercad.com/embed/3DM7dWiFkUZ?editbtn=1",
+			'propane':"https://www.tinkercad.com/embed/kIilVbzWyXt?editbtn=1",
+			'yoyo':"https://www.tinkercad.com/embed/jnJDUW3gRHQ?editbtn=1",
+			'6':"https://www.tinkercad.com/embed/l1MC4OUtjmI?editbtn=1",
+			'1':"https://www.tinkercad.com/embed/6MhtL02D4Gz?editbtn=1",
+			'2':"https://www.tinkercad.com/embed/575v1y7yjUL?editbtn=1",
+			'3':"https://www.tinkercad.com/embed/a9oMP7YczOr?editbtn=1",
+			'4':"https://www.tinkercad.com/embed/7QwIsPpHIEI?editbtn=1",
+			'5':"https://www.tinkercad.com/embed/f1VrhUoKDWH?editbtn=1",
+			'7':"https://www.tinkercad.com/embed/iiAyRUW2qny?editbtn=1"
+		};
+
+
 		var assembly = ['assembly1'];
 
 		document.write('<div class="gallery">');
