@@ -15,13 +15,15 @@
 <body>
 
 <!-- SIMULATION WINDOW -->
+
 <div class="centerOutside">
 	<div id="simulation">
 		<iframe width="560" height="350" src="https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" id="changeFrame"></iframe>
 		<div class="info">
-			<img src="camera.jpg" width="100%"><br>
+			<img src="camera.png" width="80%" class="sideImage"><br>
 			<button class="infobtn" onclick="window.location.href='https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1'">View Full Screen</button><br>
-			<button class="infobtn" onclick="window.open('wine.obj')">Download .obj</button>
+			<button class="infobtn" onclick="window.open('camera.stl')">Download .stl</button><br>
+			<button class="infobtn" onclick="window.open('camera.SLDPRT')">Download .SLDPRT</button>
 		</div>
 	</div>
 </div>	
@@ -47,19 +49,36 @@
 			'7':"https://www.tinkercad.com/embed/iiAyRUW2qny?editbtn=1"
 		};
 
+		var assembly = {'assembly1':"https://www.tinkercad.com/embed/gPC8SKt1OaZ?editbtn=1"};
 
-		var assembly = ['assembly1'];
+		function newSimulationO(name){
+			// for objects
+			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ objects[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><img src=\"'+ name +'.png\" width=\"80%\" class=\"sideImage\"><br><button class=\"infobtn\" onclick=\"window.location.href=\''+ objects[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.stl\')\">Download .stl</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>'
+			document.getElementById("simulation").innerHTML = command;
 
+		}
+
+		function newSimulationA(name){
+			// for assembly
+			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ assembly[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><img src=\"'+ name +'.png\" width=\"80%\" class=\"sideImage\"><br><button class=\"infobtn\" onclick=\"window.location.href=\''+ assembly[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.stl\')\">Download .stl</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>'
+			document.getElementById("simulation").innerHTML = command;
+
+		}
+	
 		document.write('<div class="gallery">');
-		for (var i=0;i<assembly.length;i++){
-			var command = '<button onclick=\"window.open(\'' + assembly[i] + '.zip\')\" class=\"btn\"> <img src=\"' + assembly[i] + '.png\"class=\"image\"></button>';
+		// assembly models 
+		for (var i=0;i<Object.keys(assembly).length;i++){
+			var command = '<button onclick=\"newSimulationA(\''+ Object.keys(assembly)[i] +'\')\" class=\"btn\"> <img src=\"' + Object.keys(assembly)[i] + '.png\"class=\"image\"></button>';
 			document.write(command);
 		}
-		for (var i=0;i<objects.length;i++){
-			var command = '<button onclick=\"window.open(\'' + objects[i] + '.SLDPRT\')\" class=\"btn\"> <img src=\"' + objects[i] + '.png\"class=\"image\"></button>';
+
+		// part models
+		for (var i=0;i<Object.keys(objects).length;i++){
+			var command = '<button onclick=\"newSimulationO(\''+ Object.keys(objects)[i] +'\')\" class=\"btn\"> <img src=\"' + Object.keys(objects)[i] + '.png\"class=\"image\"></button>';
 			document.write(command);
 		}
 		document.write('</div>');
+
 	</script>
 
 

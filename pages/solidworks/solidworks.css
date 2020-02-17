@@ -62,7 +62,7 @@ a{
 }
 /*
 =============================================*/
-.gallery img:hover{
+.gallery .image:hover{
 	transform:scale(2.2);
 }
 
@@ -86,4 +86,44 @@ a{
 }
 .image{
 	width: 100%;
+}
+
+#simulation{
+	display: inline-flex;
+	padding: 2%;
+	margin: 0;
+	justify-content:  center;
+	align-items: flex-start;
+	flex-direction: row;
+
+
+}
+.info{
+	background-color: black;
+	padding: 2%;
+	height: 255px;
+	width: 10%;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+.infobtn{
+	font-family: 'candara','Verdana','arial','courier new';
+	margin-top: 2%;
+	color: white;
+	background-color: black;
+	border: 1px solid white;
+	padding: 5%;
+	cursor: pointer;
+	
+}
+.centerOutside{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 0;
+}
+.sideImage{
+	object-fit: cover;
 }

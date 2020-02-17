@@ -43,7 +43,6 @@
 
 		function newSimulation(name){
 			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ simulate[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><img src=\"'+ name +'.jpg\" width=\"100%\"><br><button class=\"infobtn\" onclick=\"window.location.href=\''+ simulate[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.obj\')\">Download .obj</button>'
-			console.log(command);
 			document.getElementById("simulation").innerHTML = command;
 
 		}
