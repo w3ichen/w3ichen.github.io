@@ -2,6 +2,7 @@ var	list = ['Javascript - API Trip Planner',
 			'Python - WebScraping',
 			'Python - Advanced Encryption System',
 			'Python - Data Storage',
+			'Python - Pandas + PyPlot Data Graphing',
 			'Python - Password Validator',
 			'HTML + CSS + JS - Calculator'
 			];
@@ -10,6 +11,7 @@ var link = ['trip',
 			'webscraping',
 			'aes',
 			'data',
+			'climate',
 			'pw',
 			'calculator'
 			];
