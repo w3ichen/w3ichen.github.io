@@ -85,25 +85,7 @@ a{
 
 
 /* info about each video */
-#video1:hover .info{
-	width:50%;
-	font-size: 17px;
-	padding-top:7%;
-	padding-left: 4%
-}
-#video2:hover .info{
-	width: 50%;
-	font-size: 17px;
-	padding-top:7%;
-	padding-left: 4%
-}
-#video3:hover .info{
-	width:50%;
-	font-size: 17px;
-	padding-top:7%;
-	padding-left: 4%
-}
-#video4:hover .info{
+.video_hover:hover .info{
 	width:50%;
 	font-size: 17px;
 	padding-top:7%;
