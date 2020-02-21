@@ -3,6 +3,7 @@ var	list = ['Javascript - API Trip Planner',
 			'Python - Advanced Encryption System',
 			'Python - Data Storage',
 			'Python - Pandas + PyPlot Data Graphing',
+			'Arduino - Alarm System',
 			'Python - Password Validator',
 			'HTML + CSS + JS - Calculator'
 			];
@@ -12,6 +13,7 @@ var link = ['trip',
 			'aes',
 			'data',
 			'climate',
+			'alarm',
 			'pw',
 			'calculator'
 			];
