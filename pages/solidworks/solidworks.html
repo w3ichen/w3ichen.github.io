@@ -67,13 +67,13 @@
 		document.write('<div class="gallery">');
 		// assembly models 
 		for (var i=0;i<Object.keys(assembly).length;i++){
-			var command = '<button onclick=\"newSimulationA(\''+ Object.keys(assembly)[i] +'\')\" class=\"btn\"> <img src=\"' + Object.keys(assembly)[i] + '.png\"class=\"image\"></button>';
+			var command = '<button onclick=\"newSimulationA(\''+ Object.keys(assembly)[i] +'\')\" class=\"btn\"> <img src=\"' + Object.keys(assembly)[i] + '.jpg\"class=\"image\"></button>';
 			document.write(command);
 		}
 
 		// part models
 		for (var i=0;i<Object.keys(objects).length;i++){
-			var command = '<button onclick=\"newSimulationO(\''+ Object.keys(objects)[i] +'\')\" class=\"btn\"> <img src=\"' + Object.keys(objects)[i] + '.png\"class=\"image\"></button>';
+			var command = '<button onclick=\"newSimulationO(\''+ Object.keys(objects)[i] +'\')\" class=\"btn\"> <img src=\"' + Object.keys(objects)[i] + '.jpg\"class=\"image\"></button>';
 			document.write(command);
 		}
 		document.write('</div>');
