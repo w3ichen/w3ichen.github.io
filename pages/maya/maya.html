@@ -32,6 +32,7 @@
 
 		var simulate = {
 		'wine':"https://www.tinkercad.com/embed/1uElwvyewSk?editbtn=1",
+		'shark':"https://www.tinkercad.com/embed/lUxeyaju1YV?editbtn=1",
 		'office':"https://www.tinkercad.com/embed/jBIH4Xf88Va?editbtn=1", 
 		'kitchen':"https://www.tinkercad.com/embed/1v2XC9SK1XL?editbtn=1", 
 		'bedroom':"https://www.tinkercad.com/embed/ltA8uSyeeLk?editbtn=1",
@@ -56,13 +57,13 @@
 		// =============================================
 		var oversized = ['village'];
 		for (var j=0;j<oversized.length;j++){
-			var command = '<button onclick=\"window.open(\'' + oversized[j] + '.zip\')\" class=\"btn\"> <img src=\"' + oversized[j] + '.png\"class=\"image\"></button>';
+			var command = '<button onclick=\"window.open(\'' + oversized[j] + '.zip\')\" class=\"btn\"> <img src=\"' + oversized[j] + '.jpg\"class=\"image\"></button>';
 			document.write(command);
 		}
 
 		var objects = ['house','room'];
 		for (var i=0;i<objects.length;i++){
-			var command = '<button onclick=\"window.open(\'' + objects[i] + '.obj\')\" class=\"btn\"> <img src=\"' + objects[i] + '.png\"class=\"image\"></button>';
+			var command = '<button onclick=\"window.open(\'' + objects[i] + '.obj\')\" class=\"btn\"> <img src=\"' + objects[i] + '.jpg\"class=\"image\"></button>';
 			document.write(command);
 		}
 
