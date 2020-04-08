@@ -16,7 +16,8 @@ window.onload = function setup(){
 	'\"What Happens When We Die? <br>I Know That the Ones Who Love Us Will Miss Us\"<br>- Keanu Reeves',
 	'\"It Does Not do to Dwell on Dreams and Forget to Live\"<br> - J.K.Rowling',
 	'\"It is Our Choices, That Show What We Truly Are, <br> Far More Than Our Abilities\"<br>- J.K.Rowling',
-	'\"Today I Will do What Other\'s Won\'t, so Tomorrow I Will do What Others Can\'t\"<br>- Jerry Rice'];
+	'\"Today I Will do What Other\'s Won\'t, so Tomorrow I Will do What Others Can\'t\"<br>- Jerry Rice',
+	'\"The Test of our Progress is Not Whether we Add to the Abundance of Those Who Have Much.<br>It is Whether we Provide Enough to Those Who Have Little\"<br>- Franklin Delano Roosevelt'];
 
 	var randomNumber = Math.floor(Math.random()*quotes.length);
 	document.getElementById("quote").innerHTML = quotes[randomNumber];
