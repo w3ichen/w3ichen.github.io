@@ -13,45 +13,19 @@
 			<strong style="padding-left: 2%">New Post</strong>
 			<textarea id="newPost" placeholder="What's on your mind?"></textarea>
 			<div id="postBar">
-				<input type="file" id="files" multiple name="files[]" accept="video/*, image/*"> 
+				<input type="file" id="files" multiple name="files[]" accept="image/*"> 
 				<button id="postBtn" onclick="post()">post</button>
 			</div>
 		</div>
 		<div id="newContent">
-			<output id="list"></output>
 		</div>
 	</div>
 </body>
 </html>
 <script type="text/javascript">
-	// attach the photo/video
-	function handleFileSelect(evt) {
-	    var files = evt.target.files; // FileList object
-	    console.log(evt);
-	    console.log(files);
-	    // Loop through the FileList and render image files as thumbnails.
-	    for (var i = 0, f; f = files[i]; i++) {
-	      // Only process image files.
-	      if (!f.type.match('image.*')) {
-	        continue;
-	      }
-	      var reader = new FileReader();
-	      // Closure to capture the file information.
-	      reader.onload = (function(theFile) {
-	        return function(e) {
-	          // Render thumbnail.
-	          var span = document.createElement('span');
-	          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-	                            '" title="', escape(theFile.name), '"/>'].join('');
-	          document.getElementById('list').insertBefore(span, null);
-	        };
-	      })(f);
-	      // Read in the image file as a data URL.
-	      reader.readAsDataURL(f);
-	    }
-  	}
-	document.getElementById('files').addEventListener('change', handleFileSelect, false);
-	
+	window.onload = function(){
+		console.log("cookies: "+document.cookie);
+	}
 	var postNum = 0;
 	function post(){
 		var message = document.getElementById("newPost").value;
@@ -63,9 +37,25 @@
 		document.getElementById("newContent").innerHTML += 
 		'<div class="contentBox" style="order:'+postNum+'" id="'+postNum+'">'+
 			'<div class="date">'+monthNames[date.getMonth()]+' '+date.getDate()+' '+date.getFullYear()+" | "+date.getHours()+':'+date.getMinutes()+'</div><div>'+
-				message+'</div><br><div class="comments" id="comments'+postNum+'"></div><div class="commentFlex"><input type="text" placeholder="Write a comment..." class="commentBar" id="c'+postNum+'" onkeydown="if(event.keyCode==13){document.getElementById(\'b'+postNum+'\').click()}"><button class="commentBtn" id="b'+postNum+'" onclick="postComment('+postNum+')">send</button></div></div>';
+				message+'</div><div class="attachments" id="attach'+postNum+'"></div><br><div class="comments" id="comments'+postNum+'"></div><div class="commentFlex"><input type="text" placeholder="Write a comment..." class="commentBar" id="c'+postNum+'" onkeydown="if(event.keyCode==13){document.getElementById(\'b'+postNum+'\').click()}"><button class="commentBtn" id="b'+postNum+'" onclick="postComment('+postNum+')">send</button></div></div>';
 
+		// process files
+		try{
+			const input = document.querySelector('input[type="file"]');
 
+			for (var i=0;i<input.files.length;i++){
+				const reader = new FileReader();
+				reader.onload = function(){
+					const attachment = new Image(130);
+					attachment.src = reader.result;
+					document.getElementById('attach'+postNum+'').appendChild(attachment);
+				}
+				reader.readAsDataURL(input.files[i]);
+			}
+		}catch{
+			console.log("no files selected")
+		}
+		
 		// reset post box
 		document.getElementById("newPost").value = "";
 		document.getElementById("files").value = "";
@@ -77,6 +67,8 @@
 			document.getElementById(i).style.order = (parseInt(document.getElementById(i).style.order)+1); 
 		}
 
+		document.cookie = String(document.getElementById("newContent").innerHTML);
+		console.log("updating cookie: "+String(document.getElementById("newContent").innerHTML.text))
 	}
 	function postComment(postNumber){
 		var date = new Date();
@@ -84,20 +76,25 @@
 		document.getElementById("c"+postNumber).value = "";
 		document.getElementById("comments"+postNumber).innerHTML +=
 		'<div class="newComment" style="width:max-content">'+pushComment+'&nbsp&nbsp&nbsp<em>'+date.getHours()+':'+date.getMinutes()+'</em></div>';
-
+		// store to cookie
+		document.cookie = String(document.getElementById("newContent").innerHTML);
+		console.log("updating cookie: "+document.getElementById("newContent").innerHTML.text)
 	}
 
 
 </script>
 
 <style type="text/css">
+.attachments{
+	margin-top: 1%;
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
 .thumb {
 	height: 75px;
 	border: 1px solid #000;
 	margin: 10px 5px 0 0;
-}
-.comments{
-
 }
 #newContent{
 	display: flex;
@@ -105,9 +102,6 @@
 }
 em{
 	font-size: 9px;
-}
-.commentFlex{
-	display: flex;
 }
 .newComment{
 	background-color: #f2f2f2;
@@ -127,13 +121,13 @@ em{
 	color: white;
 	border: none;
 	cursor: pointer;
-	width: 10%;
+	width: 13%;
 	font-size: 12px;
 }
 .commentBar{
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
-	width: 85%;
+	width: 82%;
 	background-color: #f2f2f2;
 	color: gray;
 	border:none;
@@ -141,7 +135,6 @@ em{
 	padding: 1%;
 	padding-left: 3%;
 	font-size: 13px;
-
 }
 .date{
 	font-size: 10px;
