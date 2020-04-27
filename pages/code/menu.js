@@ -1,5 +1,5 @@
-var	list = ['Javascript - API Trip Planner',
-			'HTML + CSS + JS - Social Media',
+var	list = ['HTML + CSS + JS - Social Media',
+			'Javascript - API Trip Planner',
 			'Python - WebScraping',
 			'Python - Advanced Encryption System',
 			'Python - Data Storage',
@@ -11,8 +11,8 @@ var	list = ['Javascript - API Trip Planner',
 			'HTML + CSS + JS - Calculator'
 			];
 
-var link = ['trip',
-			'social',
+var link = ['social',
+			'trip',
 			'webscraping',
 			'aes',
 			'data',
