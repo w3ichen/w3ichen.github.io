@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Code > Social Media</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
 </head>
 <body>
 	<nav>
@@ -17,14 +19,37 @@
 				<button id="postBtn" onclick="post()">post</button>
 			</div>
 		</div>
-		<div id="newContent">
-		</div>
+		<div id="newContent"></div>
 	</div>
+	<div id="activity"></div>
 </body>
 </html>
 <script type="text/javascript">
+	document.getElementById("activity").addEventListener("click",function(){
+		document.getElementById("activity").style.display = "none";
+	})
 	window.onload = function(){
 		console.log("cookies: "+document.cookie);
+		var lastActivity = document.cookie.split(';')[0];
+		var now = new Date();
+		var difference = now.getTime() - lastActivity;
+		difference = msToTime(difference).split(':');
+		var timeString = "" ;
+		if (difference[0] != "00"){
+			//hours not 0
+			timeString += parseInt(difference[0])+" hours ";
+		}
+		if (difference[1] != "00"){
+			timeString += parseInt(difference[1])+" mins ";
+		}
+		timeString += parseInt(difference[2])+" secs ago";
+		console.log(timeString);
+		document.getElementById("activity").innerHTML += "Welcome Back<br>Last Activity was "+timeString;
+
+		if (!document.cookie.split(';')[0]){
+			// no cookies then get rid of box
+			document.getElementById("activity").style.display = "none";
+		}
 	}
 	var postNum = 0;
 	function post(){
@@ -67,8 +92,9 @@
 			document.getElementById(i).style.order = (parseInt(document.getElementById(i).style.order)+1); 
 		}
 
-		document.cookie = String(document.getElementById("newContent").innerHTML);
-		console.log("updating cookie: "+String(document.getElementById("newContent").innerHTML.text))
+		var today = new Date();
+		var expiry = new Date(today.getTime() + 2*3600 * 1000);  // expires in 2 hours
+		document.cookie = today.getTime()+"; path=/; expires=" + expiry.toGMTString();
 	}
 	function postComment(postNumber){
 		var date = new Date();
@@ -77,14 +103,39 @@
 		document.getElementById("comments"+postNumber).innerHTML +=
 		'<div class="newComment" style="width:max-content">'+pushComment+'&nbsp&nbsp&nbsp<em>'+date.getHours()+':'+date.getMinutes()+'</em></div>';
 		// store to cookie
-		document.cookie = String(document.getElementById("newContent").innerHTML);
-		console.log("updating cookie: "+document.getElementById("newContent").innerHTML.text)
+  		var today = new Date();
+		var expiry = new Date(today.getTime() + 2*3600 * 1000);  // expires in 2 hours
+		document.cookie = today.getTime()+"; path=/; expires=" + expiry.toGMTString();
+	}
+	function msToTime(duration) {
+  		var milliseconds = parseInt((duration % 1000) / 100),
+	    seconds = Math.floor((duration / 1000) % 60),
+	    minutes = Math.floor((duration / (1000 * 60)) % 60),
+	    hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+		hours = (hours < 10) ? "0" + hours : hours;
+		minutes = (minutes < 10) ? "0" + minutes : minutes;
+		seconds = (seconds < 10) ? "0" + seconds : seconds;
+		return hours + ":" + minutes + ":" + seconds;
 	}
 
 
 </script>
 
 <style type="text/css">
+#activity{
+	background-color: #add8e6;
+	padding: 1%;
+	position: fixed;
+	color: rgb(70,70,70);
+	font-weight: 300;
+	top: 60px;
+	right: 25px;
+	font-family: verdana
+	width: 20%;
+	opacity: 90%;
+	cursor: pointer;
+}
 .attachments{
 	margin-top: 1%;
 	display: inline-flex;
