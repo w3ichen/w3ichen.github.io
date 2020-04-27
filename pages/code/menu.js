@@ -1,4 +1,5 @@
 var	list = ['Javascript - API Trip Planner',
+			'HTML + CSS + JS - Social Media',
 			'Python - WebScraping',
 			'Python - Advanced Encryption System',
 			'Python - Data Storage',
@@ -11,6 +12,7 @@ var	list = ['Javascript - API Trip Planner',
 			];
 
 var link = ['trip',
+			'social',
 			'webscraping',
 			'aes',
 			'data',
