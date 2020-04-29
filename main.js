@@ -17,7 +17,9 @@ window.onload = function setup(){
 	'\"It Does Not do to Dwell on Dreams and Forget to Live\"<br> - J.K.Rowling',
 	'\"It is Our Choices, That Show What We Truly Are, <br> Far More Than Our Abilities\"<br>- J.K.Rowling',
 	'\"Today I Will do What Other\'s Won\'t, so Tomorrow I Will do What Others Can\'t\"<br>- Jerry Rice',
-	'\"The Test of our Progress is Not Whether we Add to the Abundance of Those Who Have Much.<br>It is Whether we Provide Enough to Those Who Have Little\"<br>- Franklin Delano Roosevelt'];
+	'\"The Test of our Progress is Not Whether we Add to the Abundance of Those Who Have Much.<br>It is Whether we Provide Enough to Those Who Have Little\"<br>- Franklin Delano Roosevelt',
+	'\"When you know how to think, it empowers you<br>far beyond those who only know what to think\"<br>- Neil deGrasse Tyson'
+	];
 
 	var randomNumber = Math.floor(Math.random()*quotes.length);
 	document.getElementById("quote").innerHTML = quotes[randomNumber];
