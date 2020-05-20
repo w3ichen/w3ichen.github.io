@@ -47,9 +47,8 @@
 		};
 
 		function newSimulation(name){
-			document.getElementById("simulation").innerHTML = "";
 			var command = '<script src=\"'+ simulate[name] +'\"><\/script><div class=\"info\"><img src=\"'+ name +'.jpg\" width=\"100%\"><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.obj\')\">Download .obj</button>';
-			console.log(command)
+			document.getElementById("simulation").innerHTML = "";
 			postscribe('#simulation', command);
 		}
 

@@ -54,15 +54,15 @@
 
 		function newSimulationO(name){
 			// for parts objects
-			document.getElementById("simulation").innerHTML = "";
 			var command = '<script src=\"'+ objects[name] +'?height=400\"><\/script><div class=\"info\"><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.STL\')\">Download .STL</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>';
+			document.getElementById("simulation").innerHTML = "";
 			postscribe('#simulation', command);
 		}
 
 		function newSimulationA(name){
 			// for assembly: SLDPRT is  multiple files in a zip
-			document.getElementById("simulation").innerHTML = "";
 			var command = '<script src=\"' +assembly[name]+ '?height=400\"><\/script><div class=\"info\"><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.STL\')\">Download .STL</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.zip\')\">Download .SLDPRT</button>';
+			document.getElementById("simulation").innerHTML = "";
 			postscribe('#simulation', command);
 		}
 	
