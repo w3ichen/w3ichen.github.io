@@ -100,7 +100,7 @@ a{
 .info{
 	background-color: black;
 	padding: 6%;
-	height: 220px;
+	height: 75%;
 	display: inline-flex;
 	flex-direction: column;
 	justify-content: center;

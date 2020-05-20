@@ -3,6 +3,8 @@
 <head>
 	<title>Solidworks</title>
 	<link href="solidworks.css" rel="stylesheet" type="text/css" />
+	<!-- postscribe is for dynamically changing the script of 3D models -->
+	<script src="../postscribe.min.js"></script>
 </head>
 <nav class="navbar">
 	<div class="header1" >Solidworks</div>
@@ -15,12 +17,12 @@
 <body>
 
 <!-- SIMULATION WINDOW -->
+<!-- <script src="https://embed.github.com/view/3d/<username>/<repo>/<ref>/<path_to_file>"></script> -->
 
 <div class="centerOutside">
 	<div id="simulation">
-		<iframe width="560" height="350" src="https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" id="changeFrame"></iframe>
+		<script src="https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/camera.STL?height=400"></script>
 		<div class="info">
-			<button class="infobtn" onclick="window.location.href='https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1'">View Full Screen</button><br>
 			<button class="infobtn" onclick="window.open('camera.STL')">Download .STL</button><br>
 			<button class="infobtn" onclick="window.open('camera.SLDPRT')">Download .SLDPRT</button>
 		</div>
@@ -30,38 +32,38 @@
 
 	<script type="text/javascript">
 		var objects = {
-			'bottle':"https://www.tinkercad.com/embed/apT40FaDuGU?editbtn=1",
-			'camera':"https://www.tinkercad.com/embed/lMufOzjctxc?editbtn=1",
-			'guitar':"https://www.tinkercad.com/embed/dizOpuCjgR3?editbtn=1",
-			'hairbrush':"https://www.tinkercad.com/embed/8VavQwd4FfT?editbtn=1",
-			'ipad':"https://www.tinkercad.com/embed/lSR7D6hEHsv?editbtn=1",
-			'iphone':"https://www.tinkercad.com/embed/6i7GFWOvSWN?editbtn=1",
-			'popcan':"https://www.tinkercad.com/embed/3DM7dWiFkUZ?editbtn=1",
-			'propane':"https://www.tinkercad.com/embed/kIilVbzWyXt?editbtn=1",
-			'yoyo':"https://www.tinkercad.com/embed/jnJDUW3gRHQ?editbtn=1",
-			'6':"https://www.tinkercad.com/embed/l1MC4OUtjmI?editbtn=1",
-			'1':"https://www.tinkercad.com/embed/6MhtL02D4Gz?editbtn=1",
-			'2':"https://www.tinkercad.com/embed/575v1y7yjUL?editbtn=1",
-			'3':"https://www.tinkercad.com/embed/a9oMP7YczOr?editbtn=1",
-			'4':"https://www.tinkercad.com/embed/7QwIsPpHIEI?editbtn=1",
-			'5':"https://www.tinkercad.com/embed/f1VrhUoKDWH?editbtn=1",
-			'7':"https://www.tinkercad.com/embed/iiAyRUW2qny?editbtn=1"
+			'bottle':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/bottle.STL",
+			'camera':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/camera.STL",
+			'guitar':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/guitar.STL",
+			'hairbrush':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/hairbrush.STL",
+			'ipad':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/ipad.STL",
+			'iphone':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/iphone.STL",
+			'popcan':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/popcan.STL",
+			'propane':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/propane.STL",
+			'yoyo':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/yoyo.STL",
+			'1':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/1.STL",
+			'2':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/2.STL",
+			'3':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/3.STL",
+			'4':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/4.STL",
+			'5':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/5.STL",
+			'6':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/6.STL",
+			'7':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/7.STL"
 		};
 
-		var assembly = {'assembly1':"https://www.tinkercad.com/embed/gPC8SKt1OaZ?editbtn=1"};
+		var assembly = {'assembly1':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/solidworks/assembly1.STL"};
 
 		function newSimulationO(name){
-			// for objects
-			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ objects[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><button class=\"infobtn\" onclick=\"window.location.href=\''+ objects[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.STL\')\">Download .STL</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>'
-			document.getElementById("simulation").innerHTML = command;
-
+			// for parts objects
+			document.getElementById("simulation").innerHTML = "";
+			var command = '<script src=\"'+ objects[name] +'?height=400\"><\/script><div class=\"info\"><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.STL\')\">Download .STL</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>';
+			postscribe('#simulation', command);
 		}
 
 		function newSimulationA(name){
-			// for assembly
-			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ assembly[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><button class=\"infobtn\" onclick=\"window.location.href=\''+ assembly[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.STL\')\">Download .STL</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.SLDPRT\')\">Download .SLDPRT</button>'
-			document.getElementById("simulation").innerHTML = command;
-
+			// for assembly: SLDPRT is  multiple files in a zip
+			document.getElementById("simulation").innerHTML = "";
+			var command = '<script src=\"' +assembly[name]+ '?height=400\"><\/script><div class=\"info\"><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.STL\')\">Download .STL</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.zip\')\">Download .SLDPRT</button>';
+			postscribe('#simulation', command);
 		}
 	
 		document.write('<div class="gallery">');
@@ -79,9 +81,5 @@
 		document.write('</div>');
 
 	</script>
-
-
 </body>
-
-
 </html>

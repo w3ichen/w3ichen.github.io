@@ -3,6 +3,8 @@
 <head>
 	<title>Maya</title>
 	<link href="maya.css" rel="stylesheet" type="text/css" />
+	<!-- postscribe is for dynamically changing the script of 3D models -->
+	<script src="../postscribe.min.js"></script>
 </head>
 <nav class="navbar">
 	<div class="header1" >Maya</div>
@@ -17,7 +19,7 @@
 <!-- SIMULATION WINDOW -->
 <div class="centerOutside">
 	<div id="simulation">
-		<iframe width="560" height="350" src="https://www.tinkercad.com/embed/1uElwvyewSk?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" id="changeFrame"></iframe>
+		<script src="https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/bedroom.obj"></script>
 		<div class="info">
 			<img src="wine.jpg" width="100%"><br>
 			<button class="infobtn" onclick="window.location.href='https://www.tinkercad.com/embed/1uElwvyewSk?editbtn=1'">View Full Screen</button><br>
@@ -31,23 +33,24 @@
 		document.write('<div class=\"all\">');
 
 		var simulate = {
-		'wine':"https://www.tinkercad.com/embed/1uElwvyewSk?editbtn=1",
-		'shark':"https://www.tinkercad.com/embed/lUxeyaju1YV?editbtn=1",
-		'office':"https://www.tinkercad.com/embed/jBIH4Xf88Va?editbtn=1", 
-		'kitchen':"https://www.tinkercad.com/embed/1v2XC9SK1XL?editbtn=1", 
-		'bedroom':"https://www.tinkercad.com/embed/ltA8uSyeeLk?editbtn=1",
-		'washroom':"https://www.tinkercad.com/embed/hjHqLBnzrYH?editbtn=1",
-		'livingroom':"https://www.tinkercad.com/embed/lXDLWkGEaYG?editbtn=1",
-		'diningroom':"https://www.tinkercad.com/embed/3U3vPmCc30z?editbtn=1",
-		'car':"https://www.tinkercad.com/embed/2O6YUXKTkch?editbtn=1",
-		'dock':'https://www.tinkercad.com/embed/cW9I38wboSM?editbtn=1',
-		'fullperson':"https://www.tinkercad.com/embed/6Z6ntTSQtB4?editbtn=1"
+		'wine':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/wine.obj",
+		'shark':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/shark.obj",
+		'office':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/office.obj", 
+		'kitchen':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/kitchen.obj", 
+		'bedroom':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/bedroom.obj",
+		'washroom':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/washroom.obj",
+		'livingroom':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/livingroom.obj",
+		'diningroom':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/diningroom.obj",
+		'car':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/car.obj",
+		'dock':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/dock.obj",
+		'fullperson':"https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/fullperson.obj"
 		};
 
 		function newSimulation(name){
-			var command = '<iframe width=\"560\" height=\"350\" src=\"'+ simulate[name] +'\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" id=\"changeFrame\"></iframe><div class=\"info\"><img src=\"'+ name +'.jpg\" width=\"100%\"><br><button class=\"infobtn\" onclick=\"window.location.href=\''+ simulate[name] +'\'\">View Full Screen</button><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.obj\')\">Download .obj</button>'
-			document.getElementById("simulation").innerHTML = command;
-
+			document.getElementById("simulation").innerHTML = "";
+			var command = '<script src=\"'+ simulate[name] +'\"><\/script><div class=\"info\"><img src=\"'+ name +'.jpg\" width=\"100%\"><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.obj\')\">Download .obj</button>';
+			console.log(command)
+			postscribe('#simulation', command);
 		}
 
 		for (var i=0; i<Object.keys(simulate).length; i++){
