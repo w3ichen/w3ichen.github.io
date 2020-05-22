@@ -7,8 +7,8 @@
 > ### [Art](https://w3ichen.github.io/pages/art/art.html)
 
 > ### [Coding](https://w3ichen.github.io/pages/code/code.html)
->> Languages:
->>> ```C++, Python, Javascript, HTML, CSS, Arduino, Assembly, MATLAB, Tensorflow, SQL, Django, Flask ```
+> Languages:
+>> ```C++, Python, Javascript, HTML, CSS, Arduino, Assembly, MATLAB, Tensorflow, SQL, Django, Flask ```
 
 > ### [Autodesk Maya](https://w3ichen.github.io/pages/maya/maya.html)
 
