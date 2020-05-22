@@ -10,6 +10,6 @@
 > ### [Photography](https://w3ichen.github.io/pages/photo/photo.html)
 > ### [Solidworks](https://w3ichen.github.io/pages/solidworks/solidworks.html)
 > ### [Videos](https://w3ichen.github.io/pages/video/video.html)
-> ### [Others](https://w3ichen.github.io/pages/other/other.html
+> ### [Others](https://w3ichen.github.io/pages/other/other.html)
 
 ![thumbnail](https://w3ichen.github.io/thumbnail.jpg)
