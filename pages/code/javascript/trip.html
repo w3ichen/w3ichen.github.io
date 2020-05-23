@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Code > API</title>
+	<title>Javascript>Trip Planner</title>
 	<link rel="stylesheet" type="text/css" href="trip.css">
 	<script type="text/javascript" src="trip.js"></script>
+	<link rel="stylesheet" type="text/css" href="../code.css">
+	<script type="text/javascript" src="../menu.js"></script>
 </head>
 
 <nav style="display: inline-flex; align-items: center;justify-content: center;">
 	<button style="font-family: 'courier new',verdana, roboto;background-color: black;color: white;padding: 1%; border: none; margin-right: 15%" onclick="window.location.href='../code.html'">Back</button>
 	<h1>Trip Planner</h1>
 	<p style="margin-left: 8%; font-size: 14px; font-style:italic;">powered by TomTom API</p></nav>
+		<table class="switch">
+			<tr class="switchtr">
+				<td id="code-text">Show Code</td>
+				<td><input type="checkbox" id="codeToggle"></td>
+				<td><input type="checkbox" id="menuToggle"></td>
+				<td id="menu-text">Show Menu</td>
+			</tr>
+		</table>
 <body>
-
+<div id="menu"></div>
 	<div class="outlineBox">
 	
 	<div class="row"><input type="text" name="from" placeholder="from" id="from"><input type="text" name="to" placeholder="to" id="to">
@@ -62,9 +72,12 @@
 	</div>
 
 
-
-
-
+	<div id="code">
+		<script src="http://gist-it.appspot.com/https://github.com/w3ichen/w3ichen.github.io/blob/master/pages/code/javascript/trip.html"></script>
+	</div>
+	<script type="text/javascript">
+		loadSubmenu();
+	</script>
 
 
 </body>

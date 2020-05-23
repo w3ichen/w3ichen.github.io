@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Code > Climate</title>
+	<title>Python>Climate</title>
 	<link href="../../nav.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../code.css">
+	<script type="text/javascript" src="../menu.js"></script>
 </head>
+
 <nav class="navbar">
-	<div class="header1" >Python</div>
-	<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()"/>
-   <button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value, 'code')">Go</button>
-   <a href="../../../index.html">Home</a>
+	<div class="left">
+		<div class="header1">Python</div>
+	</div>
+	<div class="center">
+		<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()" />
+	</div>
+	<div class="right">
+		<button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value,'code')">Go</button>
+		<a href="../../../index.html">Home</a>
+		<table class="switch">
+			<tr class="switchtr">
+				<td id="code-text">Show Code</td>
+				<td><input type="checkbox" id="codeToggle"></td>
+				<td><input type="checkbox" id="menuToggle"></td>
+				<td id="menu-text">Show Menu</td>
+			</tr>
+		</table>
+	</div>
    <script src="../../../pagesearch.js" type="text/javascript"></script>
 </nav>
 
-
 <body>
+	<div id="menu"></div>
 
 	<!-- ------------------------------------------------------------------------------------ -->
 	<iframe src="https://trinket.io/embed/python3/4addd8a496?start=result" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 	<!-- ------------------------------------------------------------------------------------ -->
 
-	<h1>My Code</h1>
-
-	<script type="text/javascript" src="menu.js"></script>
-	
+	<div id="code">
+		<script src="http://gist-it.appspot.com/https://github.com/w3ichen/Old-Work/blob/master/climateplot.py"></script>
+	</div>
+	<script type="text/javascript">
+		loadSubmenu();
+	</script>
 
 	
 </body>
