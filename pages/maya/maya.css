@@ -1,69 +1,6 @@
-nav{
-	background: black;
-	font-family: Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
-	font-style: normal;
-	font-weight: 200;
-	margin:0;
-	padding-top: 12px;
-	padding-bottom: 8px;
-}
-body{
-	margin:0;
-}
-nav:hover{
-	background:white;
-}
-nav:hover > .header1{
-	color: black;
-}
-nav:hover > a{
-	color:black;
-}
-nav:hover > .searchbutton{
-	color:black;
-	font-family: Helvetica,Verdana,Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
-	background-color: white;
-	font-weight: 300;
-}
-.header1{
-	color:white;
-	font-size: 25px;
-	font-weight: 500;
-	display: inline;
-	text-align: left;
-	padding-left: 15%;
-	padding-right:10%;
-}
-#in{
-	border:none;
-	display: inline-block;
-	background-color: white;
-	text-align: center;
-	width:20%;
-	padding: 5px;
-	background-color: black;
-	color:white;
-	font-size: 16px;
-	margin-left: 10%;
-}
-a{
-	font-size: 16px;
-	color:white;
-	text-decoration: none;
-	text-align:right;
-	padding-left: 15%
-}
-.searchbutton{
-	 background-size: 0;
-	 background-color: black;
-	 border:none;
-	 width: 0px;
-	 height: 0px;
-}
-/*
-=============================================*/
 .image:hover{
-	transform:scale(2.2);
+	transform:scale(1.7);
+	transition-duration: .5s;
 }
 
 .all{
@@ -91,18 +28,14 @@ a{
 
 #simulation{
 	display: inline-flex;
-	padding: 2%;
-	margin: 0;
+	margin: 2%;
 	justify-content:  center;
-	align-items: flex-start;
 	flex-direction: row;
-
-
 }
 .info{
 	background-color: black;
 	padding: 2%;
-	height: 86%;
+	align-items: stretch;
 	width: 10%;
 	display: inline-flex;
 	flex-direction: column;
@@ -112,16 +45,10 @@ a{
 }
 .infobtn{
 	font-family: 'candara','Verdana','arial','courier new';
-	margin-top: 2%;
+	margin-top: 50%;
 	color: white;
 	background-color: black;
 	border: 1px solid white;
 	padding: 5%;
 	cursor: pointer;
-	
-}
-.centerOutside{
-	display: flex;
-	justify-content: center;
-	margin-bottom: 0;
 }

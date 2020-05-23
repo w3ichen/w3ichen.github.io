@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152880745-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-152880745-1');
+	</script>
+	
 	<title>Video</title>
 	<link href="video.css" rel="stylesheet" type="text/css" />
+	<link href="../nav.css" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" type="image/png" href="../../favicon.png">
 </head>
+
 <nav class="navbar">
-	<div class="header1" >Video</div>
-	<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()"/>
-   <button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)"></button>
-   <a href="../../index.html">Home</a>
+	<div class="left">
+		<div class="header1">Video</div>
+	</div>
+	<div class="center">
+		<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()" />
+	</div>
+	<div class="right">
+		<button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)">Go</button>
+		<a href="../../index.html">Home</a>
+	</div>
    <script src="../../pagesearch.js" type="text/javascript"></script>
 </nav>
 
-
 <body>
-	<!-- embedded youtube videos -->
 
+	<!-- embedded youtube videos -->
 <div class="video_hover">
 	<iframe class="video" width="40%" height="450px" src="https://www.youtube.com/embed/qzgYOVVIWc4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 	<div class="info">
-		<div>Title: Taekwondo Sparring</div>
-		<div>Published: February 19, 2020</div>
+		<div><strong>Title: Taekwondo Sparring</strong></div>
+		<div><em>Published: February 19, 2020</em></div>
 		<div>My Role: Editor and Videographer</div>
 		<div>Info: Filmed and edited sparring practice for taekwondo club<br> Used Premiere Pro for editing and iPhone for filming</div>
 	</div>
@@ -30,19 +48,18 @@
 <div class="video_hover">
 	<iframe class="video" width="40%" height="450px" src="https://www.youtube.com/embed/7B4Asq_JqQE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	<div class="info">
-		<div>Title: Taekwondo Club Practice</div>
-		<div>Published: January 12, 2020</div>
+		<div><strong>Title: Taekwondo Club Practice</strong></div>
+		<div><em>Published: January 12, 2020</em></div>
 		<div>My Role: Editor and Videographer</div>
 		<div>Info: Filmed and edited practice video for taekwondo club social media team <br> Using Canon Rebel Camera and Premiere Pro editing software</div>
 	</div>
 </div>
 
-
 <div class="video_hover">
 	<iframe class="video" width="40%"height="450px" src="https://www.youtube.com/embed/DuHDfjfUwG4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	<div class="info">
-		<div>Title: Strathcona High School Rewind 2018</div>
-		<div>Published: July 25, 2018</div>
+		<div><strong>Title: Strathcona High School Rewind 2018</strong></div>
+		<div><em>Published: July 25, 2018</em></div>
 		<div>My Role: Editor with Media Team</div>
 		<div>Info: Pioneered Strathcona High School's <br>first ever year in review video from proof <br>of concept to publication</div>
 	</div>
@@ -51,8 +68,8 @@
 <div class="video_hover">
 <iframe class="video" width="40%" height="450px" src="https://www.youtube.com/embed/oDcOGshajHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	<div class="info">
-		<div>Title: Scona Swim Team Info</div>
-		<div>Published: April 20, 2018</div>
+		<div><strong>Title: Scona Swim Team Info</strong></div>
+		<div><em>Published: April 20, 2018</em></div>
 		<div>My Role: Director</div>
 		<div>Info: Spearheaded first ever scona team promotional video <br> from proof of concept to production to publication.<br>Involved scheduling and filming swimmers, scheduling interviews,<br>contacting editors and scanning old yearbook photos</div>
 	</div>
@@ -61,16 +78,12 @@
 <div class="video_hover">
 <iframe  class="video" width="40%" height="450px" src="https://www.youtube.com/embed/0sbvORRdypc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	<div class="info">
-		<div>Title: Scona Swim 2019 Promo</div>
-		<div>Published: April 20, 2018</div>
+		<div><strong>Title: Scona Swim 2019 Promo</strong></div>
+		<div><em>Published: April 20, 2018</em></div>
 		<div>My Role: Director</div>
 		<div>Info: Short Promotional Video, <br> 
 		As part of the Swim Team Promotional Project</div>
 	</div>
 </div>
-
-
 </body>
-
-
 </html>

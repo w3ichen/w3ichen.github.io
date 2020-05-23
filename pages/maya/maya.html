@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152880745-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-152880745-1');
+	</script>
+	
 	<title>Maya</title>
-	<link href="maya.css" rel="stylesheet" type="text/css" />
+	<link href="../nav.css" rel="stylesheet" type="text/css"/>
+	<link href="maya.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" type="image/png" href="../../favicon.png">
 	<!-- postscribe is for dynamically changing the script of 3D models -->
 	<script src="../postscribe.min.js"></script>
 </head>
+
 <nav class="navbar">
-	<div class="header1" >Maya</div>
-	<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()"/>
-   <button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)">Go</button>
-   <a href="../../index.html">Home</a>
+	<div class="left">
+		<div class="header1">Maya</div>
+	</div>
+	<div class="center">
+		<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()" />
+	</div>
+	<div class="right">
+		<button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)">Go</button>
+		<a href="../../index.html">Home</a>
+	</div>
    <script src="../../pagesearch.js" type="text/javascript"></script>
 </nav>
 
 <body>
 
 <!-- SIMULATION WINDOW -->
-<div class="centerOutside">
-	<div id="simulation">
-		<script src="https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/bedroom.obj"></script>
-		<div class="info">
-			<img src="wine.jpg" width="100%"><br>
-			<button class="infobtn" onclick="window.open('wine.obj')">Download .obj</button>
-		</div>
+<div id="simulation">
+	<script src="https://embed.github.com/view/3d/w3ichen/w3ichen.github.io/master/pages/maya/bedroom.obj"></script>
+	<div class="info">
+		<img src="bedroom.jpg" width="100%">
+		<button class="infobtn" onclick="window.open('bedroom.obj')">Download .obj</button>
 	</div>
-</div>	
+</div>
 
+<!-- ----------------- -->
 	<script type="text/javascript">
 
 		document.write('<div class=\"all\">');
@@ -46,7 +64,7 @@
 		};
 
 		function newSimulation(name){
-			var command = '<script src=\"'+ simulate[name] +'\"><\/script><div class=\"info\"><img src=\"'+ name +'.jpg\" width=\"100%\"><br><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.obj\')\">Download .obj</button>';
+			var command = '<script src=\"'+ simulate[name] +'\"><\/script><div class=\"info\"><img src=\"'+ name +'.jpg\" width=\"100%\"><button class=\"infobtn\" onclick=\"window.open(\''+ name +'.obj\')\">Download .obj</button>';
 			document.getElementById("simulation").innerHTML = "";
 			postscribe('#simulation', command);
 		}
@@ -56,8 +74,6 @@
 			document.write(command);
 		}
 
-		
-		// =============================================
 		var oversized = ['village'];
 		for (var j=0;j<oversized.length;j++){
 			var command = '<button onclick=\"window.open(\'' + oversized[j] + '.zip\')\" class=\"btn\"> <img src=\"' + oversized[j] + '.jpg\"class=\"image\"></button>';
@@ -70,14 +86,9 @@
 			document.write(command);
 		}
 
-
 	</script>
-
 	<video controls poster="wine.jpg" src="fullHouse.mp4" width="45%" style="margin-bottom: 5%; " ></video>
-
 	</div>
 
-
 </body>
-
 </html>

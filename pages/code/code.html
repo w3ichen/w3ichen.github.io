@@ -1,39 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152880745-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-152880745-1');
+	</script>
+	
 	<title>Coding</title>
+	<link href="../nav.css" rel="stylesheet" type="text/css" />
 	<link href="code.css" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" type="image/png" href="../../favicon.png">
+	<script type="text/javascript" src="menu.js"></script>
 </head>
+
 <nav class="navbar">
-	<div class="header1" >Coding</div>
-	<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()"/>
-   <button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)">Go</button>
-   <a href="../../index.html">Home</a>
+	<div class="left">
+		<div class="header1">Coding</div>
+	</div>
+	<div class="center">
+		<input type="text" name="in" id="in" placeholder="Search" onkeydown="if (event.keyCode==13)document.getElementById('searchbtn').click()" />
+	</div>
+	<div class="right">
+		<button id="searchbtn" class="searchbutton" onclick="search(document.getElementById('in').value)">Go</button>
+		<a href="../../index.html">Home</a>
+		<!-- info bar -->
+		<button class="infobtn" onclick="window.location.href='https://github.com/w3ichen'" style="margin-left: auto;margin-right: 2%;">Github</button>
+		<button class="infobtn" onclick="window.location.href='https://github.com/w3ichen/w3ichen.github.io'" style="margin-right: auto; margin-left: 2%;">Website Code</button>
+	</div>
    <script src="../../pagesearch.js" type="text/javascript"></script>
 </nav>
-<!-- info bar -->
-<div class="info">
-	<a href="https://github.com/w3ichen">To Github</a>
-	<a href="https://github.com/w3ichen/w3ichen.github.io">To Website Code</a>
-</div>
 
 <body>
 
 <div class="terminal">
-	<h2>Coding Languages I Know:</h2>
+	<h1>Coding Languages I Know:</h1>
 	<ol>
-	<li>Python</li>
-	<li>C++</li>
-	<li>MATLAB</li>
-	<li>Javascript</li>
-	<li>HTML</li>
-	<li>CSS</li>
-	<li>Arduino</li>
-	<li>Assembly Language</li>
+		<li><a href="c++/cpp.html" style="padding: 0">C++</a></li>
+		<li><a href="python/python.html" style="padding: 0">Python</a></li>
+		<li><a href="javascript/javascript.html" style="padding: 0">Javascript</a></li>
+		<li><a href="javascript/javascript.html" style="padding: 0">HTML</a></li>
+		<li><a href="javascript/javascript.html" style="padding: 0">CSS</a></li>
+		<li><a href="arduino/arduino.html" style="padding: 0">Arduino</a></li>
+		<li>Assembly Language</li>
+		<li>MATLAB</li>
+		<li><a href="python/python.html" style="padding: 0">TensorFlow</a></li>
+		<li>SQL</li>
+		<li>Django</li>
+		<li>Flask</li>
 	</ol>
 </div>
 
-<h1>My Code</h1>
-	<script type="text/javascript" src="menu.js"></script>
+<!-- MENU -->
+<h1>My Projects</h1>
+<div id="menu"></div>
+<script type="text/javascript">
+	loadMainMenu(true);
+</script>
+
+
+
+
 </body>
 </html>
