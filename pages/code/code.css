@@ -39,6 +39,10 @@ body{
 	background-color: white;
 	box-shadow: 0px 0px 30px 1px rgb(220,220,220);
 	cursor: pointer;
+	font-size: 15px;
+}
+.categoryTable.t{
+	font-size: 20px;
 }
 #menu{
 	display: inline-flex;
@@ -64,7 +68,7 @@ img{
 .detail{
 	display: none;
 	width: 100%;
-	font-size: 16px;
+	font-size: 18px;
 	line-height: 25px;
 	font-family: Helvetica,Verdana,Arial, Geneva,"Lucida Grande","Lucida Sans Unicode",Tahoma,"Trebuchet MS",Calibri;
 }
