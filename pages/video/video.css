@@ -23,10 +23,18 @@
 	margin-bottom: 0;
 }
 
+.link{
+	color: gray;
+	font-size: 0;
+}
 /* info about each video */
 .video_hover:hover .info{
 	padding: 5%;
 	font-size: 17px;
 	width: 40%;
+	transition-duration: .3s;
+}
+.video_hover:hover .link{
+	font-size: 17px;
 	transition-duration: .3s;
 }

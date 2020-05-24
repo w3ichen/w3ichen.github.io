@@ -1,4 +1,4 @@
-#ejquote{
+.quote{
 	list-style-type: none;
 	font-style: italic;
 }
@@ -7,7 +7,8 @@
 	font-style: normal;
 	font-weight: 200;
 	font-size: 17px;
-	margin-top: 3%;
+	margin-top: 1%;
+	margin-bottom: 3%;
 	margin-left: 10%;
 	margin-right: 10%;
 	display: inline-flex;
