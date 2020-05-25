@@ -15,9 +15,11 @@ var arduino = {'alarm':['Alarm System','2/16/2020','An ultrasonic sensor trigger
 			  }
 var cpp = {'bigo':['Big-O Visualizer','2/28/2020','Timing an algorithmn with different input sizes and graphing time elapsed to gain a rough visual of Big-O.'],
 		  }
+var tensorflow = {}
 
 // ADD NEW LANGUAGES HERE
 var languages = {
+	"tensorflow" : tensorflow,
 	"javascript" : javascript,
 	"python" : python,
 	"arduino" : arduino,
