@@ -2,10 +2,6 @@
 <html>
 <head>
     <title>Tensorflow>Handwriting</title>
-    <!-- Import tensorflow -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
-    <script src="require.js"></script>
-
 </head>
 
 <body onload="init()">
@@ -15,29 +11,17 @@
     <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
     <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:15%;">
 
+here1: {{tasks.content}}
+
+
+
 </body>
 
-<!-- CODE FOR TENSORFLOW -->
-<script type="text/javascript">
-
-    // const tf = require('@tensorflow/tfjs');  
-    // (require('@tensorflow/tfjs'), async function(){
-    //     model = await tf.loadModel('https://tfhub.dev/tensorflow/tfjs-model/deeplab/cityscapes/1/default/1');
-    // })();
-
-// import * as tf from '@tensorflow/tfjs';
-const tf=require(['@tensorflow/tfjs']);
-
-async function start(){
-    const model = await tf.loadLayersModel('https:%2F%2Ftfhub.dev%2Ftensorflow%2Ftfjs-model%2Fdeeplab%2Fcityscapes%2F1%2Fdefault%2F1');
-}
-
-    // const tf=require(['@tensorflow/tfjs']);
-    // model = tf.loadModel('https:%2F%2Ftfhub.dev%2Ftensorflow%2Ftfjs-model%2Fdeeplab%2Fcityscapes%2F1%2Fdefault%2F1');
 
 
 
-</script>
+
+
 
 
 
