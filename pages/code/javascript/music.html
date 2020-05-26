@@ -94,7 +94,6 @@ function getSongs(artist){
 			let albumImg = data[i].album.cover_small;
 			let songTitle = data[i].title_short;
 			let audioPreview = data[i].preview;
-			console.log( data[i].album)
 			
 			var newRow = document.createElement("TR");
 
@@ -152,7 +151,7 @@ function relatedArtists(artist, userRelatedArtists){
 		window.alert("Number of Related Artists is not an number\nPlease enter a valid number")
 	}
 	// get artist ID
-	fetch("http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+ artist +"&api_key=f94c3db8b1cfb8ea87dadbd27a9fe1a9&format=json",{
+	fetch("https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+ artist +"&api_key=f94c3db8b1cfb8ea87dadbd27a9fe1a9&format=json",{
 		"method": "GET"
 	})
 	.then (response => response.json())
