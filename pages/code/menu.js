@@ -6,7 +6,8 @@ var python = {'webscraping':['Netflix & Amazon Webscraper','1/3/2020','Using Bea
 			  'aes':['Advanced Encryption System','12/20/2019','A variation of AES using numpy and matrices.'],
 			  'pw':['Password Validator & Generator','12/20/2019','A simple password validator and generator.']
 			  }
-var javascript = {'social':['Social Media','4/24/2020','Front end web design of a social media site with ability to post, comment and upload photos. Use of Cookies to store time of last activity.'],
+var javascript = {'music':['Music Playlist API','25/5/2020','Generates a playlist of songs from similar artists. Using Deezer API to get artist\'s songs and LastFM API to find similar artists.'],
+				  'social':['Social Media','4/24/2020','Front end web design of a social media site with ability to post, comment and upload photos. Use of Cookies to store time of last activity.'],
 				  'trip':['Trip Planner API','1/19/2020','Calling TomTom Maps API to plan gas stations and hotel stops along driving route.'],
 				  'calculator':['Calculator','1/2/2020','A simple caluclator using Javascript\'s eval() to perform math calculations.']
 			     }

@@ -45,11 +45,6 @@ function main(){
 	var inputs = getUserInputs();
 
 	document.write('<!DOCTYPE html><head><title>API</title><link rel="stylesheet" type="text/css" href="trip.css"></head><nav><h1>Trip Planner</h1></nav><body><div class="outlineBox"> <div id="main_info"></div>	<div id="main"></div>   <button class="btn" onclick="back()">back</button><script type="text/javascript">function back(){window.location.href="trip.html"}</script></div></body></html>')
-																																													//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^	
-	// window.location.href = "trip2.html";
-
-
-
 	// time array, hours - minutes - seconds
 	var time_seconds = 25200; // 7 am
 	var time = seconds_2_hours(time_seconds)

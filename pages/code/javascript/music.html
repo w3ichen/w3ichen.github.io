@@ -1,41 +1,305 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Javascript>Music</title>
+	<title>Javascript>Music API</title>
+	<link rel="stylesheet" type="text/css" href="../code.css">
+	<script type="text/javascript" src="../menu.js"></script>
 </head>
 <body>
-	<input type="text" id="artist">
 
-audio
-<audio>
-	<source src="https:\/\/www.deezer.com\/track\/1109731" type="audio/mpeg">
-</audio>
-<script src="https:\/\/www.deezer.com\/track\/1109731"></script>
-<iframe src="https:\/\/www.deezer.com\/track\/1109731"></iframe>
+	<div style="display: flex;">
+		<div style="flex:2"></div>
+		<button onclick="window.location.href='javascript.html'" id="back">Back</button>
+			<div class="switchtr">
+				<div id="code-text">Show Code</div>
+				<div><input type="checkbox" id="codeToggle"></div>
+				<div><input type="checkbox" id="menuToggle"></div>
+				<div id="menu-text">Show Menu</div>
+			</div>
+	</div>
+
+	<div id="menu"></div>
+	<div id="code">
+		<script src="https://gist-it.appspot.com/https://github.com/w3ichen/w3ichen.github.io/blob/master/pages/code/javascript/music.html"></script>
+	</div>
+	<script type="text/javascript">
+		loadSubmenu();
+	</script>
+
+<div id="home">
+	<div class="background-left">
+		<div id="fulltext">playlist</div>
+		<img src="picture-music.png" height="90%" style="position: absolute; left:47.5%; top:6%; opacity: 0" id="tape">
+	</div>
+	<div id="inputs">
+		<div class="text">Generate a playlist from your favorite artist <br>and from a number of similar artists</div>
+		<input type="text" name="userArtist" id="userArtist" placeholder="Artist's Name">
+		<input type="number" name="userRelatedArtists" id="userRelatedArtists" placeholder="Number of similar artists to include in playlist">
+		<button onclick="go()" id="goBtn">MAKE PLAYLIST</button>
+	</div>
+</div>
+
+<table id="TABLE">
+	<tr class="mainHeader">
+		<td></td>
+		<td>Title</td>
+		<td>Audio</td>
+		<td></td>
+		<td>Artist</td>
+		<td></td>
+		<td>Album</td>
+	</tr>
+</table>
 
 </body>
 </html>
 
 <script type="text/javascript">
-	// DEEZER API
+var SONGID = 1;
 
-	var data = null;
+function go(){
+	var userArtist = document.getElementById("userArtist").value;
+	var userRelatedArtists = document.getElementById("userRelatedArtists").value;
+	// first get songs of inputed artist
+	getSongs(userArtist);
+	// then songs of related artists
+	relatedArtists(userArtist, userRelatedArtists);
+	// make inputs disappear
+	document.getElementById("home").style.transition = "2s";
+	document.getElementById("home").style.opacity = "0";
 
-var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+	// make table appear
+	document.getElementById("TABLE").style.display = "table";
+}
 
-xhr.addEventListener("readystatechange", function () {
-	if (this.readyState === this.DONE) {
-		console.log(this.responseText);
+// USING DEEZER API
+
+function getSongs(artist){
+	artist = artist.toLowerCase().replace(/ /g,"%20");
+	fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q="+ artist +"", {
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+			"x-rapidapi-key": "85bad339d2msha993e5da92946ecp1a65fcjsn2759641fe132"
+		}
+	})
+	.then(response => response.json())
+	.then(obj => {
+		data = obj.data
+		for (var i=0; i<data.length;i++){
+			// iterate through each song
+			let artistName = data[i].artist.name;
+			let artistImg = data[i].artist.picture_small;
+			let albumName = data[i].album.title.split('(')[0];
+			let albumImg = data[i].album.cover_small;
+			let songTitle = data[i].title_short;
+			let audioPreview = data[i].preview;
+			console.log( data[i].album)
+			
+			var newRow = document.createElement("TR");
+
+			var songIDCell = newRow.insertCell(0);
+			songIDCell.innerHTML = SONGID;   SONGID+=1;
+			songIDCell.classList.add("style-songID");
+
+			var titleCell = newRow.insertCell(1);
+			titleCell.innerHTML = songTitle;
+			songIDCell.classList.add("style-title");
+
+			var audioCell = newRow.insertCell(2);
+			var newAudio = document.createElement("AUDIO");
+			newAudio.controls = "true";
+			newAudio.innerHTML = "<source src=\""+ audioPreview +"\" type=\"audio/mp3\">"
+			audioCell.appendChild(newAudio);
+			audioCell.classList.add("style-audio");
+
+			var artistImgCell = newRow.insertCell(3);
+			var newArtistImg = document.createElement("IMG");
+			newArtistImg.src = artistImg;
+			artistImgCell.appendChild(newArtistImg);
+			artistImgCell.classList.add("style-artistImg");
+
+			var artistNameCell = newRow.insertCell(4);
+			artistNameCell.innerHTML = artistName;
+			artistNameCell.classList.add("style-artistName");
+
+			var albumImgCell = newRow.insertCell(5);
+			var newAlbumImg = document.createElement("IMG");
+			newAlbumImg.src = albumImg;
+			albumImgCell.appendChild(newAlbumImg);
+			albumImgCell.classList.add("style-albumImg");
+
+			var albumNameCell = newRow.insertCell(6);
+			albumNameCell.innerHTML = albumName;
+			albumNameCell.classList.add("style-albumName");
+
+			document.getElementById("TABLE").appendChild(newRow);
+		}
+	})
+	.catch(err => {
+		console.log(err);
+		window.alert("Artist Not Found\nPlease Try Again.")
+	});
+}
+
+// LAST.FM API
+function relatedArtists(artist, userRelatedArtists){
+	//f94c3db8b1cfb8ea87dadbd27a9fe1a9
+	artist = artist.toLowerCase().replace(/ /g,"%20");
+	try{
+		userRelatedArtists = parseInt(userRelatedArtists);
+	}catch{
+		window.alert("Number of Related Artists is not an number\nPlease enter a valid number")
 	}
-});
+	// get artist ID
+	fetch("http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+ artist +"&api_key=f94c3db8b1cfb8ea87dadbd27a9fe1a9&format=json",{
+		"method": "GET"
+	})
+	.then (response => response.json())
+	.then( data=> {
+		console.log(userRelatedArtists)
+		for (var i=0;i<userRelatedArtists;i++){
+			let similarArtist = data.similarartists.artist[i].name
+			similarArtist = similarArtist.toLowerCase().replace(/ /g,"%20");
+			getSongs(similarArtist);
+			console.log(similarArtist)	
+		}
+	})
+	.catch(err => {
+		console.log(err);
+		window.alert("Artist Not Found\nPlease Try Again.")
+	});
+}
 
-xhr.open("GET", "https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem");
-xhr.setRequestHeader("x-rapidapi-host", "deezerdevs-deezer.p.rapidapi.com");
-xhr.setRequestHeader("x-rapidapi-key", "85bad339d2msha993e5da92946ecp1a65fcjsn2759641fe132");
+</script>
 
-xhr.send(data);
-	// DEEZER END
+<style type="text/css">
+body{
+	background-color: #7ed6df;
+}
+.mainHeader{
+	font-size: 25px;
+	font-family: "calibri light", "arial";
+	font-weight: 500;
+}
+#TABLE{
+	font-size: 16px;
+	text-align: center;
+	width: 95%;
+	margin-left: 4%;
+	margin-right: 1%;
+	font-family: "calibri light", "sans-serif", Arial, Helvetica, "Lucida Sans Unicode", "Lucida Grande","Trebuchet MS", Helvetica;
+	border-collapse: collapse;
+	padding: .5%;
+	display: none;
+}
 
+tr:hover{
+	background-color: black;
+	transition: .5s;
+}
+tr:hover td{
+	color:white;
+}
+.style-songID{
+	padding-left: 2%;
+	font-weight: 700;
+}
 
+#userArtist, #userRelatedArtists{
+	padding: 2%;
+	padding-left: 5%;
+	border: none;
+	width: 80%;
+	margin: 2%;
+	margin-left: 0;
+	font-size: 17px;
+}
+#goBtn{
+	background-color: black;
+	border: 1px solid white;
+	color: white;
+	padding: 3%;
+	margin: 5%;
+	width: 50%;
+	cursor: pointer;
+}
+#goBtn:hover{
+	background-color: #008080;
+}
+#inputs{
+	display: inline-flex;
+	flex-direction: column;
+	width: 40%;
+	position: absolute;
+	left: 55%;
+	top:30%;
+	opacity: 0;
+	z-index: -1;
+}
+.text{
+	font-size: 25px;
+	margin-bottom: 3%;
+	font-family: "Calibri light", "sans-serif", Arial, Helvetica, "Lucida Sans Unicode", "Lucida Grande","Trebuchet MS", Helvetica;
+}
+.background-left{
+	width: 45%;
+	height: 100%;
+	background-color: #ff69b4;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+#fulltext{
+	font-size: 100px;
+	margin-top: 18%;
+	margin-left: 8%;
+	font-family: "Times New Roman", "sans-serif", Arial, Helvetica, "Lucida Sans Unicode", "Lucida Grande","Trebuchet MS", Helvetica;
+	color: white;
+	opacity: 0;
+}
+#back{
+	margin: 1%;
+	padding: .7%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+	background-color: #008080;
+	border: solid;
+	border-width: 1px;
+	color: white;
+	cursor: pointer;
+	flex: .25;
+}
+.switchtr{
+	display: inline-flex;
+	align-items: center;
+	margin: 1%;
+	margin-left: 5%;
+	margin-right: 3%;
+}
+.style-artistName{
+	padding-left: 0%;
+	padding-right: 2%;
+}
+.style-artistImg{
+	padding-left: 6%;
+}
+</style>
+
+<script type="text/javascript">
+	// loading page aesthetic looks
+	window.onload = function start(){
+		document.getElementById("inputs").style.transition = "1.5s";
+		document.getElementById("inputs").style.opacity = "100%";
+		document.getElementById("inputs").style.transform = "translate(-2%, 0)";
+
+		document.getElementById("fulltext").style.transition = "1.5s";
+		document.getElementById("fulltext").style.opacity = "100%";
+		document.getElementById("fulltext").style.transform = "translate(2%,0";
+
+		document.getElementById("tape").style.transition = "2.5s";
+		document.getElementById("tape").style.opacity = "100%";
+	}
 </script>
