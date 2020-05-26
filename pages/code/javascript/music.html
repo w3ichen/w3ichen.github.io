@@ -65,11 +65,13 @@ function go(){
 	// then songs of related artists
 	relatedArtists(userArtist, userRelatedArtists);
 	// make inputs disappear
-	document.getElementById("home").style.transition = "2s";
+	document.getElementById("home").style.transition = "1s";
 	document.getElementById("home").style.opacity = "0";
+	document.getElementById("home").style.transform = "translate(-2%, 0)";
 
 	// make table appear
-	document.getElementById("TABLE").style.display = "table";
+	document.getElementById("inputs").style.transition = "3s";
+	document.getElementById("TABLE").style.opacity = "100%";
 }
 
 // USING DEEZER API
@@ -190,7 +192,7 @@ body{
 	font-family: "calibri light", "sans-serif", Arial, Helvetica, "Lucida Sans Unicode", "Lucida Grande","Trebuchet MS", Helvetica;
 	border-collapse: collapse;
 	padding: .5%;
-	display: none;
+	opacity: 0%;
 }
 
 tr:hover{
