@@ -4,23 +4,49 @@
     <title>Tensorflow>Handwriting</title>
     <script type="text/javascript" src="https://w3ichen.github.io/pages/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://w3ichen.github.io/pages/code/code.css">
+    <link rel="stylesheet" type="text/css" href="https://w3ichen.github.io/pages/nav.css">
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='css/handwriting.css') }}">
     <script type="text/javascript" src="https://w3ichen.github.io/pages/code/menu.js"></script>
 
 </head>
 
 <body onload="init()">
-    <canvas id="can" width="100" height="100" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
+    <nav>
+        <div style="flex: 3; text-align: center" class="header1">Handwriting</div>
+        <button onclick="window.location.href='https://w3ichen.github.io/pages/code/code.html'" id="back" style="flex:1">Back</button>
+        <div class="switchtr" style="flex: 2">
+            <div id="code-text">Show Code</div>
+            <div><input type="checkbox" id="codeToggle"></div>
+        </div>
+    </nav>
 
-    <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
-    <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
-    <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:15%;">
-<div id="prediction"></div>
-<div style="background-color: black">
-    <img src="{{url_for('static',filename='image.png')}}" id="userDrawing" width="20%">
+    <div id="intro"><em>Convolutional Neural Network (CNN) <br>Tensorflow model trained on EMNIST dataset <br>Recognizes handwritten numbers and letters</em></div>
+
+
+    <div id="network">
+        <div id="chalkboard">
+            <button id="eraseBtn" onclick="erase()"></button>
+            <div id="chalk">
+                <div id="writing">write number or letter here</div>
+                <canvas id="can" width="100" height="100"></canvas>
+                <button id="predictBtn" onclick="save()">PREDICT</button> 
+            </div>
+        </div>
+            <img id="userDrawing">
+            <div id="prediction">:)</div>
+    </div>
+
+    
+    
+
+<div id="code">
+    <script src="https://gist.github.com/w3ichen/d8715fed17aebb70a6076c9f8ff529d9.js"></script>
 </div>
+<script type="text/javascript">
+    loadSubmenu(true, false);
+</script>
 
 
-<!-- <script src="https://gist.github.com/w3ichen/d8715fed17aebb70a6076c9f8ff529d9.js"></script> -->
 </body>
 
 
@@ -74,14 +100,9 @@ function save() {
         contentType: 'image/jpeg'
     }).done( function(data){
         $('#prediction').text(data.prediction);
-        $('#userDrawing').attr('src', 'static/image.png');
-
         console.log(data.prediction)
     })
-
-
-
-
+    document.getElementById("userDrawing").src = canvas.toDataURL();
 
     erase() ; 
 }
@@ -98,7 +119,6 @@ function draw() {
 
 function erase() { 
     ctx.clearRect(0, 0, w, h);
-    document.getElementById("canvasimg").style.display = "none";
 }
 
 function findxy(res, e) {
@@ -132,10 +152,4 @@ function findxy(res, e) {
 }
 </script>
 
-<style type="text/css">
-    canvas{
-        background-color: black;
-
-    }
-</style>
 </html>

@@ -1,8 +1,110 @@
-canvas{
+#can{
     background-color: black;
-
+    margin: 5%;
 }
 body{
 	margin: 0;
-	background-color: red;
+	font-family: "calibri light", "calibri", "arial";
+}
+#back{
+	margin: 0%;
+	padding: .7%;
+	height: 100%;
+	background-color: black;
+	border: solid;
+	border-width: 1px;
+	color: white;
+	cursor: pointer;
+}
+#predictBtn{
+	border-width: 1px;
+	border: solid;
+	border-color: #008080;
+	background-color: #008080;
+	color: white;
+	cursor: pointer;
+	padding: 5%;
+}
+#eraseBtn{
+	cursor: pointer;
+	border: none;
+	background-image: url('../binclosed.jpg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 43px;
+	height: 50px;
+	background-color: white;
+}
+#eraseBtn:hover {
+	background-image: url('../binopen.jpg');
+}
+#prediction{
+	font-family: consolas, "calibri light", "calibri", "arial";
+	font-size: 30px;
+	color: #00ff00;
+	background-color: black;
+}
+#chalk{
+	background-image: url('../chalkboard.jpg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	padding: 10%;
+	padding-top: 8%;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+#chalkboard{
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 0%;
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
+}
+@font-face {
+    font-family: 'Chalkduster';
+    src: url('../fonts/Chalkduster.ttf');
+}
+#writing{
+	color: white;
+	font-family: 'Chalkduster';
+	margin-left: 3%;
+	margin-right: 3%;
+	width: 100%;
+}
+#intro{
+	width: 89%;
+	margin: 3%;
+	margin-left: 8%;
+}
+#prediction{
+	background-image: url('../computer.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	padding: 8%;
+	padding-left: 12%;
+	padding-bottom: 15%;
+	padding-top: 5%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+}
+
+#network{
+	display: flex;
+	align-items: flex-start;
+	vertical-align: top;
+}
+
+#userDrawing{
+	background-color: black;
+	width: 15%;
+	margin-left: auto;
+	margin-right: auto;
+}
+table{
+	width: 100%;
 }
