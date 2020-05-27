@@ -2,19 +2,25 @@
 <html>
 <head>
     <title>Tensorflow>Handwriting</title>
+    <script type="text/javascript" src="https://w3ichen.github.io/pages/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://w3ichen.github.io/pages/code/code.css">
+    <script type="text/javascript" src="https://w3ichen.github.io/pages/code/menu.js"></script>
+
 </head>
 
 <body onload="init()">
-    <canvas id="can" width="400" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
+    <canvas id="can" width="100" height="100" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
 
     <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
     <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
     <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:15%;">
+<div id="prediction"></div>
+<div style="background-color: black">
+    <img src="{{url_for('static',filename='image.png')}}" id="userDrawing" width="20%">
+</div>
 
-here1: {{tasks.content}}
 
-
-
+<!-- <script src="https://gist.github.com/w3ichen/d8715fed17aebb70a6076c9f8ff529d9.js"></script> -->
 </body>
 
 
@@ -35,7 +41,7 @@ var canvas, ctx, flag = false,
     currY = 0,
     dot_flag = false;
 
-var x = "black",
+var x = "white",
     y = 2;
 
 function init() {
@@ -43,7 +49,7 @@ function init() {
     ctx = canvas.getContext("2d");
     w = canvas.width;
     h = canvas.height;
-
+    // MOUSE EVENTS
     canvas.addEventListener("mousemove", function (e) {
         findxy('move', e)
     }, false);
@@ -56,6 +62,28 @@ function init() {
     canvas.addEventListener("mouseout", function (e) {
         findxy('out', e)
     }, false);
+
+}
+
+function save() {
+    var image = canvas.toDataURL("image/png");
+    $.ajax({
+        url: '/update',
+        type: 'POST',
+        data: image,
+        contentType: 'image/jpeg'
+    }).done( function(data){
+        $('#prediction').text(data.prediction);
+        $('#userDrawing').attr('src', 'static/image.png');
+
+        console.log(data.prediction)
+    })
+
+
+
+
+
+    erase() ; 
 }
 
 function draw() {
@@ -71,13 +99,6 @@ function draw() {
 function erase() { 
     ctx.clearRect(0, 0, w, h);
     document.getElementById("canvasimg").style.display = "none";
-}
-
-function save() {
-    document.getElementById("canvasimg").style.border = "2px solid";
-    var dataURL = canvas.toDataURL();
-    document.getElementById("canvasimg").src = dataURL;
-    document.getElementById("canvasimg").style.display = "inline";
 }
 
 function findxy(res, e) {
@@ -110,4 +131,11 @@ function findxy(res, e) {
     }
 }
 </script>
+
+<style type="text/css">
+    canvas{
+        background-color: black;
+
+    }
+</style>
 </html>
