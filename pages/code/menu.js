@@ -1,22 +1,23 @@
 // ADD NEW PROJECTS HERE
 // File Name : [Title , Date , Description]
-var python = {'webscraping':['Netflix & Amazon Webscraper','1/3/2020','Using BeautifulSoup to scrape Amazon for best coupons. And scraping Netflix and Google ratings to rank Netflix movies.'],
-			  'climate':['Climate Change Data','2/20/2020','Using requests to call the WorldBank\'s climate data API. This data is parsed with Pandas and plotted using Pyplot.'],
-			  'data':['Python Local Database','12/25/2019','Using Pickle to store user data into a simple text file database. Has the ability to create, edit and search data.'],
-			  'aes':['Advanced Encryption System','12/20/2019','A variation of AES using numpy and matrices.'],
-			  'pw':['Password Validator & Generator','12/20/2019','A simple password validator and generator.']
+var python = {'webscraping.html':['Netflix & Amazon Webscraper','1/3/2020','Using BeautifulSoup to scrape Amazon for best coupons. And scraping Netflix and Google ratings to rank Netflix movies.'],
+			  'climate.html':['Climate Change Data','2/20/2020','Using requests to call the WorldBank\'s climate data API. This data is parsed with Pandas and plotted using Pyplot.'],
+			  'data.html':['Python Local Database','12/25/2019','Using Pickle to store user data into a simple text file database. Has the ability to create, edit and search data.'],
+			  'aes.html':['Advanced Encryption System','12/20/2019','A variation of AES using numpy and matrices.'],
+			  'pw.html':['Password Validator & Generator','12/20/2019','A simple password validator and generator.']
 			  }
-var javascript = {'music':['Music Playlist API','25/5/2020','Generates a playlist of songs from similar artists. Using Deezer API to get artist\'s songs and LastFM API to find similar artists.'],
-				  'social':['Social Media','4/24/2020','Front end web design of a social media site with ability to post, comment and upload photos. Use of Cookies to store time of last activity.'],
-				  'trip':['Trip Planner API','1/19/2020','Calling TomTom Maps API to plan gas stations and hotel stops along driving route.'],
-				  'calculator':['Calculator','1/2/2020','A simple caluclator using Javascript\'s eval() to perform math calculations.']
+var javascript = {'music.html':['Music Playlist API','25/5/2020','Generates a playlist of songs from similar artists. Using Deezer API to get artist\'s songs and LastFM API to find similar artists.'],
+				  'social.html':['Social Media','4/24/2020','Front end web design of a social media site with ability to post, comment and upload photos. Use of Cookies to store time of last activity.'],
+				  'trip.html':['Trip Planner API','1/19/2020','Calling TomTom Maps API to plan gas stations and hotel stops along driving route.'],
+				  'calculator.html':['Calculator','1/2/2020','A simple caluclator using Javascript\'s eval() to perform math calculations.']
 			     }
-var arduino = {'alarm':['Alarm System','2/16/2020','An ultrasonic sensor triggers an alarm when motion is detected. Alarm must be turned off using the keypad.'],
-			   'rgb':['RGB LED Remote','2/21/2020','A wireless remote is used to change the color of a RGB LED light by assigning Red, Blue, and Green a value between 0 and 255. These numbers are shown on LCD display.']
+var arduino = {'alarm.html':['Alarm System','2/16/2020','An ultrasonic sensor triggers an alarm when motion is detected. Alarm must be turned off using the keypad.'],
+			   'rgb.html':['RGB LED Remote','2/21/2020','A wireless remote is used to change the color of a RGB LED light by assigning Red, Blue, and Green a value between 0 and 255. These numbers are shown on LCD display.']
 			  }
-var cpp = {'bigo':['Big-O Visualizer','2/28/2020','Timing an algorithmn with different input sizes and graphing time elapsed to gain a rough visual of Big-O.'],
+var cpp = {'bigo.html':['Big-O Visualizer','2/28/2020','Timing an algorithmn with different input sizes and graphing time elapsed to gain a rough visual of Big-O.'],
 		  }
-var tensorflow = {}
+var tensorflow = {'http://tf-handwriting.herokuapp.com/':['Handwriting Recognition','5/27/2020', 'Convolutional neural network (CNN) that recognizes handwritten letters and numbers, trained on EMNIST dataset. HTML Canvas is used for drawing input and Flask hosts the model and Python server.']
+				}
 
 // ADD NEW LANGUAGES HERE
 var languages = {
@@ -26,13 +27,13 @@ var languages = {
 	"arduino" : arduino,
 	"cpp" : cpp,
 }
-// Loads the main category menu of each language
+// Loads the projects menu of each language; individual menu of projects for each language
 function loadLanguageMenu(language){
-	var command = '<div id="menu">';
+	var command = '<div id="projectsMenu">';
 	const dict = languages[language];
 	const keys = Object.keys(dict)
 	for (var i=0;i<keys.length;i++){
-		command += '<button class="category" onclick="window.location.href=\''+keys[i]+'.html\'">';
+		command += '<button class="category" onclick="window.location.href=\''+keys[i]+'\'">';
 		command += '<table><tr><img src="../logos/'+language+'.png"></tr>';
 		command += '<tr><th><br>'+dict[keys[i]][0]+'</th></tr>';
 		command += '<tr><td><em>'+dict[keys[i]][1]+'</em></td></tr>';
@@ -41,7 +42,7 @@ function loadLanguageMenu(language){
 	command += '</div>';
 	document.write(command);
 }
-// load main category menu to div
+// load main category menu; coding language and number of projects
 function loadMainMenu(main=false){
 	var command = '';
 	var langs = Object.keys(languages);
@@ -57,7 +58,7 @@ function loadMainMenu(main=false){
 	}
 	document.getElementById("menu").innerHTML = command;
 	for (var i=0;i<langs.length;i++){
-		document.getElementById(langs[i]).innerHTML += '<br><em>' + Object.keys(languages[langs[i]]).length + ' Projects</em>';
+		document.getElementById(langs[i]).innerHTML += '<br><em class="numOfProjects">' + Object.keys(languages[langs[i]]).length + ' Projects</em>';
 	}
 }
 function height(div){
@@ -68,7 +69,7 @@ function height(div){
 	return menuHeight;
 }
 
-// Load submenu and code 
+// Load submenu and code; menu of language categories for pages
 function loadSubmenu(code=true, menu=true){
 	// HTML CODE
 	/*<table class="switch">

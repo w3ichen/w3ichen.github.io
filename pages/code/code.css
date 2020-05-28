@@ -53,6 +53,19 @@ body{
 	overflow: hidden;
 	height: max-content;
 }
+#projectsMenu{
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	overflow: hidden;
+	height: max-content;
+	width: 100%;
+}
+.numOfProjects{
+	font-size: 16px
+}
 #code{
 	width: 75%;
 	overflow: hidden;
