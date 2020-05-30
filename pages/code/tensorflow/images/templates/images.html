@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='css/images.css') }}">
+	<script type="text/javascript" src="https://w3ichen.github.io/pages/code/menu.js"></script>
+	<script type="text/javascript" src="https://w3ichen.github.io/pages/jquery-3.1.1.min.js"></script>
+</head>
+
+<!-- CLASSIFICATION MODELS: https://rodrigob.github.io/are_we_there_yet/build/classification_datasets_results.html -->
+<body>
+	<nav>
+		<button onclick="window.location.href='https://w3ichen.github.io/pages/code/code.html'" id="back">Back</button>
+		<div class="switchtr">
+	        <div id="code-text">Show Code</div>
+	        <div><input type="checkbox" id="codeToggle"></div>
+	    </div>
+	</nav>
+	
+<div id="top">
+
+<div id="left">
+	<h2>predictions</h2>
+	<img src="" id="predictImg">
+	<div id="predictResults"></div>
+</div>
+
+<div id="right">
+	<h1>Image Classifier</h1>
+	<p><strong>1. </strong> Search for an animal, object, food or vehicle</p>
+	<div style="display: inline-block; width: 100%;">
+		<input type="text" placeholder="dog" id="query" maxlength="100" onkeydown="if (event.keyCode==13)imageSearch()">
+		<button onclick="imageSearch()" id="goSearch">Search</button>
+	</div>
+	<div id="imageBox">
+		<p><strong>2. </strong>Click one image to classify</p>
+		<div id="searchResults"></div>
+	</div>
+</div>
+</div>
+
+<div id="code">
+    <script src="https://gist.github.com/w3ichen/f58d06f5ad04fb5eabe172c1c52764c4.js"></script>
+</div>
+<script type="text/javascript">
+    loadSubmenu(true, false);
+</script>
+
+
+
+</body>
+
+<script type="text/javascript">
+	function imageSearch(){
+		var query = document.getElementById("query").value;
+		document.getElementById("query").value = ""; //clear input box
+		document.getElementById('searchResults').innerHTML = "";
+		document.getElementById('imageBox').style.display = "inline-flex";
+
+		query = query.replace(" ","+");
+		var url = "https://pixabay.com/api/?key=14660261-082cffcbdc64a6b399a562c6b&q="+query+"&image_type=photo";
+		fetch(url)
+		.then(response => response.json())
+		.then(data => {
+			var searchResults = document.getElementById("searchResults");
+			for (var i=0;i<12;i++){
+				var image = document.createElement("INPUT");
+				image.type = "image";
+				image.src = data.hits[i].previewURL;
+				image.id = i;
+				image.style.cursor = "pointer";
+				image.setAttribute("onclick","predict("+i+");");
+				searchResults.appendChild(image);
+			}	
+		})
+		.catch(err => { console.log(err) })
+	}
+
+
+	function predict(id){
+		// send url to flask server
+
+		// AJAX request to server
+
+		var imageURL = document.getElementById(id).src;
+		document.getElementById("predictImg").src = imageURL;
+		document.getElementById("searchResults").innerHTML = ""; //clear photos
+		document.getElementById("imageBox").style.display = "none"; //clear photos
+		$.ajax({
+			url: '/predict',
+			type: 'POST',
+			data: {'url':imageURL},
+			contentType: 'application/json'
+		}).done(function(data){
+			console.log(data)
+			data = JSON.parse(data) // convert to json
+			data = data.replace("[","").replace("]","").split(",");
+
+			table = document.getElementById("predictResults");
+
+			var Titles = ["CIFAR-10 Model","CIFAR-100 Coarse Model","CIFAR-100 Fine Model"];
+			var t_index = 0;
+			table = document.createElement("TABLE");
+			for (var i=0;i<9;i++){
+				if (i%3 == 0){
+					// header title
+					newRow = document.createElement("TR");
+					title = newRow.insertCell(0);
+					title.innerHTML = Titles[t_index];
+					title.classList.add("modelHeader");
+					table.appendChild(newRow);
+					t_index += 1;
+				}
+
+				// data row
+				newRow = document.createElement("TR");
+				// object name
+				predictName = newRow.insertCell(0);
+				predictName.innerHTML = data[i].split(":")[0].replace("'","");
+				// predict percentage
+				percent = newRow.insertCell(1);
+				percent.innerHTML = String( (parseFloat(data[i].split(":")[1])*100).toFixed(1) )+"%";
+				// bar
+				percentBarCell = newRow.insertCell(2);
+				percentBarCell.style.width = "30%";
+				percentBar = document.createElement("DIV");
+				percentBar.classList.add("percentBar");
+				percentBar.style.width = String( (parseFloat(data[i].split(":")[1])*100) )+"%";
+				percentBar.style.height = "20px";
+				percentBar.style.backgroundColor = "black";
+				console.log(String( (parseFloat(data[i].split(":")[1])*100) )+"%")
+				percentBarCell.appendChild(percentBar);
+
+				// add newrow to table
+				table.appendChild(newRow)
+			}
+			document.getElementById("predictResults").innerHTML = ""; // clear table
+			document.getElementById("predictResults").appendChild(table);
+			console.log(document.getElementById("predictResults"))
+			
+
+		});
+	}
+
+</script>
+</html>
