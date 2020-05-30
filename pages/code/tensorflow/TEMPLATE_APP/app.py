@@ -1,4 +1,5 @@
 from flask import Flask,request,render_template,url_for
+import model
 from model import predict
 
 app = Flask(__name__)
