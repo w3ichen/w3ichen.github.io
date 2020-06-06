@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript>Movie</title>
+	<script type="text/javascript" src="../menu.js"></script>
+	<link rel="stylesheet" type="text/css" href="../code.css">
+</head>
+<body>
+	<div id="menu"></div>
+	<!-- TOP -->
+	<div id="top">
+		<div id="search">
+			<table class="switch">
+				<tr class="switchtr">
+					<td id="code-text">Show Code</td>
+					<td><input type="checkbox" id="codeToggle"></td>
+					<td><input type="checkbox" id="menuToggle"></td>
+					<td id="menu-text">Show Menu</td>
+				</tr>
+			</table>
+			<div id="title">Search for Similar Movies</div>
+			<div id="select">
+				<div id="movieBtn">Movies</div>
+				<div id="tvBtn">TV Shows</div>
+			</div>
+			<div class="inputBar">
+				<input type="text" id="query" placeholder="Search for a Movie" onkeydown="if (event.keyCode==13)document.getElementById('goBtn').click()">
+				<button onclick="similar()" id="goBtn">GO</button>
+			</div>
+		</div>
+		<div id="resultInfo">
+			<div id="resultTable">
+				<img src="" id="poster">
+				<div id="details">
+					<div id="contentTitle"></div>
+					<div id="date"></div>
+					<div id="overview"></div>
+				</div>
+			</div>
+			<iframe frameborder="0" allowfullscreen id="trailer"></iframe>
+		
+			<div class="lists">Similar Content</div>
+			<div id="similarList"></div>
+
+		</div>
+	</div>
+	<div id="code">
+		<script src="https://gist-it.appspot.com/https://github.com/w3ichen/w3ichen.github.io/blob/master/pages/code/javascript/social.html"></script>
+	</div>
+	<script type="text/javascript">
+		loadSubmenu();
+	</script>
+	<!-- BOTTOM -->
+	<div class="lists">Popular Movies</div>
+	<div id="popularMovie"></div>
+	<div class="lists">Top Rated Movies</div>
+	<div id="topMovie"></div>
+	<div class="lists">Popular TV Shows</div>
+	<div id="popularTv"></div>
+	<div class="lists">Top Rated TV Shows</div>
+	<div id="topTv"></div>
+
+</body>
+
+<script type="text/javascript">
+var movieToggle = 0; // 0 is movie, 1 is TV
+
+const APIkey = "aecebf859b4b48e8b578eaa3849dc199";
+
+function getTrailer(type,id){
+	fetch("https://api.themoviedb.org/3/"+type+"/"+id+"/videos?api_key="+APIkey+"&language=en-US")
+	.then (response => response.json())
+	.then (data => {
+		if (data.results.length > 0){
+			// if a trailer video is found
+			document.getElementById("trailer").style.transition = ".5s";
+			document.getElementById("trailer").style.height = "250px";
+			document.getElementById("trailer").src = "https://www.youtube.com/embed/"+data.results[0].key;
+		}else{
+			document.getElementById("trailer").style.transition = ".5s";
+			document.getElementById("trailer").style.height = "0px";
+			document.getElementById("trailer").src = "";
+		}
+	}).catch(err => {console.log(err);});
+}
+
+
+function similar(){
+	if (movieToggle == 0){ var type = "movie"; }else{ var type = "tv" }
+	const query = document.getElementById("query").value.toLowerCase().replace(/ /g,"%20")
+	document.getElementById("query").value = ""; //clear
+
+	fetch("https://api.themoviedb.org/3/search/"+type+"?api_key="+APIkey+"&query="+query+"&page=1")
+	.then (response => response.json())
+	.then (data => {
+		// copy queried movie/show to data
+		var searched = data.results[0];
+		document.getElementById("poster").src = "http://image.tmdb.org/t/p/w154"+searched.poster_path;
+		document.getElementById("overview").innerHTML = searched.overview;
+		if (type == "movie"){
+			document.getElementById("contentTitle").innerHTML = searched.title;
+			document.getElementById("date").innerHTML = "Release Date: "+searched.release_date;
+		}else if (type=="tv"){
+			document.getElementById("contentTitle").innerHTML = searched.name;
+			document.getElementById("date").innerHTML = "First Air Date: "+searched.first_air_date;
+		}
+		getTrailer(type,searched.id)
+		
+		return searched.id
+	}).then (id => {
+		/////////////////////////////////////////////////////////////////////////
+		// now find similar movies or tv
+		console.log("https://api.themoviedb.org/3/"+type+"/"+id+"/similar?api_key="+APIkey+"&page=1")
+		fetch("https://api.themoviedb.org/3/"+type+"/"+id+"/similar?api_key="+APIkey+"&page=1")
+		.then (response => response.json())
+		.then (data => {
+			if (data.results.length == 0){
+				window.alert("Content Type Incorrect\nUse the Movies | TV Shows Toggle to switch between movie and tv show\nTry Again using the other type")}
+			else{
+				document.getElementById("similarList").innerHTML = ""; //clear similar list
+				for (var i=0;i<data.results.length;i++){
+					var result = data.results[i];
+					var contentBox = document.createElement("BUTTON");
+					contentBox.id = result.id
+					contentBox.name = result.overview;
+					var img = new Image()
+					img.src = "http://image.tmdb.org/t/p/w154"+result.poster_path;
+					contentBox.appendChild(img);
+					if (type == "movie"){
+						contentBox.title = result.title.split("(")[0];
+						contentBox.innerHTML += (result.title.split("(")[0]);
+						contentBox.value = result.release_date;
+					}else if(type == "tv"){
+						contentBox.title = result.name.split("(")[0]
+						contentBox.innerHTML += (result.name.split("(")[0]);
+						contentBox.value = result.first_air_date; 
+					}
+					contentBox.classList.add("contentBox")
+					contentBox.setAttribute("onclick","similarID("+result.id+",'"+type+"')");
+					document.getElementById("similarList").appendChild(contentBox);
+				}
+			}
+		}).catch(err => {console.log(err);});
+	}).catch(err => {console.log(err);});
+}
+function similarID(id, type){
+	// Clicked on a movie icon
+	// copy selected movie/show to frame
+	var searched = document.getElementById(id);
+	document.getElementById("poster").src = searched.getElementsByTagName("img")[0].src;
+	document.getElementById("contentTitle").innerHTML = searched.title;
+	document.getElementById("overview").innerHTML = searched.name;
+	if (type == "movie"){
+		document.getElementById("date").innerHTML = "Release Date: "+searched.value;
+	}else if (type=="tv"){
+		document.getElementById("date").innerHTML = "First Air Date: "+searched.value;
+	}
+	getTrailer(type,searched.id)
+	// get similars
+	fetch("https://api.themoviedb.org/3/"+type+"/"+id+"/similar?api_key="+APIkey+"&page=1")
+	.then (response => response.json())
+	.then (data => {
+		document.getElementById("similarList").innerHTML = ""; //clear similar list
+		for (var i=0;i<data.results.length;i++){
+			var result = data.results[i];
+			var contentBox = document.createElement("BUTTON");
+			contentBox.id = result.id
+			contentBox.name = result.overview;
+			var img = new Image()
+			img.src = "http://image.tmdb.org/t/p/w154"+result.poster_path;
+			contentBox.appendChild(img);
+			if (type == "movie"){
+				contentBox.title = result.title.split("(")[0];
+				contentBox.innerHTML += (result.title.split("(")[0]);
+				contentBox.value = result.release_date;
+			}else if(type == "tv"){
+				contentBox.title = result.name.split("(")[0]
+				contentBox.innerHTML += (result.name.split("(")[0]);
+				contentBox.value = result.first_air_date; 
+			}
+			contentBox.classList.add("contentBox")
+			contentBox.setAttribute("onclick","similarID("+result.id+",'"+type+"')");
+			document.getElementById("similarList").appendChild(contentBox);
+		}
+	}).catch(err => {console.log(err);});
+	
+}
+
+window.onload = function startup(){
+	// on page load, load popular movies/tv shows and top rated
+	// get popular movies
+	fetch("https://api.themoviedb.org/3/movie/popular?api_key="+APIkey+"&page=1")
+	.then (response => response.json())
+	.then (data => {
+		for (var i=0;i<data.results.length;i++){
+			var result = data.results[i];
+			var contentBox = document.createElement("BUTTON");
+			contentBox.id = result.id
+			contentBox.title = result.title.split("(")[0]
+			contentBox.value = result.release_date 
+			contentBox.name = result.overview;
+
+			var img = new Image()
+			img.src = "http://image.tmdb.org/t/p/w154"+result.poster_path;
+			contentBox.appendChild(img);
+			contentBox.innerHTML += (result.title.split("(")[0]);
+
+			contentBox.classList.add("contentBox")
+			contentBox.setAttribute("onclick","similarID("+result.id+",'movie')");
+			document.getElementById("popularMovie").appendChild(contentBox);
+		}
+	}).catch(err => {console.log(err);});
+	// get top rated movies
+	fetch("https://api.themoviedb.org/3/movie/top_rated?api_key="+APIkey+"&page=1")
+	.then (response => response.json())
+	.then (data => {
+		for (var i=0;i<data.results.length;i++){
+			var result = data.results[i];
+			var contentBox = document.createElement("BUTTON");
+			contentBox.id = result.id
+			contentBox.title = result.title.split("(")[0]
+			contentBox.value = result.release_date 
+			contentBox.name = result.overview;
+
+			var img = new Image()
+			img.src = "http://image.tmdb.org/t/p/w154"+result.poster_path;
+			contentBox.appendChild(img);
+			contentBox.innerHTML += (result.title.split("(")[0]);
+
+			contentBox.classList.add("contentBox")
+			contentBox.setAttribute("onclick","similarID("+result.id+",'movie')");
+			document.getElementById("topMovie").appendChild(contentBox);
+		}
+	}).catch(err => {console.log(err);});
+	// get popular TV
+	fetch("https://api.themoviedb.org/3/tv/popular?api_key="+APIkey+"&page=1")
+	.then (response => response.json())
+	.then (data => {
+		for (var i=0;i<data.results.length;i++){
+			var result = data.results[i];
+			var contentBox = document.createElement("BUTTON");
+			contentBox.id = result.id
+			contentBox.title = result.name.split("(")[0]
+			contentBox.value = result.first_air_date; 
+			contentBox.name = result.overview;
+
+			var img = new Image()
+			img.src = "http://image.tmdb.org/t/p/w154"+result.poster_path;
+			contentBox.appendChild(img);
+			contentBox.innerHTML += (result.name.split("(")[0]);
+
+			contentBox.classList.add("contentBox")
+			contentBox.setAttribute("onclick","similarID("+result.id+",'tv')");
+			document.getElementById("popularTv").appendChild(contentBox);
+		}
+	}).catch(err => {console.log(err);});
+	// get top rated TV
+	fetch("https://api.themoviedb.org/3/tv/top_rated?api_key="+APIkey+"&page=1")
+	.then (response => response.json())
+	.then (data => {
+		for (var i=0;i<data.results.length;i++){
+			var result = data.results[i];
+			var contentBox = document.createElement("BUTTON");
+			contentBox.id = result.id
+			contentBox.title = result.name.split("(")[0]
+			contentBox.value = result.first_air_date; 
+			contentBox.name = result.overview;
+
+			var img = new Image()
+			img.src = "http://image.tmdb.org/t/p/w154"+result.poster_path;
+			contentBox.appendChild(img);
+			contentBox.innerHTML += (result.name.split("(")[0]);
+
+			contentBox.classList.add("contentBox")
+			contentBox.setAttribute("onclick","similarID("+result.id+",'tv')");
+			document.getElementById("topTv").appendChild(contentBox);
+		}
+	}).catch(err => {console.log(err);});
+
+// toggle between movie and tv search
+document.getElementById("select").addEventListener("click",function(e){
+	movieToggle ^= 1;
+	if (movieToggle == 0){ // is movie
+		document.getElementById("movieBtn").style.transition = ".5s";
+		document.getElementById("tvBtn").style.transition = "1s";
+		document.getElementById("movieBtn").style.backgroundColor = "#E50914";
+		document.getElementById("tvBtn").style.backgroundColor = "rgb(222,222,222)";
+		document.getElementById("movieBtn").style.color = "white";
+		document.getElementById("tvBtn").style.color = "black";
+		document.getElementById("query").placeholder = "Search for a Movie";
+		document.getElementById("title").innerHTML = "Search for Similar Movies";
+		
+	}else{
+		document.getElementById("movieBtn").style.transition = ".5s";
+		document.getElementById("tvBtn").style.transition = "1s";
+		document.getElementById("movieBtn").style.backgroundColor = "rgb(222,222,222)";
+		document.getElementById("tvBtn").style.backgroundColor = "#E50914";
+		document.getElementById("movieBtn").style.color = "black";
+		document.getElementById("tvBtn").style.color = "white";
+		document.getElementById("query").placeholder = "Search for a TV Show";
+		document.getElementById("title").innerHTML = "Search for Similar TV Shows";
+	}
+})
+
+}
+</script>
+
+<style type="text/css">
+body{
+	font-family: "calibri light","calibri","arial";
+	background-color: black;
+	margin: 0;
+	color: white;
+}
+.contentBox{
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	margin-right: .5%;
+	background-color: black;
+	color: white;
+	border: none;
+}
+#popularMovie, #topMovie, #popularTv, #topTv, #similarList{
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: flex-start;
+	width: 100%;
+	overflow: scroll;
+}
+::-webkit-scrollbar {
+	width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: black;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(222,222,222);
+  border-radius: 30px;
+}
+.lists{
+	font-size: 22px;
+	margin: 0;
+	margin-top: 2.2%;
+	margin-bottom: 1%;
+	font-weight: 500;
+	padding-left: 1%;
+}
+#search{
+	width: 40%;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+}
+#resultInfo{
+	width: 60%;
+	border: 1px solid white;
+	display: inline-flex;
+	flex-direction: column;
+	padding: 1%;
+}
+#resultTable{
+	width: 100%;
+	display: inline-flex;
+	flex-direction: row;
+}
+#top{
+	width: 100%;
+	display: inline-flex;
+	flex-direction: row;
+}
+#select{
+	display: inline-flex;
+	text-align: center;
+	cursor: pointer;
+	width: 40%;
+	margin-top: auto;
+	margin-bottom: 1%;
+}
+#movieBtn{
+	flex: 1;
+	padding: 2%;
+	background-color: #E50914;
+	color: white;
+}
+#tvBtn{
+	flex: 1;
+	padding: 2%;
+	background-color: rgb(222,222,222);
+	color: black;
+}
+#goBtn{
+	border: none;
+	cursor: pointer;
+}
+#title{
+	font-size: 35px;
+	font-family: 'Century Gothic',"calibri","arial";
+	border-bottom: 1px solid white;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+#query{
+	width: 60%;
+	padding: 1%;
+	text-align: center;
+	border: none;
+	display: inline-flex;
+}
+.inputBar{
+	display: inline-flex; 
+	width: 100%;
+	justify-content: center;
+	margin-top: 1%;
+	margin-bottom: auto;
+}
+#details{
+	display: inline-flex;
+	flex-direction: column;
+	padding: 2%;
+	padding-left: 3%;
+	justify-content: center;
+	/*vertical-align: middle;*/
+}
+#contentTitle{
+	font-size: 25px;
+	font-weight: 500;
+}
+#date{
+	font-style: italic;
+}
+#overview{
+	padding-top: 2%;
+}
+#trailer{
+	width: 70%;
+	height: 0px;
+	margin-top: 2%;
+	margin-bottom: 1%;
+	padding-top: 2%;
+	padding-bottom: 2%; 
+	border-top: .5px solid white;
+	border-bottom: .5px solid white;
+	align-self: center;
+}
+
+
+</style>
+</html>
