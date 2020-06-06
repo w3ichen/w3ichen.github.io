@@ -75,7 +75,7 @@ function getTrailer(type,id){
 		if (data.results.length > 0){
 			// if a trailer video is found
 			document.getElementById("trailer").style.transition = ".5s";
-			document.getElementById("trailer").style.height = "250px";
+			document.getElementById("trailer").style.height = "270px";
 			document.getElementById("trailer").src = "https://www.youtube.com/embed/"+data.results[0].key;
 		}else{
 			document.getElementById("trailer").style.transition = ".5s";
@@ -450,8 +450,7 @@ body{
 	height: 0px;
 	margin-top: 2%;
 	margin-bottom: 1%;
-	padding-top: 2%;
-	padding-bottom: 2%; 
+	padding: 0;
 	border-top: .5px solid white;
 	border-bottom: .5px solid white;
 	align-self: center;
