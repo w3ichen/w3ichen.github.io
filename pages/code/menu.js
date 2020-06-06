@@ -7,6 +7,7 @@ var python = {'webscraping.html':['Netflix & Amazon Webscraper','1/3/2020','Usin
 			  'pw.html':['Password Validator & Generator','12/20/2019','A simple password validator and generator.']
 			  }
 var javascript = {'music.html':['Music Playlist API','25/5/2020','Generates a playlist of songs from similar artists. Using Deezer API to get artist\'s songs and LastFM API to find similar artists.'],
+				  'movie.html':['Similar Movies','6/6/2020','Using The Movie Database (TMDb) API to search for similar movies and TV shows.'],
 				  'social.html':['Social Media','4/24/2020','Front end web design of a social media site with ability to post, comment and upload photos. Use of Cookies to store time of last activity.'],
 				  'trip.html':['Trip Planner API','1/19/2020','Calling TomTom Maps API to plan gas stations and hotel stops along driving route.'],
 				  'calculator.html':['Calculator','1/2/2020','A simple caluclator using Javascript\'s eval() to perform math calculations.']

@@ -184,10 +184,15 @@ function similarID(id, type){
 			document.getElementById("similarList").appendChild(contentBox);
 		}
 	}).catch(err => {console.log(err);});
-	
 }
 
 window.onload = function startup(){
+	// startup transitions
+	document.getElementById("resultInfo").style.transition = "3s";
+	document.getElementById("resultInfo").style.border = "1px solid white";
+	document.getElementById("title").style.transition = "2.6s";
+	document.getElementById("title").style.borderLeft = "20px solid white";
+
 	// on page load, load popular movies/tv shows and top rated
 	// get popular movies
 	fetch("https://api.themoviedb.org/3/movie/popular?api_key="+APIkey+"&page=1")
@@ -359,7 +364,7 @@ body{
 }
 #resultInfo{
 	width: 60%;
-	border: 1px solid white;
+	border: 1px solid black;
 	display: inline-flex;
 	flex-direction: column;
 	padding: 1%;
@@ -406,7 +411,7 @@ body{
 	background-color: black;
 	color: white;
 	line-height: 40px;
-	border-left: 20px solid white;
+	border-left: 300px solid white;
 	margin-left: 7%;
 	padding-left: 3%;
 }
@@ -421,7 +426,6 @@ body{
 	display: inline-flex; 
 	width: 100%;
 	justify-content: center;
-	margin-top: 2%;
 	margin-bottom: auto;
 }
 #details{
@@ -430,7 +434,6 @@ body{
 	padding: 2%;
 	padding-left: 3%;
 	justify-content: center;
-	/*vertical-align: middle;*/
 }
 #contentTitle{
 	font-size: 25px;
