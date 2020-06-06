@@ -18,6 +18,7 @@
 					<td id="menu-text">Show Menu</td>
 				</tr>
 			</table>
+			<button id="backBtn" onclick="window.location.href='../code.html'">Back</button>
 			<div id="title">Search for Similar Movies</div>
 			<div id="select">
 				<div id="movieBtn">Movies</div>
@@ -45,7 +46,7 @@
 		</div>
 	</div>
 	<div id="code">
-		<script src="https://gist-it.appspot.com/https://github.com/w3ichen/w3ichen.github.io/blob/master/pages/code/javascript/social.html"></script>
+		<script src="https://gist-it.appspot.com/https://github.com/w3ichen/w3ichen.github.io/blob/master/pages/code/javascript/movie.html"></script>
 	</div>
 	<script type="text/javascript">
 		loadSubmenu();
@@ -398,11 +399,16 @@ body{
 	cursor: pointer;
 }
 #title{
-	font-size: 35px;
-	font-family: 'Century Gothic',"calibri","arial";
-	border-bottom: 1px solid white;
-	margin-top: auto;
-	margin-bottom: auto;
+	font-size: 40px;
+	font-family: "Arial Black", Gadget, "sans-serif";
+	margin-top: 3%;
+	margin-bottom: 5%;
+	background-color: black;
+	color: white;
+	line-height: 40px;
+	border-left: 20px solid white;
+	margin-left: 7%;
+	padding-left: 3%;
 }
 #query{
 	width: 60%;
@@ -415,7 +421,7 @@ body{
 	display: inline-flex; 
 	width: 100%;
 	justify-content: center;
-	margin-top: 1%;
+	margin-top: 2%;
 	margin-bottom: auto;
 }
 #details{
@@ -447,7 +453,19 @@ body{
 	border-bottom: .5px solid white;
 	align-self: center;
 }
-
+#backBtn{
+	border: none;
+	padding: 3%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	margin: 1%;
+	background-color: rgb(50,50,50);
+	color: white;
+	cursor: pointer;
+}
+img {
+	width: auto;
+}
 
 </style>
 </html>
