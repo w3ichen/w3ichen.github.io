@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/nlp.css')}}">
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/nlp.css"> -->
+	<script type="text/javascript" src="https://w3ichen.github.io/pages/code/menu.js"></script>
+	<script type="text/javascript" src="https://w3ichen.github.io/pages/jquery-3.1.1.min.js"></script>
+	<script src="https://w3ichen.github.io/pages/postscribe.min.js"></script>
+</head>
+<body>
+<div id="box">
+	<nav>
+		<div id="header">Natural Language Processing <button id="backBtn" onclick="window.location.href='https://w3ichen.github.io/pages/code/code.html'">back</button></div>
+		<div id="switchtr">
+	        <div id="code-text">Show Code</div>
+	        <div><input type="checkbox" id="codeToggle"></div>
+	    </div>
+		<div id="menuTable">
+			<button onclick="potterStart()" class="menuBtn">Harry Potter Generator</button>
+			<button onclick="shakespeareStart()" class="menuBtn">Shakespeare Generator</button>
+			<button onclick="movieStart()" class="menuBtn">Movie Sentiment</button>
+			<button onclick="spamStart()" class="menuBtn">Email Spam Filter</button>
+		</div>
+	</nav>
+	<div id="main">
+
+		<!-- HARRY POTTER -->
+		<div id="inputBox">
+			<div id="title">Harry Potter Generator</div>
+			<div id="info">"Generate Harry Potter text using Recurrent Neural Network (RNN) Model trained on all 7 Harry Potter books<br>Start by typing a sentence and selecting how many characters to generate"</div>
+			<input type="text" name="startWords" placeholder="Type a Sentence" id="input">
+			<div id="rangeValue">Generate 500 Characters</div>
+			<input type="range" name="numChars" id="rangeSlider" min="1" max="1000">
+			<button onclick="potterPredict()" class="predictBtn">Generate Text</button>
+		</div>
+		<div id="outputBox"></div>
+		<script type="text/javascript">
+			document.getElementById("rangeSlider").addEventListener("mouseup",function(e){
+				document.getElementById("rangeValue").innerHTML = "Generate "+String(document.getElementById("rangeSlider").value)+" Characters";
+			})
+		</script>
+
+	</div>
+
+</div>	
+<div id="code">
+    <script src="https://gist.github.com/w3ichen/eadac12330edc5bc421d83ce0629483f.js"></script>
+</div>
+<script type="text/javascript">
+    loadSubmenu(true, false);
+</script>
+</body>
+
+<script type="text/javascript">
+var mode = 0; // 1-movie
+// 1. MOVIE SENTIMENT ////////////////////
+function movieStart(){
+	resetColor();
+	document.getElementById("inputBox").innerHTML = `
+		<div id="title">Movie Sentiment</div>
+		<div id="info">"Classify movie reviews into good or bad reviews using a Recurrent Neural Network (RNN) model<br>Start by copying or typing a good or bad review into the textbox"</div>
+		<textarea id="input" placeholder="Write Movie Review Here" style="height:100px"></textarea>
+		<button onclick="moviePredict()" class="predictBtn">Predict Sentiment</button>`
+	document.getElementById("code").innerHTML = "";
+	postscribe('#code', '<script src="https://gist.github.com/w3ichen/d2607a282f3c29be6463fd711a78becc.js"><\/script>');
+}
+function moviePredict(){
+	var userInput = document.getElementById("input").value;
+	document.getElementById("input").value = "";
+    $.ajax ({
+	    url : '/movie',
+	    type: 'POST',
+	    data: userInput,
+	    contentType:'text/plain' 
+    }).done(function(data) {   
+
+    	data = parseFloat(data.replace('"[[','').replace(']]"',''));
+		document.getElementById("outputBox").style.color = "white";
+		if (1-data < data){
+			document.getElementById("outputBox").innerHTML = String((data*100).toFixed(2))+"%    Good Review";
+			document.getElementById("outputBox").style.backgroundColor = "#0F9D58";
+		}
+		else{
+			document.getElementById("outputBox").innerHTML = String(((1-data)*100).toFixed(2))+"%    Bad Review";
+			document.getElementById("outputBox").style.backgroundColor = "#DB4437";
+		}
+	});
+}
+//2. SHAKESPEARE ///////////////////////////////////////
+function shakespeareStart(){
+	resetColor();
+	document.getElementById("inputBox").innerHTML = `
+		<div id="title">Shakespeare Generator</div>
+		<div id="info">"Generate shakespeare text using Recurrent Neural Network (RNN) Model trained on Shakespeare scripts<br>Start by typing a sentence and selecting how many characters to generate"</div>
+		<input type="text" name="startWords" placeholder="Type a Sentence" id="input">
+		<div id="rangeValue">Generate 500 Characters</div>
+		<input type="range" name="numChars" id="rangeSlider" min="1" max="1000">
+		<button onclick="shakespearePredict()" class="predictBtn">Generate Text</button>`
+		postscribe("#inputBox",`<script type="text/javascript">
+			document.getElementById("rangeSlider").addEventListener("mouseup",function(e){
+				document.getElementById("rangeValue").innerHTML = "Generate "+String(document.getElementById("rangeSlider").value)+" Characters";})<\/script>`)
+		document.getElementById("code").innerHTML = "";
+		postscribe('#code', '<script src="https://gist.github.com/w3ichen/b10ae0e6609aca999d7e8c90a5217fd4.js"><\/script>');
+}
+function shakespearePredict(){
+	var startWords = document.getElementById("input").value;
+	var numChars = document.getElementById("rangeSlider").value;
+	document.getElementById("input").value = "";
+	document.getElementById("outputBox").innerHTML = "... Please Wait - Generating Text ...";
+    $.ajax ({
+	    url : '/shakespeare',
+	    type: 'POST',
+	    data: numChars+"`"+startWords,
+	    contentType:'application/json' 
+    }).done(function(data) {  
+    	document.getElementById("outputBox").innerHTML = data;
+    }); 
+}
+//3. POTTER///////////////////////////////////////////////////
+function potterStart(){
+	resetColor();
+	document.getElementById("inputBox").innerHTML = `
+		<div id="title">Harry Potter Generator</div>
+		<div id="info">"Generate Harry Potter text using Recurrent Neural Network (RNN) Model trained on all 7 Harry Potter books<br>Start by typing a sentence and selecting how many characters to generate"</div>
+		<input type="text" name="startWords" placeholder="Type a Sentence" id="input">
+		<div id="rangeValue">Generate 500 Characters</div>
+		<input type="range" name="numChars" id="rangeSlider" min="1" max="1000">
+		<button onclick="potterPredict()" class="predictBtn">Generate Text</button>`
+		postscribe("#inputBox",`<script type="text/javascript">
+			document.getElementById("rangeSlider").addEventListener("mouseup",function(e){
+				document.getElementById("rangeValue").innerHTML = "Generate "+String(document.getElementById("rangeSlider").value)+" Characters";})<\/script>`)
+		document.getElementById("code").innerHTML = "";
+		postscribe('#code', '<script src="https://gist.github.com/w3ichen/eadac12330edc5bc421d83ce0629483f.js"><\/script>');
+}
+function potterPredict(){
+	var startWords = document.getElementById("input").value;
+	var numChars = document.getElementById("rangeSlider").value;
+	document.getElementById("input").value = "";
+	document.getElementById("outputBox").innerHTML = "... Please Wait - Generating Text ...";
+	$.ajax ({
+	    url : '/potter',
+	    type: 'POST',
+	    data: numChars+"`"+startWords,
+	    contentType:'application/json; charset=ISO-8859-1',
+	    dataType: 'text' 
+    }).done(function(data) {  
+    	document.getElementById("outputBox").innerHTML = data;
+    }); 
+}
+//4. SPAM////////////////////////////////////////////////////
+function spamStart(){
+	resetColor();
+	document.getElementById("inputBox").innerHTML = `
+		<div id="title">Email Spam Filter</div>
+		<div id="info">"Classify email into spam or not spam. <br>Start by typing or copying suspicious spam text or non spam text into text box."</div>
+		<textarea id="input" placeholder="Write Text Here" style="height:100px"></textarea>
+		<button onclick="spamPredict()" class="predictBtn">Filter</button>`
+	document.getElementById("code").innerHTML = "";
+	postscribe('#code', '<script src="https://gist.github.com/w3ichen/768f1ddb8b9f57f0f0d58c866a1741e3.js"><\/script>');
+}
+function spamPredict(){
+	var userInput = document.getElementById("input").value;
+	document.getElementById("input").value = "";
+    $.ajax ({
+	    url : '/spam',
+	    type: 'POST',
+	    data: userInput,
+	    contentType:'text/plain' 
+    }).done(function(data) {   
+    	data = parseFloat(data.replace('"[[','').replace(']]"',''));
+		document.getElementById("outputBox").style.color = "white";
+		if (data<0.8){
+			document.getElementById("outputBox").innerHTML =  "Not Spam";
+			document.getElementById("outputBox").style.backgroundColor = "#0F9D58";
+		}
+		else{
+			document.getElementById("outputBox").innerHTML = "Spam";
+			document.getElementById("outputBox").style.backgroundColor = "#DB4437";
+		}
+	});
+}
+function resetColor(){
+	document.getElementById("outputBox").innerHTML = "";
+	document.getElementById("outputBox").style.backgroundColor = "white";
+	document.getElementById("outputBox").style.color = "black";
+}
+window.onload = function(){
+	// start up transitions
+	document.getElementById("header").style.transition = "1s"
+	document.getElementById("header").style.opacity = "100%";
+
+	document.getElementById("switchtr").style.transition = "1s"
+	document.getElementById("switchtr").style.opacity = "100%";
+
+	document.getElementById("menuTable").style.transition = "4s"
+	document.getElementById("menuTable").style.boxShadow = "10px 10px 5px 5px rgb(222,222,222)";
+	document.getElementById("menuTable").style.transition = ".4s"
+	document.getElementById("menuTable").style.opacity = "100%";
+
+	document.getElementById("inputBox").style.transition = "4s"
+	document.getElementById("inputBox").style.boxShadow = "10px 10px 5px 5px rgb(222,222,222)";
+	document.getElementById("inputBox").style.transition = ".4s"
+	document.getElementById("inputBox").style.opacity = "100%";
+
+	document.getElementById("outputBox").style.transition = "4s"
+	document.getElementById("outputBox").style.boxShadow = "10px 10px 5px 5px rgb(222,222,222)";
+	document.getElementById("outputBox").style.transition = ".4s"
+	document.getElementById("outputBox").style.opacity = "100%";
+}
+
+</script>
+
+</html>
