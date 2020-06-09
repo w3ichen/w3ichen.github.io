@@ -26,13 +26,12 @@ def potter():
 	numChars = request.data.decode("utf-8").split("`")[0]
 	startString = request.data.decode("utf-8").split("`")[1]
 	text = model.predict.potterPredict(numChars, startString)
-	return json.dumps(str(text).replace("\n","<br>").replace("\u2018","'").replace("\u2019","'").replace("\u2014","-").replace("\u201d","'").replace("\u201c","'"))
+	return str(text)
 @app.route('/spam',methods=['GET','POST'])
 def spam():
 	data = request.data.decode("utf-8") 
 	prediction = model.predict.spamPredict(data) 
 	return json.dumps(str(prediction))
-
 
 if __name__ == "__main__":
     app.run(debug=True)

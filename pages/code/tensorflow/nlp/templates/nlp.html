@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Tensorflow>Language</title>
 	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/nlp.css')}}">
 	<!-- <link rel="stylesheet" type="text/css" href="../static/css/nlp.css"> -->
 	<script type="text/javascript" src="https://w3ichen.github.io/pages/code/menu.js"></script>
@@ -17,8 +17,8 @@
 	        <div><input type="checkbox" id="codeToggle"></div>
 	    </div>
 		<div id="menuTable">
-			<button onclick="potterStart()" class="menuBtn">Harry Potter Generator</button>
 			<button onclick="shakespeareStart()" class="menuBtn">Shakespeare Generator</button>
+			<button onclick="potterStart()" class="menuBtn">Harry Potter Generator</button>
 			<button onclick="movieStart()" class="menuBtn">Movie Sentiment</button>
 			<button onclick="spamStart()" class="menuBtn">Email Spam Filter</button>
 		</div>
@@ -30,9 +30,10 @@
 			<div id="title">Harry Potter Generator</div>
 			<div id="info">"Generate Harry Potter text using Recurrent Neural Network (RNN) Model trained on all 7 Harry Potter books<br>Start by typing a sentence and selecting how many characters to generate"</div>
 			<input type="text" name="startWords" placeholder="Type a Sentence" id="input">
-			<div id="rangeValue">Generate 500 Characters</div>
-			<input type="range" name="numChars" id="rangeSlider" min="1" max="1000">
+			<div id="rangeValue">Generate 400 Characters</div>
+			<input type="range" name="numChars" id="rangeSlider" min="1" max="800">
 			<button onclick="potterPredict()" class="predictBtn">Generate Text</button>
+		
 		</div>
 		<div id="outputBox"></div>
 		<script type="text/javascript">
@@ -107,7 +108,7 @@ function shakespearePredict(){
 	var startWords = document.getElementById("input").value;
 	var numChars = document.getElementById("rangeSlider").value;
 	document.getElementById("input").value = "";
-	document.getElementById("outputBox").innerHTML = "... Please Wait - Generating Text ...";
+	document.getElementById("outputBox").innerHTML = "... Please Wait - Generating Text (may take up to 1 minute )...";
     $.ajax ({
 	    url : '/shakespeare',
 	    type: 'POST',
@@ -124,8 +125,8 @@ function potterStart(){
 		<div id="title">Harry Potter Generator</div>
 		<div id="info">"Generate Harry Potter text using Recurrent Neural Network (RNN) Model trained on all 7 Harry Potter books<br>Start by typing a sentence and selecting how many characters to generate"</div>
 		<input type="text" name="startWords" placeholder="Type a Sentence" id="input">
-		<div id="rangeValue">Generate 500 Characters</div>
-		<input type="range" name="numChars" id="rangeSlider" min="1" max="1000">
+		<div id="rangeValue">Generate 400 Characters</div>
+		<input type="range" name="numChars" id="rangeSlider" min="1" max="800">
 		<button onclick="potterPredict()" class="predictBtn">Generate Text</button>`
 		postscribe("#inputBox",`<script type="text/javascript">
 			document.getElementById("rangeSlider").addEventListener("mouseup",function(e){
@@ -137,7 +138,7 @@ function potterPredict(){
 	var startWords = document.getElementById("input").value;
 	var numChars = document.getElementById("rangeSlider").value;
 	document.getElementById("input").value = "";
-	document.getElementById("outputBox").innerHTML = "... Please Wait - Generating Text ...";
+	document.getElementById("outputBox").innerHTML = "... Please Wait - Generating Text (may take up to 1 minute )...";
 	$.ajax ({
 	    url : '/potter',
 	    type: 'POST',
