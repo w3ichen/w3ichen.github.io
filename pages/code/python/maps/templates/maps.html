@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Python>Maps</title>
+	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='css/maps.css') }}">
+	<script type="text/javascript" src="https://w3ichen.github.io/pages/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<nav>
+		<form>
+			From: <input type="text" name="FROM">
+			To: <input type="text" name="TO">
+			<button onclick="go()">Get Directions</button>
+		</form>
+	</nav>
+
+</body>
+<script type="text/javascript">
+function go(){
+	console.log("PRESSED")
+	$.ajax({
+			url: '/route',
+			type: 'POST',
+			data: {'url':'hello'},
+			contentType: 'application/json'
+	}).done(function(data){
+		console.log(data)
+	})
+
+
+}
+</script>
+</html>
