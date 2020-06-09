@@ -18,7 +18,8 @@ var arduino = {'alarm.html':['Alarm System','2/16/2020','An ultrasonic sensor tr
 var cpp = {'bigo.html':['Big-O Visualizer','2/28/2020','Timing an algorithmn with different input sizes and graphing time elapsed to gain a rough visual of Big-O.'],
 		  }
 var tensorflow = {'http://tf-handwriting.herokuapp.com/':['Handwriting Recognition','5/27/2020', 'Convolutional neural network (CNN) that recognizes handwritten letters and numbers, trained on EMNIST dataset. HTML Canvas is used for drawing input and Flask hosts the model and Python server.'],
-				  'https://tf-images.herokuapp.com/':['Image Classification','5/30/2020','Classifying RGB images from Pixabay images API using models trained on 3 CIFAR datasets.']
+				  'https://tf-images.herokuapp.com/':['Image Classification','5/30/2020','Classifying RGB images from Pixabay images API using models trained on 3 CIFAR datasets.'],
+				  'http://tf-language.herokuapp.com/':['Natural Language Processing','6/9/2020','Natural Language Processing models using LSTMs and Embedding layers. Includes both text classification and generation models.']
 				}
 
 // ADD NEW LANGUAGES HERE
