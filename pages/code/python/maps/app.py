@@ -48,9 +48,9 @@ def route():
 
 def getLatLon(data):
 
-	from_address = data["fromAddress"]
+	from_address = data["fromAddress"].lower().replace(" ","%20")
 	from_country = countries[data["fromCountry"].lower()]
-	to_address = data["toAddress"]
+	to_address = data["toAddress"].lower().replace(" ","%20")
 	to_country = countries[data["toCountry"].lower()]
 
 	from_url = 'https://api.tomtom.com/search/2/geocode/'+from_address+'.json?limit=1&countrySet='+from_country+'&key='+key

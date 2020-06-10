@@ -1,6 +1,7 @@
 // ADD NEW PROJECTS HERE
 // File Name : [Title , Date , Description]
-var python = {'webscraping.html':['Netflix & Amazon Webscraper','1/3/2020','Using BeautifulSoup to scrape Amazon for best coupons. And scraping Netflix and Google ratings to rank Netflix movies.'],
+var python = {'https://py-maps.herokuapp.com/':['Maps Directions','6/10/2020','<em>Load time: up to 1 min</em><br>Using Python\'s Folium module to generate interactive maps and TomTom Maps API to get route and direction instructions.'],
+			  'webscraping.html':['Netflix & Amazon Webscraper','1/3/2020','Using BeautifulSoup to scrape Amazon for best coupons. And scraping Netflix and Google ratings to rank Netflix movies.'],
 			  'climate.html':['Climate Change Data','2/20/2020','Using requests to call the WorldBank\'s climate data API. This data is parsed with Pandas and plotted using Pyplot.'],
 			  'data.html':['Python Local Database','12/25/2019','Using Pickle to store user data into a simple text file database. Has the ability to create, edit and search data.'],
 			  'aes.html':['Advanced Encryption System','12/20/2019','A variation of AES using numpy and matrices.'],
