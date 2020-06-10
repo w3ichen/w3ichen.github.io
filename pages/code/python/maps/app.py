@@ -19,7 +19,7 @@ def index():
 @app.route('/route',methods=['GET','POST'])
 def route():
 	from_lat, from_lon, to_lat, to_lon = getLatLon(request.json)
-	route_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+str(from_lat)+'%2C'+str(from_lon)+'%3A'+str(to_lat)+'%2C'+str(to_lon)+'/json?avoid=unpavedRoads&key='+key;
+	route_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+str(from_lat)+'%2C'+str(from_lon)+'%3A'+str(to_lat)+'%2C'+str(to_lon)+'/json?avoid=unpavedRoads&key='+key+"&instructionsType=text";
 	route_json = json.loads(requests.get(route_url).text)
 	time_in_seconds = route_json["routes"][0]["legs"][0]["summary"]["travelTimeInSeconds"]
 	distance_in_meters = route_json["routes"][0]["legs"][0]["summary"]["lengthInMeters"]
@@ -33,11 +33,17 @@ def route():
 	points_list = []
 	for point in points:
 		points_list.append((point["latitude"],point["longitude"]))
-	folium.PolyLine(points_list, color='blue', weight=5).add_to(maps)
+	folium.PolyLine(points_list, color='#00BFFF', weight=5).add_to(maps)
 
-	map_html = str(maps.get_root().render()).replace("\n","")
+	map_html = str(maps.get_root().render()).replace("\n","").replace("<!DOCTYPE html>","")
 
-	return json.loads(json.dumps({'map':str(map_html), 'time':time_in_seconds, 'distance':distance_in_meters}).replace("\'", "\""))
+	# get text directions
+	messageList = []
+	instructions = route_json["routes"][0]["guidance"]["instructions"]
+	for message in instructions:
+		messageList.append(message["message"])
+
+	return json.loads(json.dumps({'map':str(map_html), 'time':time_in_seconds, 'distance':distance_in_meters, 'instructions':messageList}).replace("\'", "\""))
 
 
 def getLatLon(data):
