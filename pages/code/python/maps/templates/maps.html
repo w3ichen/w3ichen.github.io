@@ -4,30 +4,64 @@
 	<title>Python>Maps</title>
 	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='css/maps.css') }}">
 	<script type="text/javascript" src="https://w3ichen.github.io/pages/jquery-3.1.1.min.js"></script>
+	<script src="https://w3ichen.github.io/pages/postscribe.min.js"></script>
 </head>
 <body>
 	<nav>
-		<form>
-			From: <input type="text" name="FROM">
-			To: <input type="text" name="TO">
-			<button onclick="go()">Get Directions</button>
-		</form>
+		<div id="fromRow">
+			<div class="inText">from</div><input type="text" name="FROM" id="fromAddress" placeholder="start address">
+			<input type="text" name="fromCountry" id="fromCountry" placeholder="canada">
+		</div>
+		<div id="toRow">
+			<div class="inText">to</div><input type="text" name="TO" id="toAddress" placeholder="destination address">
+			<input type="text" name="toCountry" id="toCountry" placeholder="canada">
+		</div>
+		
+		<button onclick="go()" id="goBtn">Get Directions</button>
+		<div id="routeDetails"></div>
 	</nav>
-
+	<div id="theMap"></div>
 </body>
 <script type="text/javascript">
 function go(){
-	console.log("PRESSED")
+	// default country to canada
+	if (document.getElementById('fromCountry').value == ""){fromCountry = "canada"}
+	else{fromCountry = document.getElementById('fromCountry').value}
+	if (document.getElementById('toCountry').value == ""){toCountry = "canada"}
+	else{toCountry = document.getElementById('toCountry').value}
+	if (document.getElementById('fromAddress').value == ""){window.alert("Address is required\nPlease enter the address")}
+
 	$.ajax({
 			url: '/route',
 			type: 'POST',
-			data: {'url':'hello'},
-			contentType: 'application/json'
+			data: JSON.stringify({
+				'fromAddress' : document.getElementById('fromAddress').value,
+				'fromCountry' : fromCountry,
+				'toAddress'	  : document.getElementById('toAddress').value,
+				'toCountry'	  : toCountry
+			}),
+			contentType: 'application/json',
+			dataType: 'json'
 	}).done(function(data){
-		console.log(data)
+		time = secondsConvert(data.time)
+		if (time[0] > 0){
+			document.getElementById("routeDetails").innerHTML = "<div id='time'>"+time[0]+" hours </div>"
+		}else{
+			document.getElementById("routeDetails").innerHTML = "";
+		}
+		document.getElementById("routeDetails").innerHTML += "<div id='time'>"+time[1]+" minutes</div><div id='dist'>"+(data.distance/1000).toFixed(2)+" km</div>";
+		console.log(data.map)
+		document.getElementById("theMap").innerHTML = "";
+		postscribe('#theMap', (data.map).replace("<!DOCTYPE html>",""));
 	})
 
 
+}
+function secondsConvert(seconds, seven_am = true){
+	var hours = parseInt(seconds/3600, 10);
+	var minutes = parseInt(((seconds/3600)%1)*60,10);
+	var seconds = parseInt(((((seconds/3600)%1)*60)%1)*60,10);
+	return [hours,minutes,seconds]
 }
 </script>
 </html>

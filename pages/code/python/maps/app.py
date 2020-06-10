@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import folium
 from folium import Circle, Marker
 import requests
@@ -18,44 +18,37 @@ def index():
 
 @app.route('/route',methods=['GET','POST'])
 def route():
-
-	# data = request.data
-	# map_html = maps.get_root().render()
-	# print(map_html)
-	print("SERVER")
-	from_lat, from_lon, to_lat, to_lon = getLatLon(None)
-	print(from_lat, from_lon, to_lat, to_lon)
+	from_lat, from_lon, to_lat, to_lon = getLatLon(request.json)
 	route_url = 'https://api.tomtom.com/routing/1/calculateRoute/'+str(from_lat)+'%2C'+str(from_lon)+'%3A'+str(to_lat)+'%2C'+str(to_lon)+'/json?avoid=unpavedRoads&key='+key;
 	route_json = json.loads(requests.get(route_url).text)
 	time_in_seconds = route_json["routes"][0]["legs"][0]["summary"]["travelTimeInSeconds"]
 	distance_in_meters = route_json["routes"][0]["legs"][0]["summary"]["lengthInMeters"]
-	print("TIME: ",time_in_seconds)
-	print("DISTANCE: ",distance_in_meters)
-	points = route_json["routes"][0]["legs"][0]["points"]
-	print(points[0])
 
-	maps = folium.Map(location=[from_lat,from_lon], tiles='openstreetmap', zoom_start=10)
-	Marker([from_lat, from_lon]).add_to(maps) # start marker
-	Marker([to_lat, to_lon]).add_to(maps) # end marker
+	points = route_json["routes"][0]["legs"][0]["points"]
+
+	maps = folium.Map(location=[from_lat,from_lon], tiles='openstreetmap', zoom_start=15)
+	folium.Polygon(locations=[[from_lat, from_lon]], color='red', fill_color='red', weight=10).add_to(maps) # start marker
+	folium.Polygon(locations=[[to_lat, to_lon]], color='red', fill_color='red', weight=10).add_to(maps) # end marker
+
 	points_list = []
 	for point in points:
 		points_list.append((point["latitude"],point["longitude"]))
-	folium.PolyLine(points_list, color='red').add_to(maps)
-	print(points_list)
+	folium.PolyLine(points_list, color='blue', weight=5).add_to(maps)
 
-	print("markers added")
-	maps.save("map_test.html")
+	map_html = str(maps.get_root().render()).replace("\n","")
 
-	return json.dumps(str(prediction))
+	return json.loads(json.dumps({'map':str(map_html), 'time':time_in_seconds, 'distance':distance_in_meters}).replace("\'", "\""))
 
 
 def getLatLon(data):
-	from_address = "7611 119 street"
-	to_address = "8834 114 St NW"
-	country_name = "canada"
-	country_code = countries[country_name.lower()]
-	from_url = 'https://api.tomtom.com/search/2/geocode/'+from_address+'.json?limit=1&countrySet='+country_code+'&key='+key
-	to_url = 'https://api.tomtom.com/search/2/geocode/'+to_address+'.json?limit=1&countrySet='+country_code+'&key='+key
+
+	from_address = data["fromAddress"]
+	from_country = countries[data["fromCountry"].lower()]
+	to_address = data["toAddress"]
+	to_country = countries[data["toCountry"].lower()]
+
+	from_url = 'https://api.tomtom.com/search/2/geocode/'+from_address+'.json?limit=1&countrySet='+from_country+'&key='+key
+	to_url = 'https://api.tomtom.com/search/2/geocode/'+to_address+'.json?limit=1&countrySet='+to_country+'&key='+key
 
 	from_json = json.loads(requests.get(from_url).text)
 	from_lat = from_json["results"][0]["position"]["lat"]
@@ -65,7 +58,6 @@ def getLatLon(data):
 	to_lon = from_json["results"][0]["position"]["lon"]
 
 	return from_lat, from_lon, to_lat, to_lon
-
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,1 +1,80 @@
-/*USE CTRL+SHIFT+R to refresh and see CSS updates*/
+#theMap{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+body{
+	margin: 0;
+	background-color: pink;
+	font-family: "calibri light",calibri,arial;
+}
+nav{
+	position: absolute;
+	right: 2%;
+	top: 2%;
+	width: 25%;
+	padding: 1%;
+	padding-top: 2%;
+	z-index: 1000;
+	display: inline-flex;
+	flex-direction: column;
+	background-color: white;
+}
+#fromRow, #toRow{
+	display: inline-flex;
+	flex-direction: row;
+	width: 100%;
+	margin-bottom: 2%;
+}
+#fromAddress, #toAddress{
+	width: 55%;
+	border: none;
+	text-align: center;
+	padding: 1%;
+	border: 1px solid rgb(180,180,180);
+	border-right: none;
+	background-color: rgba(225,225,225,0.4);
+}
+#toRow{
+	border-bottom: 1px solid rgb(180,180,180);
+	margin-bottom: 2%;
+	padding-bottom: 3%;
+}
+#fromCountry, #toCountry{
+	width: 25%;
+	padding: 1%;
+	border: 1px solid rgb(180,180,180);
+	border-left: none;
+	text-align: left;
+	background-color: rgba(225,225,225,0.4);
+}
+.inText{
+	width: 15%;
+	padding-left: 1%;
+}
+#routeDetails{
+	border-top: 1px solid rgb(180,180,180);
+	border-bottom: 1px solid rgb(180,180,180);
+	margin-top: 2%;
+	margin-bottom: 2%;
+	padding: 2%;
+}
+#goBtn{
+	width: 95%;
+	border: none;
+	background-color: black;
+	color: white;
+	font-size: 17px;
+	font-family: "calibri light";
+	align-self: center;
+	padding: 1%;
+	cursor: pointer;
+}
+#time{
+	float: left;
+	font-size: 17px;
+}
+#dist{
+	float: right;
+	font-size: 17px;
+}
