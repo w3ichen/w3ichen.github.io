@@ -10,6 +10,7 @@ var python = {'https://py-maps.herokuapp.com/':['Maps Directions','6/10/2020','<
 var javascript = {'music.html':['Music Playlist API','25/5/2020','Generates a playlist of songs from similar artists. Using Deezer API to get artist\'s songs and LastFM API to find similar artists.'],
 				  'movie.html':['Similar Movies','6/6/2020','Using The Movie Database (TMDb) API to search for similar movies and TV shows.'],
 				  'social.html':['Social Media','4/24/2020','Front end web design of a social media site with ability to post, comment and upload photos. Use of Cookies to store time of last activity.'],
+				  'interview.html':['Mock Interview','6/13/2020','Computer reads out interview questions, and your answers are recorded for review at the end. Accesses webcam and microphone via mediaRecorder and uses speechSynthesis web API to speak.'],
 				  'trip.html':['Trip Planner API','1/19/2020','Calling TomTom Maps API to plan gas stations and hotel stops along driving route.'],
 				  'calculator.html':['Calculator','1/2/2020','A simple caluclator using Javascript\'s eval() to perform math calculations.']
 			     }

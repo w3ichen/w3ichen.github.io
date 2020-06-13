@@ -2,17 +2,36 @@
 <html>
 <head>
 	<title>Javascript>Interview</title>
+	<link rel="stylesheet" type="text/css" href="../code.css">
+	<script type="text/javascript" src="../menu.js"></script>
 </head>
 <body>
-	<div id="question"></div>
+	<div id="menu"></div>
+	<div id="question">Mock Interview<br><em>Please allow access to camera and mic to review your answers later</em></div>
 	<video id="live" muted></video>
 	<div id="CustomQuestions">
-		<p>Optional - Add Custom Interview Questions</p>
+		<p>Add Custom Interview Questions (Optional)</p>
 		<table id="addedQuestions"></table>
 		<input type="text" placeholder="Type Custom Question" id="userQuestion"><button id="addQuestion" onclick="addQuestion()">Add</button>
 	</div>
 	<button id="mainBtn" onclick="start()">Start Interview</button>
 
+<table class="switch">
+	<tr class="switchtr">
+		<td><button id="back" onclick="window.location.href='../code.html'">back</button></td>
+		<td id="code-text">Show Code</td>
+		<td><input type="checkbox" id="codeToggle"></td>
+		<td><input type="checkbox" id="menuToggle"></td>
+		<td id="menu-text">Show Menu</td>
+	</tr>
+</table>
+<!-- Code for page -->
+<div id="code" style="text-align: left;">
+	<script src="https://gist-it.appspot.com/https://github.com/w3ichen/w3ichen.github.io/blob/master/pages/code/javascript/interview.html"></script>
+</div>
+<script type="text/javascript">
+	loadSubmenu();
+</script>
 
 </body>
 <script type="text/javascript">
@@ -25,8 +44,8 @@ let constraintObj = {
 	audio: true,
 	video: {
 		facingMode: "user", 
-		width: {min:640, ideal:640, max:1280},
-		height: {min:480, ideal:360, max:720} 
+		width: 640,
+		height: 360 
 	}
 }
 navigator.mediaDevices.getUserMedia(constraintObj)
@@ -44,14 +63,11 @@ navigator.mediaDevices.getUserMedia(constraintObj)
 	let chunks = []
 	let btn = document.getElementById("mainBtn")
 	btn.addEventListener('click',(ev)=>{
-		console.log(onquestion);
 		if (mediaRecorder.state == "recording"){
 			mediaRecorder.stop();
-			console.log("STOPPED: ",mediaRecorder.state)
 		}
 		if (mediaRecorder.state == "inactive"){
 			mediaRecorder.start();
-			console.log("STARTED: ",mediaRecorder.state)
 		}
 	})
 	mediaRecorder.onstop = (ev)=>{
@@ -114,38 +130,36 @@ function start(){
 	}
 	document.getElementById("addedQuestions").innerHTML = ""; // clear custom questions
 	document.getElementById("CustomQuestions").style.display = "None";
-	console.log(questions)
 	// change main button to next question button
 	document.getElementById("mainBtn").innerHTML = "Next Question";
 	document.getElementById("mainBtn").setAttribute("onclick","nextQuestion()");
-	onquestion = 1;
+	onquestion = 0;
 	// get start time
 	startTime = (+new Date)/1000;
+	console.log(questions)
 	// start question 0
-	interviewQuestion(0);
+	interviewQuestion(onquestion);
 }
 function interviewQuestion(questionNum){
-	// speak the question
-	speak(questions[questionNum]);
-	// write out the question
-	document.getElementById("question").innerHTML = questions[questionNum];
-
+	console.log(questionNum, questions[questionNum])
+	if (questions[questionNum]!=undefined){
+		// speak the question
+		speak(questions[questionNum]);
+		// write out the question
+		document.getElementById("question").innerHTML = questions[questionNum];
+	}
+	onquestion += 1; // next question number
 }
 function nextQuestion(){
-	console.log("next question")
-	onquestion += 1; // next question number
-// if (onquestion < questions.length){
 	interviewQuestion(onquestion)
-	
 }
 function endInterview(){
 	// find total interview time
 	var elapsedTime = (+new Date)/1000 - startTime;
 	elapsedTime = seconds_2_hours(elapsedTime);
-	document.getElementById("question").innerHTML = "Interview ended, you did great!<br><div id='elapsedTime'>Elapsed Time: "+elapsedTime[0]+"h "+elapsedTime[1]+"m "+elapsedTime[2]+"s</div>";
+	document.getElementById("question").innerHTML = "Interview ended. You did great!<br><div id='elapsedTime'>Time Elapsed: "+elapsedTime[0]+"h "+elapsedTime[1]+"m "+elapsedTime[2]+"s</div><br>";
 	// close live window
 	document.getElementById("live").style.display = "None";
-	console.log("END: ",videoBlobs)
 	for (var i=0;i<questions.length;i++){
 		// display all question and videos
 		var questionText = document.createElement("div");
@@ -162,7 +176,9 @@ function endInterview(){
 	// set button to retake interview
 	document.getElementById("mainBtn").innerHTML = "Retake Interview";
 	document.getElementById("mainBtn").setAttribute("onclick","reset()");
-
+}
+function reset(){
+	location.reload(); // refresh page
 }
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -190,24 +206,14 @@ function addQuestion(){
 	newQuestion.id = numQuestions;
 	questionText.innerHTML = question;
 	var deleteBtn = newQuestion.insertCell(1);
-	deleteBtn.innerHTML = '<button onclick="remove('+numQuestions+')">delete</button>';
+	deleteBtn.innerHTML = '<button class="deleteBtn" onclick="remove('+numQuestions+')">delete</button>';
 	document.getElementById("addedQuestions").appendChild(newQuestion);
 
 	numQuestions += 1;
-	console.log(document.getElementById("addedQuestions").outerHTML )
 }
 function remove(rowid){
 	var row = document.getElementById(rowid);
     row.parentNode.removeChild(row);
-}
-function reset(){
-	// retake interview
-	document.getElementById("live").style.display = "flex"; // show the live feed
-	document.getElementById("CustomQuestions").style.display = "flex"; // show custom questions
-	document.getElementById("question").innerHTML = "Welcome to Mock Interview";
-	// reset button
-	document.getElementById("mainBtn").innerHTML = "Start Interview";
-	document.getElementById("mainBtn").setAttribute("onclick","start()");
 }
 function seconds_2_hours(seconds, seven_am = true){
 	var hours = parseInt(seconds/3600, 10);
@@ -252,7 +258,7 @@ defaultQuestions = [
 'How would you describe your leadership skills?',
 'How well do you adapt to new situations?',
 'What have you accomplished that shows your initiative and willingness to work?',
-'How would your paster supervisors describe you?',
+'How would your previous supervisors describe you?',
 'What is your ideal work environment?',
 'Why do you want to work in this industry?',
 'In your opinion, what are the three most important things a team must do to be successful?',
@@ -266,11 +272,123 @@ defaultQuestions = [
 'What interests you about this role?',
 ]
 </script>
+
 <style type="text/css">
+body{
+	margin: 0;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	text-align: center;
+	font-family: "calibri light","calibri","arial";
+	background-color: #f1f2f6;
+}
 .questionVideos{
 	width: 40%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+#question{
+	width: 80%;
+	transition: .4s;
+	margin: 2%;
+	margin-top: 1%;
+	padding: 3%;
+	font-size: 19px;
+	border: 1px solid rgba(200,200,200,0.7);
+	box-shadow: 3px 3px 3px 3px rgb(225,225,225);
+	background-color: white;
+}
+#CustomQuestions{
+	margin-top: 1%;
+	padding: 1%;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+
+}
+#addedQuestions{
+	width: 100%;
+	text-align: center;
+}
+#userQuestion{
+	padding: 2%;
+	padding-left: 3%;
+	width: 70%;
+	margin-top: 1%;
+	border: 1px solid rgb(200,200,200);
+}
+#userQuestion:hover{
+	box-shadow: 0px 3px 3px 3px rgb(225,225,225);
+}
+#addQuestion{
+	padding: 2%;
+	padding-left: 4%;
+	padding-right: 4%;
+	border: none;
+	background-color: #4285F4;
+	color: white;
+	cursor: pointer;
+}
+#addQuestion:hover{
+	background-color: #4169E1;
+}
+.deleteBtn:hover{
+	background-color: #9B1C31;
+}
+.deleteBtn{
+	padding: 10%;
+	background-color: #DB4437;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+td:first-child {
+	text-align: center;
+	width: 80%;
 }
 
+#live{
+
+}
+#mainBtn{
+	margin: 2%;
+	padding: 1%;
+	padding-left: 3%;
+	padding-right: 3%;
+	border: none;
+	background-color: #0F9D58;
+	color: white;
+	cursor: pointer;
+	font-family: "calibri light",calibri,arial;
+	font-size: 19px;
+}
+#mainBtn:hover{
+	background-color: #228B22;
+}
+.switch{
+	position: fixed;
+	left: 2%;
+	bottom: 3%;
+	padding: 1%;
+	font-size: 15px;
+	width: max-content;
+	background-color: rgba(210,210,210,0.5);
+	width: 17%;
+}
+td{
+	color: black;
+}
+#back{
+	border: 1px solid white;
+	padding: 10%;
+	background-color: rgb(200,200,200);
+	cursor: pointer;
+}
+#back:hover{
+	color: white;
+	background-color: black;
+}
 
 </style>
 </html>
