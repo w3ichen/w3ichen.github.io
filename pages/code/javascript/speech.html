@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript>Speech</title>
+	<script src="jquery-3.5.1.min.js"></script>
+</head>
+<body>
+	<button onclick="recognition.start();">Go</button>
+	<div id="userSpeaks"></div>
+	Learn:
+	<select id="targetLang">
+		<option value="en-US">English</option>
+		<option value="fr">French</option>
+		<option value="es">Spanish</option>
+		<option value="ar">Arabic</option>
+		<option value="hy">Armenian</option>
+		<option value="bs">Bosnian</option>
+		<option value="bg">Bulgarian</option>
+		<option value="zh-Hans">Chinese(Simplified)</option>
+		<option value="zh-Hant">Chinese(Traditional)</option>
+		<option value="cs">Czech</option>
+		<option value="da">Danish</option>
+		<option value="nl">Dutch</option>
+		<option value="fi">Finnish</option>
+		<option value="de">German</option>
+		<option value="el">Greek</option>
+		<option value="he">Hebrew</option>
+		<option value="hi">Hindi</option>
+		<option value="hu">Hungarian</option>
+		<option value="is">Icelandic</option>
+		<option value="id">Indonesian</option>
+		<option value="ga">Irish</option>
+		<option value="it">Italian</option>
+		<option value="ja">Japanese</option>
+		<option value="ko">Korean</option>
+		<option value="no">Norwegian</option>
+		<option value="fa">Persian</option>
+		<option value="pl">Polish</option>
+		<option value="pt">Portuguese</option>
+		<option value="pa">Punjabi</option>
+		<option value="ro">Romanian</option>
+		<option value="ru">Russian</option>
+		<option value="sr">Serbian</option>
+		<option value="sk">Slovak</option>
+		<option value="sl">Slovenian</option>
+		<option value="sv">Swedish</option>
+		<option value="th">Thai</option>
+		<option value="tr">Turkish</option>
+		<option value="uk">Ukrainian</option>
+		<option value="vi">Vietnamese</option>
+		<option value="cy">Welsh</option>
+	</select>
+	<button onclick="text2speech('HELLO')">SPEAK</button>
+
+	<iframe
+    allow="microphone;"
+    width="350"
+    height="430"
+    src="https://console.dialogflow.com/api-client/demo/embedded/4d78769e-ebb1-44d2-a348-f83656e8e448">
+</iframe>
+
+</body>
+<script type="text/javascript">
+//SETTINGS
+// SPEECH2TEXT
+try{
+	var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+	var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+}catch (err){
+	alert("Your browser does not support SpeechRecognition\nPlease try another browser\nERROR: "+err)
+}
+var grammar = '#JSGF v1.0';
+var recognition = new SpeechRecognition();
+var SpeechRecognitionGrammarList = new SpeechGrammarList()
+recognition.grammars = SpeechRecognitionGrammarList
+recognition.interimResults = false; // whether to get results when user is still speaking
+SpeechRecognitionGrammarList.addFromString(grammar, 1)
+// TEXT2SPEECH
+var msg = new SpeechSynthesisUtterance();
+var voices = window.speechSynthesis.getVoices();
+
+function speech2text(){
+	// LANGUAGE
+	recognition.lang = 'en-US'
+
+	recognition.onresult = function(event){
+		console.log(event.results[0][0].transcript)
+		document.getElementById("userSpeaks").innerHTML = event.results[0][0].transcript;
+	}
+	recognition.onspeechend = function(){
+		recognition.stop();
+	}
+	recognition.onerror = function(event){
+		console.log(event.error)
+	}
+}
+function text2speech(text){
+translate("en-US","it","how are you today", true)
+
+}
+function translate(sourceLang, targetLang, text, speak=false){
+	var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="
+            + sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text);
+    fetch(url)
+    .then(promise=>promise.json())
+    .then(translated=>{
+    	translation = translated[0][0][0];
+    	console.log(translation)
+    	if (speak){
+    		try{
+    			msg.text = translation;
+    		}catch(err){
+    			alert("Your browser does not support SpeechSynthesisUtterance\nPlease try another browser\nERROR: "+err)
+    		}
+    		
+    		msg.lang = "it";
+			window.speechSynthesis.speak(msg);
+    	}
+    })
+}
+chatbot("where is the hospital")
+function chatbot(message){
+	console.log("IN CHATBOT")
+
+
+	var settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://robomatic-ai.p.rapidapi.com/api.php",
+	"method": "POST",
+	"headers": {
+		"x-rapidapi-host": "robomatic-ai.p.rapidapi.com",
+		"x-rapidapi-key": "85bad339d2msha993e5da92946ecp1a65fcjsn2759641fe132",
+		"content-type": "application/x-www-form-urlencoded"
+	},
+	"data": {
+		"ChatSource": "RapidAPI",
+		"SessionID": "RapidAPI1",
+		"in": "What's 2 plus 5?",
+		"op": "in",
+		"cbid": "1",
+		"cbot": "1",
+		"key": "RHMN5hnQ4wTYZBGCF3dfxzypt68rVP"
+	}
+	}
+
+	$.ajax(settings).done(function (response) {
+		console.log(response);
+	});
+	// fetch("https://api.dialogflow.com/v1/query?v=20150910", {
+	// "method": "POST",
+	// "crossDomain": true,
+	// "headers": {
+	// 	"Authorization": "58a6f2913f14450ca0eed8eea033aa83",
+ //  		"Content-Type": "application/json"
+	// },
+	// "body": {
+	// 	"contexts": ["shop"],
+	//     "lang": "en",
+	//     "query": "I need apples",
+	//     "sessionId": "12345",
+	//     "timezone": "America/New_York"
+	// }
+	// })
+	// .then(response => {
+	// 	console.log(response);
+	// })
+	// .catch(err => {
+	// 	console.log(err);
+	// })
+}
+
+
+</script>
+</html>

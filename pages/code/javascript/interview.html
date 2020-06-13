@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript>Interview</title>
+</head>
+<body>
+	<div id="question"></div>
+	<video id="live" muted></video>
+	<div id="CustomQuestions">
+		<p>Optional - Add Custom Interview Questions</p>
+		<table id="addedQuestions"></table>
+		<input type="text" placeholder="Type Custom Question" id="userQuestion"><button id="addQuestion" onclick="addQuestion()">Add</button>
+	</div>
+	<button id="mainBtn" onclick="start()">Start Interview</button>
+
+
+</body>
+<script type="text/javascript">
+var numQuestions = 0;
+var videoBlobs = [];
+var questions = [];
+var onquestion = -1;
+var startTime;
+let constraintObj = {
+	audio: true,
+	video: {
+		facingMode: "user", 
+		width: {min:640, ideal:640, max:1280},
+		height: {min:480, ideal:360, max:720} 
+	}
+}
+navigator.mediaDevices.getUserMedia(constraintObj)
+.then(function(mediaStreamObj){
+	// mediaStreamObj is watch is being sent in
+	//VIDEO
+	let video = document.getElementById('live');
+	video.srcObject = mediaStreamObj;
+	video.onloadedmetadata = function(ev){
+		video.play() // automatically play video
+	}
+	// RECORDING VIDEO
+	// mediaRecorder object, pass mediaStream into it
+	let mediaRecorder = new MediaRecorder(mediaStreamObj)
+	let chunks = []
+	let btn = document.getElementById("mainBtn")
+	btn.addEventListener('click',(ev)=>{
+		console.log(onquestion);
+		if (mediaRecorder.state == "recording"){
+			mediaRecorder.stop();
+			console.log("STOPPED: ",mediaRecorder.state)
+		}
+		if (mediaRecorder.state == "inactive"){
+			mediaRecorder.start();
+			console.log("STARTED: ",mediaRecorder.state)
+		}
+	})
+	mediaRecorder.onstop = (ev)=>{
+		// saving the video from chunks
+		let blob = new Blob(chunks, {'type':'video/mp4;'});
+		chunks = []; // reset chunks
+		let videoURL = window.URL.createObjectURL(blob);
+		videoBlobs.push(videoURL);
+		if (onquestion == questions.length+1){
+			endInterview();
+		}
+	}
+	mediaRecorder.ondataavailable = function(ev){
+		// when data is avilable, push it to the chunks
+		chunks.push(ev.data)
+	}
+})
+.catch(function(err){
+	// error
+	console.log(err.name, err.message)
+	// NotAllowedError - user rejects accesss
+	if (err.name == "NotAllowedError"){
+		// user denies access
+		alert("Please Allow Access to Camera and Mic\nTo Allow Recording of Questions for Playback")
+	}
+})
+// SPEAKING API
+var msg = new SpeechSynthesisUtterance();
+var voices = window.speechSynthesis.getVoices();
+msg.voice = voices[3]; 
+// msg.voiceURI = "Google UK English Female";
+msg.volume = 1; // 0 to 1
+msg.rate = 1.2; // 0.1 to 10
+msg.pitch = 2; //0 to 2
+
+function start(){
+	// start interview
+	// get the user's custom questions
+	totalQuestions = 5;
+	numCustomQuestions = document.getElementById("addedQuestions").getElementsByTagName("tr").length
+	tableRows = document.getElementById("addedQuestions").getElementsByTagName("tr");
+
+	if (numCustomQuestions != 0){
+		for (var i=0;i<numCustomQuestions;i++){
+			questions.push(tableRows[i].getElementsByTagName("td")[0].innerHTML)
+		}
+	}
+	if (numCustomQuestions < 5){
+		// fill questions up to 5
+		moreQuestions = [];
+		for (var i=0;i<defaultQuestions.length;i++){
+			moreQuestions.push(i);
+		}
+		shuffle(moreQuestions);
+		for (var j=0;j<5- numCustomQuestions;j++){
+			// push random questions to questions array
+			questions.push(defaultQuestions[moreQuestions[j]]);
+		}
+		shuffle(questions);
+	}
+	document.getElementById("addedQuestions").innerHTML = ""; // clear custom questions
+	document.getElementById("CustomQuestions").style.display = "None";
+	console.log(questions)
+	// change main button to next question button
+	document.getElementById("mainBtn").innerHTML = "Next Question";
+	document.getElementById("mainBtn").setAttribute("onclick","nextQuestion()");
+	onquestion = 1;
+	// get start time
+	startTime = (+new Date)/1000;
+	// start question 0
+	interviewQuestion(0);
+}
+function interviewQuestion(questionNum){
+	// speak the question
+	speak(questions[questionNum]);
+	// write out the question
+	document.getElementById("question").innerHTML = questions[questionNum];
+
+}
+function nextQuestion(){
+	console.log("next question")
+	onquestion += 1; // next question number
+// if (onquestion < questions.length){
+	interviewQuestion(onquestion)
+	
+}
+function endInterview(){
+	// find total interview time
+	var elapsedTime = (+new Date)/1000 - startTime;
+	elapsedTime = seconds_2_hours(elapsedTime);
+	document.getElementById("question").innerHTML = "Interview ended, you did great!<br><div id='elapsedTime'>Elapsed Time: "+elapsedTime[0]+"h "+elapsedTime[1]+"m "+elapsedTime[2]+"s</div>";
+	// close live window
+	document.getElementById("live").style.display = "None";
+	console.log("END: ",videoBlobs)
+	for (var i=0;i<questions.length;i++){
+		// display all question and videos
+		var questionText = document.createElement("div");
+		questionText.innerHTML = "Question "+String(i+1)+". "+questions[i];
+		var questionVideo = document.createElement("video");
+		questionVideo.src = videoBlobs[i];
+
+		questionVideo.setAttribute("controls","true");
+		questionVideo.classList.add("questionVideos");
+		document.getElementById("question").appendChild(questionText);
+		document.getElementById("question").appendChild(questionVideo);
+	}
+
+	// set button to retake interview
+	document.getElementById("mainBtn").innerHTML = "Retake Interview";
+	document.getElementById("mainBtn").setAttribute("onclick","reset()");
+
+}
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+function speak(message){
+	msg.text = message;
+	window.speechSynthesis.speak(msg);
+}
+function addQuestion(){
+	var question = document.getElementById("userQuestion").value;
+	document.getElementById("userQuestion").value = ""; //clear
+	var newQuestion = document.createElement("tr");
+	var questionText = newQuestion.insertCell(0);
+	newQuestion.id = numQuestions;
+	questionText.innerHTML = question;
+	var deleteBtn = newQuestion.insertCell(1);
+	deleteBtn.innerHTML = '<button onclick="remove('+numQuestions+')">delete</button>';
+	document.getElementById("addedQuestions").appendChild(newQuestion);
+
+	numQuestions += 1;
+	console.log(document.getElementById("addedQuestions").outerHTML )
+}
+function remove(rowid){
+	var row = document.getElementById(rowid);
+    row.parentNode.removeChild(row);
+}
+function reset(){
+	// retake interview
+	document.getElementById("live").style.display = "flex"; // show the live feed
+	document.getElementById("CustomQuestions").style.display = "flex"; // show custom questions
+	document.getElementById("question").innerHTML = "Welcome to Mock Interview";
+	// reset button
+	document.getElementById("mainBtn").innerHTML = "Start Interview";
+	document.getElementById("mainBtn").setAttribute("onclick","start()");
+}
+function seconds_2_hours(seconds, seven_am = true){
+	var hours = parseInt(seconds/3600, 10);
+	var minutes = parseInt(((seconds/3600)%1)*60,10);
+	var seconds = parseInt(((((seconds/3600)%1)*60)%1)*60,10);
+	return [hours,minutes,seconds]
+}
+
+defaultQuestions = [
+'Tell me about yourself',
+'Describe the most significant or creative presentation/project that you have had to complete',
+'Give an example of how you applied knowledge from previous coursework to a project in another class or on the job',
+'What was the most complex assignment you have had? What was your role?',
+'Describe the most challenging problem you have encounter and how you dealt with it',
+'Can you give an example of how you used a technical skill and converted it into a practical application?' ,
+'Describe a time where you had a slow time at work and how you dealt with it',
+'Describe a situation in which you found that your results were not up to your supervisor\'s expectations. What happened? What actions did you take?',
+'Tell me about a difficult situation when it was desirable for you to keep a positive attitude. What did you do?',
+'Tell me about a time where you went above and beyond to get a job done',
+'Convince me that you can adapt to a wide variety of people, situations, and environments',
+'Describe a situation where others you were working with on a project with, disagreed with your ideas. What did you do?',
+'Give an example of when you had to work with someone who was difficult to get along with. Why was this person difficult and how did you handle that person?',
+'Describe a time you had to persuade other people to take action. Were you successful?',
+'Describe a time when you got coworkers or classmates who disliked each other to work together. How did you accomplish this? What was the outcome?',
+'Describe a time when you put your needs aside to help a co-worker or classmate understand a task. How did you assist them? What was the result?',
+'Give an example of how you worked effectively with people to accomplish an important goal',
+'Tell me of a time that you experienced conflict at work or school',
+'Give me an example of a time you had to make an important decision. How did you make it?',
+'Tell me about a time that you failed at something, and what you did afterward?',
+'Tell me about any difficulties or challenges you have faced in your most recent position, and how you handled them',
+'Describe a situation that you felt you did not communicate well. How did you correct the situation?',
+'Describe some of your personal projects',
+'Describe a situation that required multiple things to be done at the same time. How did you handle it?',
+'What unique qualities or abilities would you bring to this job?',
+'Why are you a good match for this job?',
+'What are your major strengths and weaknesses?',
+'What qualifications do you have that will make you successful?',
+'Where do you see yourself in 5 years?',
+'What qualities do you look for in a supervisor?',
+'Do you work well under pressure? Give an example',
+'How well do you work with people? Do you prefer working alone or in teams?',
+'How would you describe your leadership skills?',
+'How well do you adapt to new situations?',
+'What have you accomplished that shows your initiative and willingness to work?',
+'How would your paster supervisors describe you?',
+'What is your ideal work environment?',
+'Why do you want to work in this industry?',
+'In your opinion, what are the three most important things a team must do to be successful?',
+'What do you know about our company?',
+'Why do you want to work for us?',
+'What skills have you acquired from your previous employment?',
+'Describe your perfect job',
+'What are your long-term career objectives?',
+'Why should we hire you?',
+'What do you consider to be your biggest professional achievement?',
+'What interests you about this role?',
+]
+</script>
+<style type="text/css">
+.questionVideos{
+	width: 40%;
+}
+
+
+</style>
+</html>
