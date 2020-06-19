@@ -17,8 +17,8 @@ var javascript = {'music.html':['Music Playlist API','25/5/2020','Generates a pl
 var arduino = {'alarm.html':['Alarm System','2/16/2020','An ultrasonic sensor triggers an alarm when motion is detected. Alarm must be turned off using the keypad.'],
 			   'rgb.html':['RGB LED Remote','2/21/2020','A wireless remote is used to change the color of a RGB LED light by assigning Red, Blue, and Green a value between 0 and 255. These numbers are shown on LCD display.']
 			  }
-var cpp = {'bigo.html':['Big-O Visualizer','2/28/2020','Timing an algorithmn with different input sizes and graphing time elapsed to gain a rough visual of Big-O.'],
-		  }
+var unity = {'penguin_trained/index.html':['Penguin Game','6/19/2020','penguins']
+			}
 var tensorflow = {'http://tf-handwriting.herokuapp.com/':['Handwriting Recognition','5/27/2020', 'Convolutional neural network (CNN) that recognizes handwritten letters and numbers, trained on EMNIST dataset. HTML Canvas is used for drawing input and Flask hosts the model and Python server.'],
 				  'https://tf-images.herokuapp.com/':['Image Classification','5/30/2020','Classifying RGB images from Pixabay images API using models trained on 3 CIFAR datasets.'],
 				  'http://tf-language.herokuapp.com/':['Natural Language Processing','6/9/2020','Natural Language Processing models using LSTMs and Embedding layers. Includes both text classification and generation models.']
@@ -30,7 +30,7 @@ var languages = {
 	"javascript" : javascript,
 	"python" : python,
 	"arduino" : arduino,
-	"cpp" : cpp,
+	"unity" : unity,
 }
 // Loads the projects menu of each language; individual menu of projects for each language
 function loadLanguageMenu(language){
