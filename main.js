@@ -1,5 +1,9 @@
 window.onload = function setup(){
-	var images = ['archway.jpg','buffalo.jpg','chinesearch.jpg','hill.jpg','iphone.jpg','locks.jpg','lotus.jpg','meat.jpg','monkey.jpg','mountain.jpg','onetree.jpg','path.jpg','post.jpg','profile.jpg','redhouse.jpg','rooftop.jpg','rose.jpg','shadow.jpg','temple.jpg','flamingo.jpg'];
+	var images = ['mountain3.jpg','rocks.jpg','mountain2.jpg','chipmunk.jpg','archway.jpg','buffalo.jpg','hill.jpg',
+				  'iphone.jpg','locks.jpg','lotus.jpg',
+				  'meat.jpg','monkey.jpg','mountain.jpg','onetree.jpg','path.jpg','post.jpg','profile.jpg',
+				  'redhouse.jpg','rooftop.jpg','rose.jpg','shadow.jpg','temple.jpg','flamingo.jpg'];
+
 	var randomNumber = Math.floor(Math.random()*images.length);
 	var imageFile = images[randomNumber]; var path = 'pages/photo/'+imageFile;
 	document.body.style.backgroundImage = 'url('+path+')';
