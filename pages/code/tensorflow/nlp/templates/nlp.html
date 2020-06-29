@@ -21,20 +21,21 @@
 			<button onclick="potterStart()" class="menuBtn">Harry Potter Generator</button>
 			<button onclick="movieStart()" class="menuBtn">Movie Sentiment</button>
 			<button onclick="spamStart()" class="menuBtn">Email Spam Filter</button>
+			<button onclick="englishStart()" class="menuBtn">English Sentences</button>
 		</div>
 	</nav>
 	<div id="main">
 
-		<!-- HARRY POTTER -->
+		<!-- SHAKESPEARE -->
 		<div id="inputBox">
-			<div id="title">Harry Potter Generator</div>
-			<div id="info">"Generate Harry Potter text using Recurrent Neural Network (RNN) Model trained on all 7 Harry Potter books<br>Start by typing a sentence and selecting how many characters to generate"</div>
+			<div id="title">Shakespeare Generator</div>
+			<div id="info">"Generate shakespeare text using Recurrent Neural Network (RNN) Model trained on Shakespeare scripts<br>Start by typing a sentence and selecting how many characters to generate"</div>
 			<input type="text" name="startWords" placeholder="Type a Sentence" id="input">
-			<div id="rangeValue">Generate 400 Characters</div>
-			<input type="range" name="numChars" id="rangeSlider" min="1" max="800">
-			<button onclick="potterPredict()" class="predictBtn">Generate Text</button>
-		
+			<div id="rangeValue">Generate 500 Characters</div>
+			<input type="range" name="numChars" id="rangeSlider" min="1" max="1000">
+			<button onclick="shakespearePredict()" class="predictBtn">Generate Text</button>
 		</div>
+
 		<div id="outputBox"></div>
 		<script type="text/javascript">
 			document.getElementById("rangeSlider").addEventListener("mouseup",function(e){
@@ -46,7 +47,7 @@
 
 </div>	
 <div id="code">
-    <script src="https://gist.github.com/w3ichen/eadac12330edc5bc421d83ce0629483f.js"></script>
+   	<script src="https://gist.github.com/w3ichen/b10ae0e6609aca999d7e8c90a5217fd4.js"></script>
 </div>
 <script type="text/javascript">
     loadSubmenu(true, false);
@@ -181,6 +182,31 @@ function spamPredict(){
 		}
 	});
 }
+//5. ENGLISH SENTENCES///////////////////////////////////////////
+function englishStart(){
+	resetColor();
+	document.getElementById("inputBox").innerHTML = `
+		<div id="title">Sentence Generator</div>
+		<div id="info">"Generates a short english sentence trained on a list of sentences."</div>
+		<input type="text" name="startWords" placeholder="Type a Sentence" id="input">
+		<button onclick="englishPredict()" class="predictBtn">Generate Sentence</button>`
+		document.getElementById("code").innerHTML = "";
+		postscribe('#code', '<script src="https://gist.github.com/w3ichen/9e31fc13c9b942ad054dbf330aca4eed.js"><\/script>');
+}
+function englishPredict(){
+	var startWords = document.getElementById("input").value;
+	document.getElementById("input").value = "";
+    $.ajax ({
+	    url : '/english',
+	    type: 'POST',
+	    data: startWords,
+	    contentType:'application/json' 
+    }).done(function(data) {  
+    	document.getElementById("outputBox").innerHTML = data;
+    }); 
+}
+
+
 function resetColor(){
 	document.getElementById("outputBox").innerHTML = "";
 	document.getElementById("outputBox").style.backgroundColor = "white";

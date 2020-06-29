@@ -32,6 +32,11 @@ def spam():
 	data = request.data.decode("utf-8") 
 	prediction = model.predict.spamPredict(data) 
 	return json.dumps(str(prediction))
+@app.route('/english',methods=['GET','POST'])
+def english():
+	data = request.data.decode("utf-8") 
+	text = model.predict.englishPredict(data) 
+	return str(text)
 
 if __name__ == "__main__":
     app.run(debug=True)
