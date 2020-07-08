@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shop</title>
+</head>
+<body>
+	<nav>
+		<a href="{% url 'home' %}" id="market">Market</a>
+		<a href="{% url 'sell' %}" id="sellBtn"><strong style="font-family:'georgia';">sell</strong></a>
+		{% if user.is_authenticated %}
+			<a href="{% url 'user_products' user.username %}" id="loginBtn">{{user.username}}</a>
+		{% else %}
+			<a href="{% url 'login' %}" id="loginBtn">Login/Register</a>
+		{% endif %}
+	</nav>
+	<br><br>
+	{% if messages %}
+		{% for message in messages %}
+			<div class="message-{{message.tags}}">{{message}}</div>
+		{% endfor %}
+	{% endif %}
+
+	{% block content %}{% endblock %}
+
+</body>
+
+<style type="text/css">
+nav{
+	background-color: rgba(172,202,212,0.5);
+	display: inline-flex;
+	align-items: center;
+	padding: 0.3%;
+	position: fixed;
+	width: 100%;
+	left: 0;
+}	
+body{
+	margin: 0;
+	font-family: 'calibri light','arial','calibri';
+	text-align: center;
+}
+#market{
+	font-family: 'georgia','arial','calibri';
+	font-size: 25px;
+	letter-spacing: 2px;
+	font-weight: 500;
+	flex: 3;
+}
+#loginBtn, #sellBtn{
+	flex: 1;
+}
+#loginBtn{
+	text-align: left;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+button{
+	cursor: pointer;
+	border: none;
+}
+.message-error{
+	padding: 1%;
+	background-color: #FFCCCB;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1%;
+}
+.message-success{
+	padding: 1%;
+	background-color: #90EE90;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1%;
+}
+
+
+
+</style>
+</html>

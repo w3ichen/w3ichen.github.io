@@ -1,0 +1,52 @@
+{%extends "sell/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+	<div class="title">LOGIN</div>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<button type="submit" class="loginBtn">Login</button>
+	</form>
+	<div>Need An Account? <a href="{%url 'register'%}" class="link">Sign Up Now</a></div>	
+</div>
+
+
+<style type="text/css">
+.loginBtn{
+	margin: 3%;
+	padding: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+	border-radius: 2px;
+	color: white;
+	background-color: #0d98ba;
+}
+.loginBtn:hover{
+	outline: solid 2px #0d98ba;
+	background-color: white;
+	color: #0d98ba;
+}
+.title{
+	padding: 2%;
+	background-color: #00CED1;
+	color: white;
+	font-size: 20px;
+	margin-bottom: 4%;
+}
+.container{
+	width: 30%;
+	outline: solid 1px 	#00CED1;
+	padding-bottom: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+}
+.link{
+	color: blue;
+	font-family: calibri;
+}
+</style>
+
+
+{% endblock content %}

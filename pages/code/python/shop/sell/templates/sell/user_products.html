@@ -1,0 +1,120 @@
+{%extends "sell/base.html"%}
+{% block content %}
+
+<div class="main-title">{{user.username}}'s Items</div>
+<button onclick="window.location.href='{% url 'logout' %}'" class="logoutBtn">Logout</button>
+
+{% for product in user_products %}
+<div class="item-section">
+	<a href="{% url 'detail' product.id%}" class="item-section-left">
+		<div class="picture" style="flex: 1"><img src="{{product.image.url}}" width="50%"></div>
+		<div style="flex: 2; text-align: left;">
+			<div class="title">{{product.item}}</div>
+			<div class="date">{{product.date_posted}}</div>
+			<div class="description">{{product.description}}</div>
+		</div>
+		<div class="price" style="flex: 1">
+			${{product.price}}
+		</div>
+	</a>
+	<div class="buttons">
+		<button onclick="window.location.href='{% url 'edit' product.id %}'" class="editBtn">Edit</button>
+		<button onclick="if (window.confirm('Are you sure?')){window.location.href='{%url 'delete' product.id%}'  }" class="deleteBtn">Delete</button>
+	</div>
+</div>
+	
+
+	
+{% endfor %}
+
+<style type="text/css">
+.main-title{
+	margin: 2%;
+	font-size: 30px;
+	outline: solid 2px rgb(150,150,150);
+	padding: 0.5%;
+	padding-left: 4%;
+	padding-right: 4%;
+	width: max-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+.logoutBtn{
+	color: white;
+	letter-spacing: 0.5px;
+	position: fixed;
+	top: 9%;
+	right: 8%;
+	padding: 1%;
+	padding-left: 2%;
+	padding-right: 2%;
+	background-color: #0d98ba;
+}
+.logoutBtn:hover{
+	background-color: #89cff0;
+}
+.item-section-left{
+	display: inline-flex;
+	flex-direction: row;
+	flex: 5;
+}
+.item-section{
+	width: 80%;
+	margin-top: 2%;
+	box-shadow: 5px 5px 5px 5px rgb(200,200,200);
+	display: inline-flex;
+	flex-direction: row;
+	padding: 2%;
+}
+.picture{
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+.title{
+	font-size: 24px;
+	font-weight: 500;
+	padding-bottom: 1%;
+}
+.date{
+	font-size: 14px;
+}
+.description{
+	font-size: 17px;
+}
+.price{
+	font-size: 30px;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.buttons{
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+}
+.editBtn, .deleteBtn{
+	margin: 2%;
+	padding: 5%;
+	padding-left: 7%;
+	padding-right: 7%;
+	color: rgb(100,100,100);
+}
+.deleteBtn{
+	background-color: #FFCCCB;
+}
+.deleteBtn:hover{
+	background-color: #FF6347;
+	color: rgb(50,50,50);
+}
+.editBtn:hover{
+	background-color: rgb(200,200,200);
+	color: white;
+}
+</style>
+
+
+{% endblock content %}

@@ -1,0 +1,46 @@
+{%extends "sell/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+	<div class="title">SELL NEW ITEM</div>
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<button type="submit" class="loginBtn">Sell</button>
+	</form>
+</div>
+
+<style type="text/css">
+.loginBtn{
+	margin: 3%;
+	padding: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+	border-radius: 2px;
+	color: white;
+	background-color: #6ab04c;
+}
+.loginBtn:hover{
+	outline: solid 2px #badc58;
+	background-color: white;
+	color: #badc58;
+}
+.title{
+	padding: 1%;
+	background-color: #6ab04c;
+	color: white;
+	font-size: 20px;
+	margin-bottom: 4%;
+}
+.container{
+	width: 50%;
+	outline: solid 1px #6ab04c;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1%;
+}
+
+</style>
+
+{% endblock content %}

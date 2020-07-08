@@ -1,0 +1,57 @@
+{%extends "sell/base.html"%}
+{% block content %}
+
+{% for product in products %}
+	<a href="{% url 'detail' product.id%}" class="item-section">
+		<div class="picture" style="flex: 1"><img src="{{product.image.url}}" width="50%"></div>
+		<div style="flex: 2; text-align: left;">
+			<div class="title">{{product.item}}</div>
+			<div class="date">{{product.date_posted}}</div>
+			<div class="description">{{product.description}}</div>
+		</div>
+		<div class="price" style="flex: 1">
+			${{product.price}}
+		</div>
+	</a>
+	
+{% endfor %}
+<style type="text/css">
+.item-section{
+	width: 80%;
+	margin-top: 2%;
+	box-shadow: 5px 5px 5px 5px rgb(200,200,200);
+	display: inline-flex;
+	flex-direction: row;
+	padding: 2%;
+	background-color: white;
+}
+.picture{
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+.title{
+	font-size: 24px;
+	font-weight: 500;
+	padding-bottom: 1%;
+}
+.date{
+	font-size: 14px;
+}
+.description{
+	font-size: 17px;
+}
+.price{
+	font-size: 30px;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+</style>
+
+{% endblock content %}
+
+
+
