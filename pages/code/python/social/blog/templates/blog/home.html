@@ -1,0 +1,77 @@
+{%extends "blog/base.html"%}
+{% block content%}
+
+<div id="greetings">{{ greetings }}</div>
+<form method="POST">
+	{% csrf_token %}
+	{{ post_form }}
+	<button class="postBtn" type="submit">Post</button>
+</form>
+
+
+{% for post in posts %}
+	<div class="post">
+		<div class="user"><a href="{% url 'user-posts' post.user %}">{{ post.user }}</a></div>
+		<div class="date">{{ post.date_posted }}</div>
+		<div class="content">{{ post.content }}</div>
+		<div class="counter">{{ post.likes_count }} likes</div>
+		<div class="counter">{{ post.comments_count }} comments</div>
+		
+	</div>
+
+	<button name="{{post.id}}" class="likeBtn">Like</button>
+
+	<div class="liked_users">
+		{% for user in post.likes.all %}
+			<a href="{% url 'user-posts' user.username %}">{{ user.username }}</a>
+		{% endfor %}
+	</div>
+	<div class="comments">
+		{% for comment in post.comments.all %}
+			<div class="comment">
+				<a href="{% url 'user-posts' comment.user %}" class="comment-user">{{ comment.user.username }}</a>
+				<div class="comment-date">{{ comment.date_posted }}</div>
+				<div class="comment-text">{{ comment.text }}</div>
+			</div>
+		{% endfor %}
+	</div>
+	<form method="POST" action="{% url 'comment' post.id %}">
+		{% csrf_token %}
+		{{ comment_form }}
+		<button type="submit">send</button>
+	</form>
+	<div>
+		
+	</div>
+{% endfor %}
+
+<style type="text/css">
+.post{
+	margin: 2%;
+	padding: 1%;
+	outline: 1px solid black;
+}
+</style>
+
+<script type="text/javascript">
+$('.likeBtn').click(function(){
+    $.ajax(
+    {
+        type:"POST",
+        url: "/like",
+        data:{
+              post_id: $(this).attr("name")
+        },
+        success: function( data ) 
+        {
+            $( '#like'+ catid ).remove();
+            $( '#message' ).text(data);
+        }
+     })
+});
+</script>
+
+
+
+
+{% endblock content %}

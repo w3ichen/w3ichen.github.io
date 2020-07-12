@@ -1,0 +1,20 @@
+{%extends "blog/base.html"%}
+{% block content%}
+
+{% for post in posts %}
+
+	<div class="user">{{ post.user }}</div>
+	<div class="date">{{ post.date_posted }}</div>
+	<div class="content">{{ post.content }}</div>
+	<div class="Likes">{{ post.likes }} Likes</div>
+	<div class="comments">{{ post.comments }}</div>
+	
+
+
+
+{% endfor %}
+
+
+
+
+{% endblock content %}

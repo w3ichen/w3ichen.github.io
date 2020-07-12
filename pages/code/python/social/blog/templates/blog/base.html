@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Social</title>
+	<script src="jquery-3.5.1.min.js"></script>
+</head>
+<body>
+	<div style="width: 100%; height: 10px;"></div>
+	<div class="socialTag"><a href="{%url 'blog-home'%}">Social Media</a></div>
+	{% if user.is_authenticated %}
+		<div class="userTag"><a href="#">{{user.username}}</a></div>
+		<div style="width: 100%; height: 10px;"></div>
+		<div class="logoutTag"><a href="{%url 'logout'%}">Logout</a></div>
+	{% endif %}
+
+
+	{% if messages %}
+		{% for message in messages %}
+			<div class="message-{{ message.tags }}">
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	{% block content %}{% endblock %}
+</body>
+
+<style type="text/css">
+body{
+	margin: 0;
+}
+.socialTag{
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
+	width: 10%;
+	margin-left: 2%;
+	padding: 2%;
+	background-color: #E0FFFF;
+}
+.userTag{
+	position: fixed;
+	right: 5%;
+	top: 0;
+	padding: 2%;
+	background-color:  #ffcccb;
+}
+.logoutTag{
+	position: fixed;
+	right: 5%;
+	top: 10%;
+	padding: 2%;
+	background-color:  #ffcccb;
+}
+a{
+	text-decoration: none;
+}
+
+</style>
+</html>
