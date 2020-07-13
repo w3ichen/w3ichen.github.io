@@ -4,11 +4,11 @@ from PIL import Image
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+	image = models.ImageField(default='default.png', upload_to='profile_pics')
 
-	def save(self):
+	def save(self, *args, **kwargs):
 		# compress images
-		super().save() # run parent class' save function
+		super().save(*args, **kwargs) # run parent class' save function
 
 		img = Image.open(self.image.path)
 

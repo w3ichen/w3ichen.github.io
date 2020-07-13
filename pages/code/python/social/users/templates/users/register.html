@@ -1,11 +1,54 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<form method="POST">
-	{% csrf_token %}
-	{{form}}
-	<button>Sign Up</button>
-</form>
+<div class="container" id="top">
+	<div id="header">Register</div>
+	<form method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+		<button>Sign Up</button>
+	</form>
+</div>
 
-<div>Have an account? <a href="{%url 'login'%}">Login</a></div>
 
+<div class="container" id="login">
+	Have an account? <a href="{%url 'login'%}">Login</a>
+</div>
+
+<style type="text/css">
+#header{
+	font-family: "Brush Script Std","Segoe Script","MV Boli","chalkduster";
+	font-size: 40px;
+	margin-bottom: 10%;
+}
+button{
+	background-color: #0294f7;
+	width: 90%;
+	padding: 2%;
+	color: white;
+	font-weight: 600;
+}
+.container{
+	position: absolute;
+	left: 35%;
+	width: 30%;
+	background-color: white;
+	outline: 1px solid rgb(225,225,225);
+	padding: 3%;
+}
+.container a {
+	color: 		#008B8B;
+	font-weight: 600;
+	font-family: georgia;
+}
+#login{
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+#top{
+	top: 10%;
+}
+#login{
+	top: 88%;
+}
+</style>
 {% endblock content %}
