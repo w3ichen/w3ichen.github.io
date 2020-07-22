@@ -3,6 +3,7 @@
 var python = {'https://weichen.pythonanywhere.com':['Django Shop','7/13/2020','Shopping site built on Django framework. Users can sell products with an account. Code <a style="color:black;text-decoration:underline;" href="https://github.com/w3ichen/django-shop">here</a>'],
 			  'https://weichen2.pythonanywhere.com':['Django Social Media','7/13/2020','Social Media site built on Django framework. Users make a post and like/comment on posts. Account is needed. Code <a style="color:black;text-decoration:underline;" href="https://github.com/w3ichen/django-social">here</a>'],
 			  'https://py-maps.herokuapp.com/':['Maps Directions','6/10/2020','Using Python\'s Folium module to generate interactive maps and TomTom Maps API to get route and direction instructions.'],
+			  'https://bokeh-example.herokuapp.com/app':['Bokeh Interactive Graph','7/22/2020','Using Python\'s Bokeh library to make interactive educational examples.'],
 			  'webscraping.html':['Netflix & Amazon Webscraper','1/3/2020','Using BeautifulSoup to scrape Amazon for best coupons. And scraping Netflix and Google ratings to rank Netflix movies.'],
 			  'climate.html':['Climate Change Data','2/20/2020','Using requests to call the WorldBank\'s climate data API. This data is parsed with Pandas and plotted using Pyplot.'],
 			  'data.html':['Python Local Database','12/25/2019','Using Pickle to store user data into a simple text file database. Has the ability to create, edit and search data.'],
