@@ -18,7 +18,8 @@ var javascript = {'music.html':['Music Playlist API','25/5/2020','Generates a pl
 				  'calculator.html':['Calculator','1/2/2020','A simple caluclator using Javascript\'s eval() to perform math calculations.']
 			     }
 var arduino = {'alarm.html':['Alarm System','2/16/2020','An ultrasonic sensor triggers an alarm when motion is detected. Alarm must be turned off using the keypad.'],
-			   'rgb.html':['RGB LED Remote','2/21/2020','A wireless remote is used to change the color of a RGB LED light by assigning Red, Blue, and Green a value between 0 and 255. These numbers are shown on LCD display.']
+			   'rgb.html':['RGB LED Remote','2/21/2020','A wireless remote is used to change the color of a RGB LED light by assigning Red, Blue, and Green a value between 0 and 255. These numbers are shown on LCD display.'],
+			   'motor.html':['Select Motor Speed','7/26/2020','Basic selection of motor speed using a potentiometer.']
 			  }
 var unity = {'penguin_manual/index.html':['Penguin Game','6/19/2020','Trained penguin agent using Unity\'s MLAgents (reinforcement learning) to catch and feed fish to baby penguin. Code is in C#.']
 			}
