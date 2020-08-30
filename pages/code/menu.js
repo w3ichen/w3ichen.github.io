@@ -1,6 +1,7 @@
 // ADD NEW PROJECTS HERE
 // File Name : [Title , Date , Description]
-var python = {'https://weichen.pythonanywhere.com':['Django Shop','7/13/2020','Shopping site built on Django framework. Users can sell products with an account. Code <a style="color:black;text-decoration:underline;" href="https://github.com/w3ichen/django-shop">here</a>'],
+var python = {'http://tkd.pythonanywhere.com':['Taekwondo Club Website','8/30/2020','Programmed and designed taekwondo club\'s website on django framework with fully functional GUI to modify content. Currently used by club to organize announcements, events, forms, and photos.'],
+			  'https://weichen.pythonanywhere.com':['Django Shop','7/13/2020','Shopping site built on Django framework. Users can sell products with an account. Code <a style="color:black;text-decoration:underline;" href="https://github.com/w3ichen/django-shop">here</a>'],
 			  'https://weichen2.pythonanywhere.com':['Django Social Media','7/13/2020','Social Media site built on Django framework. Users make a post and like/comment on posts. Account is needed. Code <a style="color:black;text-decoration:underline;" href="https://github.com/w3ichen/django-social">here</a>'],
 			  'https://py-maps.herokuapp.com/':['Maps Directions','6/10/2020','<em>Load Time: 30 secs</em><br>Using Python\'s Folium module to generate interactive maps and TomTom Maps API to get route and direction instructions.'],
 			  'https://bokeh-example.herokuapp.com/app':['Bokeh Interactive Graph','7/22/2020','<em>Load Time: 30 secs</em><br>Using Python\'s Bokeh library to make interactive educational examples.'],
