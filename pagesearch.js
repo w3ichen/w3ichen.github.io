@@ -99,6 +99,9 @@ function search(input, page="none"){
 		'additional':'../other/other.html',
 		'alternative':'../other/other.html',
 		'extracurricular':'../other/other.html',
+		'publish':'../other/other.html',
+		'publication':'../other/other.html',
+		'publications':'../other/other.html',
 
 		// PHOTO
 		'camera':'../photo/photo.html',
