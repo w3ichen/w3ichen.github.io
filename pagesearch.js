@@ -65,6 +65,7 @@ function search(input, page="none"){
 		'backend':'../code/code.html',
 		'arduino':'../code/code.html',
 		'ide':'../code/code.html',
+		'java':'../code/code.html',
 
 		// MAYA
 		'blender':'../maya/maya.html',
