@@ -25,6 +25,7 @@ var arduino = {'alarm.html':['Alarm System','2/16/2020','An ultrasonic sensor tr
 var unity = {'penguin_manual/index.html':['Penguin Game','6/19/2020','Trained penguin agent using Unity\'s MLAgents (reinforcement learning) to catch and feed fish to baby penguin. Code is in C#.']
 			}
 var tensorflow = {'sign_language.html':['Object Detection<br>Sign Language','1/3/2021','Using Tensorflow Object Detection API to detect sign language gestures. Integrated into Colab and with real-time detection using webcam.'],
+				  'fruits.html':['Object Detection<br>Fruits','1/3/2021','Using Tensorflow Object Detection API to detect fruits. Integrated into Colab and with real-time detection using webcam.'],
 				  'https://tf-handwriting.herokuapp.com/':['Handwriting Recognition','5/27/2020','Convolutional neural network (CNN) that recognizes handwritten letters and numbers, trained on EMNIST dataset. HTML Canvas is used for drawing input and Flask hosts the model and Python server.'],
 				  'https://tf-images.herokuapp.com/':['Image Classification','5/30/2020','Classifying RGB images from Pixabay images API using models trained on 3 CIFAR datasets.'],
 				  'https://tf-language.herokuapp.com/':['Natural Language Processing','6/9/2020','Natural Language Processing models using LSTMs and Embedding layers. Includes both text classification and generation models.']
