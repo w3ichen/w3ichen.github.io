@@ -156,6 +156,8 @@ function search(input, page="none"){
 		'creator':'../searchall.html',
 		'project':'../searchall.html',
 		'projects':'../searchall.html',
+		'who':'../searchall.html',
+		'you':'../searchall.html',
 
 		// SOLIDWORKS
 		'solidworks':'../solidworks/solidworks.html',
