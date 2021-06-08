@@ -1,6 +1,6 @@
 extra-keras-datasets==0.1.7
 Flask==1.1.2
-Pillow==8.1.1
+Pillow==8.2.0
 numpy==1.18.3
 gunicorn==20.0.4
 itsdangerous==1.1.0
