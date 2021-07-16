@@ -125,27 +125,6 @@ function search(input, page="none"){
 		'lens':'../photo/photo.html',
 		'shoot':'../photo/photo.html',
 
-		// RESUME
-		'resume':'../resume/resume.html',
-		'cv':'../resume/resume.html',
-		'job':'../resume/resume.html',
-		'jobs':'../resume/resume.html',
-		'work':'../resume/resume.html',
-		'working':'../resume/resume.html',
-		'employ':'../resume/resume.html',
-		'employment':'../resume/resume.html',
-		'hire':'../resume/resume.html',
-		'hiring':'../resume/resume.html',
-		'career':'../resume/resume.html',
-		'profession':'../resume/resume.html',
-		'occupation':'../resume/resume.html',
-		'company':'../resume/resume.html',
-		'linkedin':'../resume/resume.html',
-
-		// COVER LETTER
-		'cover':'../resume/cover.html',
-		'letter':'../resume/cover.html',
-
 		// SEARCHALL
 		'hobby':'../searchall.html',
 		'hobbies':'../searchall.html',
